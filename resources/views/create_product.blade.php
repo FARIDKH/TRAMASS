@@ -11,7 +11,7 @@
                 <div class="row title">
                     <div class="col-md-12">
 
-                        <h2 class="text-capitalize">Edit Profile</h2>
+                        <h2 class="text-capitalize">Create Product</h2>
                             <hr>
                     </div>
 
@@ -25,9 +25,12 @@
                         <div class="card">
 
                         <!--start all post part-->
-                        <form method="post" action="" >
-                          
+                        <form method="post" action=""  enctype="multipart/form-data">
+                          {{ csrf_field() }}
+
+
                         <!--picure post part-->
+
                             <div class="card-block"> Picture </div>
                             <br>
                             <div class="photo">
@@ -38,7 +41,7 @@
                                     <i id="click_trigger" class="fa fa-camera fa-2x btn btn-default btn-file" aria-hidden="true">
 
                                     </i>
-                                    <input  id="click_submit" type="file" name="..." value="select" style="display:none;">
+                                    <input  id="click_submit" type="file" name="image" value="select" style="display:none;">
 
 
                                     <h3 class="text-center text-capitalize">change picture</h3>
@@ -65,55 +68,33 @@
 
 
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Password</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                <label for="title">Title</label>
+                                <input type="text" name="title" class="form-control" id="title" placeholder="Product title">
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Email address</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="email@email.com" readonly>
+                                <label for="description">Description</label>
+                                <textarea type="text" name="discription" class="form-control" id="description" placeholder="description" ></textarea>
+                            </div>
+                            <!-- <div class="form-group">
+                                <label for="count">Count</label>
+                                <textarea name="count" id="count" cols="30" class="form-control" rows="2" placeholder="Hectar Count"></textarea>
+                            </div> -->
+                            <div class="form-group">
+                                <label for="price">Price</label>
+                                <input type="text" class="form-control" name="price" id="price" placeholder="Price">
                             </div>
                             <div class="form-group">
-                                <label for="biodata">Biodata</label>
-                                <textarea name="" id="biodata" cols="30" class="form-control" rows="2"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="province">Province</label>
-                                <input type="text" class="form-control" id="province" value="o">
-                            </div>
-                            <div class="form-group">
-                                <label for="region">Region</label>
-                                <input type="text" class="form-control" id="region" value="o">
-                            </div>
-                            <div class="form-group">
-                                <label for="address">Address</label>
-                                <input type="text" class="form-control" id="address" value="o">
-                                <span class="text-left">*informasi Alamat tidak dipublikasikan</span>
-                            </div>
-                            <div class="form-group">
-                                <label for="telephone">Telephone</label>
-                                <input type="text" class="form-control" id="telephone" value="o">
-                                <span class="text-left">*informasi No Telephone tidak dipublikasikan</span>
-                            </div>
-
-
-
-                            <h3 class="text-capitalize">Informasi Ahli Waris</h3>
-                            <div class="form-group">
-                                <label for="informasi">Nama Ahli Waris</label>
-                                <input type="text" class="form-control" id="informasi" value="o">
+                              <label for="">Category</label>
+                                <select class="form-control" name="product_category_id" >
+                                    @foreach($categories as $category)
+                                      <option value="{{ $category->id }}">{{ $category->title }}</option>
+                                    @endforeach
+                                </select>
 
                             </div>
-                            <div class="form-group">
-                                <label for="notelp">No Telp. Ahli Waris</label>
-                                <input type="text" class="form-control" id="notelp" value="o">
 
-                            </div>
-                            <div class="form-group">
-                                <label for="almat">Alamat Ahli Waris</label>
-                                <textarea name="" cols="30" class="form-control" rows="2" id="ealmat"></textarea>
-                            </div>
-
-                            <button type="submit" name="change_profile" formnovalidate="" class="btn btn-success btn-lg text-capitalize pull-right">Update profile</button>
+                            <button type="submit" name="change_profile"
+                            class="btn btn-success btn-lg text-capitalize pull-right">Add to cart</button>
                         </form>
 
                         <!--end -->

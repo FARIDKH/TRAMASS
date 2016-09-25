@@ -17,13 +17,21 @@ Route::get('/about','PagesController@about');
 
 Route::get('/user_profile','AdminController@user');
 Route::get('/admin','AdminController@index');
+Route::get('/admin/product_category','AdminController@product_category');
+Route::post('/admin/product_category','AdminController@store');
+
+
+
 
 Route::auth();
 Route::group(['middleware' => 'auth'],function(){
 
     Route::get('/profile/{id}/','ProfileController@profile');
-    Route::get('/create_product/{id}','ProfileController@create_product');
     Route::post('/profile/{id}/','ProfileController@change_profile');
+    Route::get('basket/{id}','ProfileController@basket');
+
+    Route::get('/create_product/{id}','ProfileController@show_create_page');
+    Route::post('/create_product/{id}','ProfileController@create_product');
 
     Route::get('/cnprofile/{id}','ProfileController@cnprofile');
     Route::get('/product', 'PagesController@product');

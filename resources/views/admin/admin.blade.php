@@ -17,6 +17,7 @@
         <a href="/" class="btn btn-primary" type="button" >Home</a>
         <a href="/" class="btn btn-primary" type="button" >About us</a><br><br>
         <a href="/user_profile" class="btn btn-primary" type="button" >Users</a>
+        <a href="/admin/product_category" class="btn btn-primary" type="button" >Product Category</a>
       </div>
       <a href="/" class="btn btn-primary" type="button" >Back To index</a>
     </div>

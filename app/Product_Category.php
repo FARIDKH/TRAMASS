@@ -6,8 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product_Category extends Model
 {
-   public function products(){
-
-    	return $this->hasMany(Product::class);
+  protected $fillable = [
+      'title'
+  ];
+    public function products(){
+        return $this->hasMany(Product::class);
     }
 }
