@@ -17,8 +17,22 @@ Route::get('/about','PagesController@about');
 
 Route::get('/user_profile','AdminController@user');
 Route::get('/admin','AdminController@index');
+//Cities and Country part
+Route::get('/admin/country','AdminController@country');
+Route::get('/admin/country/{id}/city','AdminController@city');
+Route::get('/delete/{id}','AdminController@delete');
+Route::get('/edit/{id}','AdminController@edit');
+Route::post('/update/{id}','AdminController@update');
+Route::post('/admin/country/{id}/city','AdminController@create');
+//End Cities and Country part
+
+
+
 
 Route::auth();
+
+Route::get('/register','AdminController@countries');
+
 Route::group(['middleware' => 'auth'],function(){
 
     Route::get('/profile/{id}/','ProfileController@profile');

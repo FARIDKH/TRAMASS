@@ -47,6 +47,16 @@
                             @endif
 
                         </div>
+
+                        <div class="form-group" style="margin:50px 0px">
+      <label for="country" >Select country</label>
+      <select id="county" >
+    <option selected disabled >Choose one</option>
+    @foreach($countries as $cont)
+        <option value="{{$cont->title}}">{{$cont->title}}</option>
+      @endforeach
+</select>
+    </div>
                         <div class="form-group{{ $errors->has('address') ? ' has-error' : '' }}">
 
                             <label for="address" class="col-md-4 control-label">Address</label>
