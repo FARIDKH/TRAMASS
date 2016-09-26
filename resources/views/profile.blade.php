@@ -58,59 +58,59 @@
                             </div>
                         </div>
                         <!--penting part-->
-                        <div class="row penting">
-                            <h2 class="text-center text-capitalize">
-                            Pending Payment
-                            </h2>
-                            <hr>
-                            <div class="col-md-6">
-                                <ul class="media-list">
-                                    <li class="media">
-                                        <a class="media-left" href="#">
-                                            <img class="media-object image-responsive" src="/img/avo.jpg" alt="Generic placeholder image">
-                                        </a>
-                                        <div class="media-body">
-                                            <h3 class="media-heading"><a href="#">Avokado</a></h3>
-                                            <p><i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp <a href = "#">Tanjung Lesung Agropolis</a>
-                                            <br>
-                                        <i class="fa fa-bookmark" aria-hidden="true"></i>&nbsp Payment Pending</p>
-                                    </div>
-                                </li>
+                        <h2 class="text-center text-capitalize">
+                        Pending Payment
+                        </h2>
+                        @foreach($user->products as $user_products)
+                            <div class="row penting">
+                                <hr>
+                                <div class="col-md-6">
+                                        <ul class="media-list">
+                                            <li class="media">
+                                              <a class="media-left" href="#">
+                                                 <img src="" alt="" class="img-responsive">
+                                             </a>
+                                             <div class="media-body">
+                                                 <h3 class="media-heading"><a href="#">{{ $user_products->title }}</a></h3>
+                                                 <br>
+                                             <i class="fa fa-bookmark" aria-hidden="true"></i>{{ $user_products->product_category->title }}</p>
 
-                            </ul>
+                                            </li>
+                                    </ul>
+                                </div>
+
+                                <!--pending payment right part-->
+                                <div class="col-md-6">
+                                    <table class="table" style="border-top-style:hidden;">
+                                        <tbody>
+                                            <tr>
+                                                <td class="pull-right" style="border-top-style:hidden;">
+
+                                                    Price
+                                                </td>
+                                                <td>
+                                                    :
+                                                </td>
+                                                <td> {{  $user_products->price }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="pull-right" style="border-top-style:hidden;">
+
+                                                    Seed Planted
+                                                </td>
+                                                <td>
+                                                    :
+                                                </td>
+                                                <td> Participated</td>
+                                            </tr>
+                                        </tbody>
+
+                                    </table>
+                                </div>
+
+                                <button type="button" name="add_to_cart"  class="btn btn-success pull-right">Add to cart</button>
                         </div>
-
-                        <!--pending payment right part-->
-                        <div class="col-md-6">
-                            <table class="table" style="border-top-style:hidden;">
-                                <tbody>
-                                    <tr>
-                                        <td class="pull-right" style="border-top-style:hidden;">
-
-                                            Seed Planted
-                                        </td>
-                                        <td>
-                                            :
-                                        </td>
-                                        <td> Participated</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="pull-right" style="border-top-style:hidden;">
-
-                                            Seed Planted
-                                        </td>
-                                        <td>
-                                            :
-                                        </td>
-                                        <td> Participated</td>
-                                    </tr>
-                                </tbody>
-
-                            </table>
-                        </div>
-
-
-                    </div>
+                    @endforeach
                     <hr>
                     <!--seed part-->
                     <div class="row seed text-center">

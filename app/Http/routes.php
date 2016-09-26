@@ -26,13 +26,14 @@ Route::post('/admin/product_category','AdminController@store');
 Route::auth();
 Route::group(['middleware' => 'auth'],function(){
 
+
+    Route::get('/profile/{id}/','ProfileController@get_product_image')->name('products.image');
     Route::get('/profile/{id}/','ProfileController@profile');
     Route::post('/profile/{id}/','ProfileController@change_profile');
     Route::get('basket/{id}','ProfileController@basket');
 
     Route::get('/create_product/{id}','ProfileController@show_create_page');
     Route::post('/create_product/{id}','ProfileController@create_product');
-
     Route::get('/cnprofile/{id}','ProfileController@cnprofile');
     Route::get('/product', 'PagesController@product');
     Route::get('/product_single', 'PagesController@product_single');

@@ -80,7 +80,7 @@
                                 <textarea name="count" id="count" cols="30" class="form-control" rows="2" placeholder="Hectar Count"></textarea>
                             </div> -->
                             <div class="form-group">
-                                <label for="price">Price</label>
+                                <label for="price">Price for hectare in AZN</label>
                                 <input type="text" class="form-control" name="price" id="price" placeholder="Price">
                             </div>
                             <div class="form-group">
@@ -94,7 +94,7 @@
                             </div>
 
                             <button type="submit" name="change_profile"
-                            class="btn btn-success btn-lg text-capitalize pull-right">Add to cart</button>
+                            class="btn btn-success btn-lg text-capitalize pull-right">Create Product</button>
                         </form>
 
                         <!--end -->

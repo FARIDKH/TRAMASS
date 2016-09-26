@@ -8,8 +8,12 @@ use App\Product;
 use App\Product_Category;
 use App\User;
 use Auth;
-use Illuminate\Http\Request;
 use App\Http\Requests;
+
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
@@ -58,19 +62,26 @@ class ProfileController extends Controller
     public function create_product(Request $request,$id){
         $product = new Product;
         $file = $request->file('image');
-        $destinationPath = 'img';
-        $file->move($destinationPath,$file->getClientOriginalName());
 
-
+        $filename = Auth::user()->id . '/' . aaa;
+        if ($file) {
+            Storage::disk('local')->put($filename, File::get($file));
+        }
         $product->create([
           'title' => $request->title,
           'discription' => $request->discription,
           'price' => $request->price,
-          'image' => $request->image,
+          'image' => $filename,
           'product_category_id' => $request->product_category_id,
           'user_id' => Auth::user()->id
         ]);
         return back();
+    }
+
+    public function getUserImage($filename)
+    {
+        $file = Storage::disk('local')->get($filename);
+        return new Response($file, 200);
     }
     public function basket($id)
     {
