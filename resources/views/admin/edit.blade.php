@@ -8,8 +8,7 @@
     <style>
       html,body{
       	padding-top:5%;
-      	padding-left: 10%;
-        background-color: #00796B ;
+      	padding-left: 10%;       
       }
       form{
       	margin-top: 20px;
@@ -25,17 +24,14 @@
           <label for="cityid">City Name: </label>
           <input type="text" class="form-control" id="cityid" placeholder="City" name="title" value="{{$city->title}}">
         </div>
-        
+
         <button type="submit" class="btn btn-info">Update</button>
       </form>
 
-       
+
       </div>
 
 
-     
+
   </body>
 </html>
-
-
-      

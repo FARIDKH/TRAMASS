@@ -20,6 +20,8 @@ Route::get('/user_profile','AdminController@user');
 Route::get('/admin','AdminController@index');
 Route::post('/admin/product_category','AdminController@store');
 Route::get('/admin/product_category','AdminController@product_category');
+Route::get('/admin/user_product/{id}', 'AdminController@user_product');
+Route::get('/admin/user_delete/{id}', 'AdminController@user_delete');
 //Cities and Country part
 Route::get('/admin/country','AdminController@country');
 //County->city CRUD

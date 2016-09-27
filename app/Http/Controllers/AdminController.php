@@ -15,9 +15,36 @@ class AdminController extends Controller
     public function index(){
         return view('admin.admin');
     }
-    public function user(){
-        return view('admin.user');
-    }
+
+
+
+    public function user() {
+  		$users = \DB::table('users')->orderby('id', "DESC")->get();
+
+  		return view('admin.user', ['users' => $users]);
+  	}
+
+  	public function user_product($id) {
+
+  		$products = \DB::table('products')->where('user_id', '=', $id)->orderby('id', "DESC")->get();
+  		return view('admin.user_product', ['products' => $products]);
+  	}
+  	public function user_delete($id) {
+  		if (\DB::table('users')->where('id', $id)->delete()):
+
+  			if (\DB::table('products')->where('user_id', '=', $id)->delete()) {
+
+  				return redirect()->back();
+
+  			} else {
+  				print 'have same error';
+
+  			}
+
+  		endif;
+
+  	}
+
 
     public function product_category(){
         $categories = Product_Category::all();
