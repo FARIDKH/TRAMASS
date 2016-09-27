@@ -13,7 +13,7 @@
       form{
         margin-top: 30px;
       }
-     
+
     </style>
   </head>
   <body>
@@ -23,7 +23,7 @@
         <table class="table table-bordered">
           <tr>
             <th>Id</th>
-            <th>Cities name</th> 
+            <th>Cities name</th>
             <th>User</th>
             <th>Option</th>
 
@@ -31,7 +31,7 @@
           @foreach($country->cities as $city)
     <tr>
             <th>{{$city->id}}</th>
-            <th>{{$city->title}}</th> 
+            <th>{{$city->title}}</th>
             <th><a href="{{url('/peopleCount/'.$city->id)}}">List</a></th>
             <th>
             <a class="btn btn-success btn-edit" href="{{url("/edit/".$city->id)}}" >Edit</a>
@@ -41,7 +41,7 @@
             @endforeach
         </table>
 
-        
+
       </div>
 
       <div class="col-md-4">
@@ -52,11 +52,11 @@
           <label for="cityid">City Name: </label>
           <input type="text" class="form-control" id="cityid" placeholder="City" name="title">
         </div>
-        
+
         <button type="submit" class="btn btn-info">Create</button>
       </form>
 
-       
+
       </div>
 
 

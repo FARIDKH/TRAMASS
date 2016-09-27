@@ -30,7 +30,7 @@
 
 							<ul>
 								<li><i class="fa fa-calendar"></i>Contract Period : <span style="color:#777777;" > <b>6 months</b> </span> </li>
-								<li><i class="fa fa-map-marker"></i> Location : <span style="color:#417630;"><b>{{ $product->user->address }}</b></span></li>
+								<li><i class="fa fa-map-marker"></i> Location : <span style="color:#417630;"><b>{{ $product->user->city->title }}</b></span></li>
 								<li><i class="fa fa-dollar"></i> Expected Return : <span style="color:#777777;"><b> 9-13% per 6 months</b></span></li>
 								<li><i class="fa fa-clock-o"></i>Harvest Period : <span style="color:#777777;"><b>After 6 month</b></span> </li>
 							</ul>

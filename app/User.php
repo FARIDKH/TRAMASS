@@ -32,8 +32,7 @@ class User extends Authenticatable
       return $this->hasMany(Basket::class);
     }
 
-    public function cities(){
-
+    public function city(){
         return $this->belongsTo(City::class);
     }
 

@@ -98,8 +98,21 @@ class ProfileController extends Controller
 
         $product = Product::find($id);
         $user = $this->user;
+
+        if($user->type == 0){
+          $basket = new Basket;
+          $basket->create([
+                      'order_id' => NULL,
+                      'user_id' => Auth::user()->id,
+                      'product_id' => $product->id,
+                      'status' => NULL,
+                      'price' => $product->price,
+                      'count' => 1
+                  ]);
+        }
         foreach($user->products as $product_info){
-            if($product->id == $product_info->id){
+
+            if($product->id == $product_info->id && $product_info){
 
             } else {
 
@@ -116,7 +129,8 @@ class ProfileController extends Controller
                 }
 
           }
-          return redirect('/basket');
+
+        return redirect('/basket');
     }
 
     public function basket(){
