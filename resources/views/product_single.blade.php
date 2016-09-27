@@ -1,5 +1,6 @@
 @extends('layouts.main_layout')
 
+
 @section('content')
 <section id="productsingle">
 <div class="container-fluid">
@@ -37,7 +38,7 @@
 
 							<p style="color:red; font-size:1.2em;margin-left: 25px;"><b>Out of stock</b> </p>
 							<br>
-							
+
 							<a href="/add_to_basket/{{ $product->id }}" class="notify pull-right btn btn-success">Add To Cart</a >
 						</div>
 					</div>

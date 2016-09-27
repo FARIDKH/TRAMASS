@@ -560,7 +560,7 @@
 
 #productsingle {
   background-color: #FAFAFA;
-  height: 1200px; }
+  height: auto; }
   #productsingle .peanut {
     background-color: white; }
     #productsingle .peanut h1 {
@@ -792,9 +792,9 @@ html {
         margin-bottom: 40px; }
       #profile .content .col-md-9 .seed .col-md-6 {
         /* &:hover{
-							 margin-bottom: -2px;
-						}	border-bottom: 2px solid #417630;
-						 */
+								 margin-bottom: -2px;
+							}	border-bottom: 2px solid #417630;
+							 */
         font-size: 20px;
         padding: 10px 0 10px 0;
         /* margin-bottom: 60px; */ }

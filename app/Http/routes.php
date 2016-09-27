@@ -31,7 +31,7 @@ Route::group(['middleware' => 'auth'],function(){
     Route::get('/profile/{id}/','ProfileController@profile');
     Route::post('/profile/{id}/','ProfileController@change_profile');
     Route::get('/add_to_basket/{id}','ProfileController@add_to_basket');
-    Route::get('/basket/{id}/','ProfileController@basket');
+    Route::get('/basket','ProfileController@basket');
 
 
     Route::get('/create_product/{id}','ProfileController@show_create_page');

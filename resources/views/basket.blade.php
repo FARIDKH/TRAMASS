@@ -51,7 +51,7 @@
 				<br>
 				<div class="row" >
 					<div class="col-md-12 col-xs-12 textt">
-						<p class="p1">In cooperation with CV Mitra Garuda, Cooperative Andhika, and MUI with Bali-Buleleng peanut farmers, iGrow began planting peanuts this season.&nbsp; The cost of planting per hectare includes the lease of land, seed, and costs of planting, maintenance, harvesting and marketing, administration, and supervision fees ($ 1,173 per hectare per 6 months).</p>
+						<p class="p1">{{  $basket_info->product->description   }}</p>
 					</div>
 				</div>
 

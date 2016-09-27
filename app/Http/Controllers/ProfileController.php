@@ -9,6 +9,8 @@ use App\Product_Category;
 use App\User;
 use Auth;
 use App\Http\Requests;
+use DB;
+
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -95,52 +97,30 @@ class ProfileController extends Controller
     {
 
         $product = Product::find($id);
-        $baskets = Basket::all();
         $user = $this->user;
-        for($i=0;$i<count($user->products);$i++){
+        foreach($user->products as $product_info){
+            if($product->id == $product_info->id){
 
-            if($product->id == $user->products[$i]->id){
-                return redirect('/basket/'.Auth::user()->id);
             } else {
+
                 $basket = new Basket;
-            }
+                $basket->create([
+                            'order_id' => NULL,
+                            'user_id' => Auth::user()->id,
+                            'product_id' => $product->id,
+                            'status' => NULL,
+                            'price' => $product->price,
+                            'count' => 1
+                        ]);
 
-        }
+                }
 
-
-
-
-
-        $basket->create([
-            'order_id' => NULL,
-            'user_id' => Auth::user()->id,
-            'product_id' => $product->id,
-            'status' => NULL,
-            'price' => $product->price,
-            'count' => 1
-        ]);
-
-        for($i=0;$i<count($baskets);$i++){
-            if($product->id == $baskets[$i]->product_id){
-              return redirect('/basket/'.Auth::user()->id);
-            } else {
-              $basket->create([
-                  'order_id' => NULL,
-                  'user_id' => Auth::user()->id,
-                  'product_id' => $product->id,
-                  'status' => NULL,
-                  'price' => $product->price,
-                  'count' => 1
-              ]);
-            }
-        }
-        return redirect('/basket/'.Auth::user()->id);
+          }
+          return redirect('/basket');
     }
 
-    public function basket($id){
-
+    public function basket(){
         $basket = $this->user->baskets;
-
         return view('basket',compact('basket'));
     }
 
