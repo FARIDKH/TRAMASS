@@ -73,7 +73,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="description">Description</label>
-                                <textarea type="text" name="discription" class="form-control" id="description" placeholder="description" ></textarea>
+                                <textarea type="text" name="description" class="form-control" id="description" placeholder="description" ></textarea>
                             </div>
                             <!-- <div class="form-group">
                                 <label for="count">Count</label>

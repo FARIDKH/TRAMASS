@@ -8,16 +8,16 @@ class Product extends Model
 {
 
     protected $fillable = [
-        'discription', 'count', 'price', 'image', 'title','user_id','product_category_id'
+        'description', 'count', 'price', 'image', 'title','user_id','product_category_id'
     ];
 
-   public function users(){
+   public function user(){
      return $this->belongsTo(User::class);
    }
 
 
-   public function baskets(){
-     return $this->hasMany(Basket::class);
+   public function basket(){
+      return $this->hasOne(Basket::class);
    }
 
    public function product_category()

@@ -430,6 +430,7 @@
       height: 70em; } }
 
 #footer {
+  margin-top: 100px;
   overflow-x: hidden;
   background-color: #35362F;
   position: relative; }
@@ -745,9 +746,14 @@ html {
         color: #777; }
       #profile .content .col-md-9 .col-md-9 i {
         cursor: pointer;
-        color: green; }
+        color: green;
+        -webkit-text-fill-color: white;
+        /* Will override color (regardless of order) */
+        -webkit-text-stroke-width: 2px;
+        -webkit-text-stroke-color: green;
+        margin: 0px 15px; }
         #profile .content .col-md-9 .col-md-9 i:hover {
-          color: #00a400; }
+          -webkit-text-stroke-color: #00a400; }
       #profile .content .col-md-9 .col-md-9 p {
         margin: 0 0 10px;
         color: #858585; }
@@ -787,7 +793,7 @@ html {
       #profile .content .col-md-9 .seed .col-md-6 {
         /* &:hover{
 							 margin-bottom: -2px;
-						}	border-bottom: 2px solid #417630; 
+						}	border-bottom: 2px solid #417630;
 						 */
         font-size: 20px;
         padding: 10px 0 10px 0;

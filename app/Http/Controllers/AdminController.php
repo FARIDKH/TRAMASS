@@ -15,15 +15,15 @@ class AdminController extends Controller
         return view('admin.user');
     }
     public function product_category(){
-        return view('admin.product_category');
+        $categories = Product_Category::all();
+        return view('admin.product_category',compact('categories'));
     }
     public function store(Request $request,Product_Category $product_category)
     {
         $category = new Product_Category;
         $category->title=$request->title;
         $category->save();
-        $categories = Product_Category::all();
-        return view('/admin/product_category',compact('categories'));
+        return back();
     }
-    
+
 }

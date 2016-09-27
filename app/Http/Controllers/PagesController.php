@@ -27,8 +27,9 @@ class PagesController extends Controller
     public function product() {
   		return view('product');
     }
-  	public function product_single() {
-  		return view('product_single');
+  	public function product_single($id) {
+      $product = Product::find($id);
+  		return view('product_single',compact('product'));
     }
 
 }

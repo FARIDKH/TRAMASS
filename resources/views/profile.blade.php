@@ -24,7 +24,9 @@
                                   <a href="/cnprofile/{{ $user->id }}">
                                          <i class="fa fa-pencil-square-o" aria-hidden="true" style="float: right;"></i>
                                   </a>
-
+                                  <a href="/basket/{{ $user->id }}">
+                                         <i class="fa fa-shopping-cart" aria-hidden="true" style="float: right; "></i>
+                                  </a>
                                 @endif
                                 </h2>
                                 <p>No description is available</p>
@@ -49,8 +51,7 @@
                                 </table>
 <!--button for invest-->
                                 <div class="text-left">
-                                    <a type="button" class="btn btn-success btn-lg" href="/product">Products</a>
-                                    @if(Auth::user()->type)
+                                    @if(Auth::user()->type && Auth::user()->id == $user->id)
                                     <a type="button" class="btn btn-success btn-lg" href="/create_product/{{ Auth::user()->id }}">Create Product</a>
                                     @endif
                                 </div>
@@ -61,7 +62,7 @@
                         <h2 class="text-center text-capitalize">
                         Pending Payment
                         </h2>
-                        @foreach($user->products as $user_products)
+                        @foreach($user->products as $user_product)
                             <div class="row penting">
                                 <hr>
                                 <div class="col-md-6">
@@ -71,9 +72,9 @@
                                                  <img src="" alt="" class="img-responsive">
                                              </a>
                                              <div class="media-body">
-                                                 <h3 class="media-heading"><a href="#">{{ $user_products->title }}</a></h3>
+                                                 <h3 class="media-heading"><a href="/product_single/{{ $user_product->id }}">{{ $user_product->title }}</a></h3>
                                                  <br>
-                                             <i class="fa fa-bookmark" aria-hidden="true"></i>{{ $user_products->product_category->title }}</p>
+                                             <i class="fa fa-bookmark" aria-hidden="true"></i>{{ $user_product->product_category->title }}</p>
 
                                             </li>
                                     </ul>
@@ -91,7 +92,7 @@
                                                 <td>
                                                     :
                                                 </td>
-                                                <td> {{  $user_products->price }}</td>
+                                                <td> {{  $user_product->price }}</td>
                                             </tr>
                                             <tr>
                                                 <td class="pull-right" style="border-top-style:hidden;">
@@ -108,7 +109,7 @@
                                     </table>
                                 </div>
 
-                                <button type="button" name="add_to_cart"  class="btn btn-success pull-right">Add to cart</button>
+
                         </div>
                     @endforeach
                     <hr>

@@ -158,11 +158,11 @@
 
                  </div>
                  <ul>
-                   <li><a href="www.facebook.com">Facebook</a></li>
-                   <li><a href="www.twitter.com">Twitter</a></li>
-                   <li><a href="www.youtube.com">YouTube</a></li>
-                   <li><a href="www.google.com">Google +</a></li>
-                   <li><a href="www.pinterest.com">Pinterest</a></li>
+                   <li><a href="http://www.facebook.com" target="_blank ">Facebook</a></li>
+                   <li><a href="http://www.twitter.com">Twitter</a></li>
+                   <li><a href="http://www.youtube.com">YouTube</a></li>
+                   <li><a href="http://www.google.com">Google +</a></li>
+                   <li><a href="http://www.pinterest.com">Pinterest</a></li>
 
                  </ul>
 

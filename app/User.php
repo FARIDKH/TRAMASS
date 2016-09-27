@@ -28,6 +28,9 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function baskets(){
+      return $this->hasMany(Basket::class);
+    }
 
     public function cities(){
 
