@@ -32,7 +32,7 @@
 
 							<ul>
 								<li><i class="fa fa-calendar"></i>Contract Period : <span style="color:#777777;" > <b>6 months</b> </span> </li>
-								<li><i class="fa fa-map-marker"></i> Location : <span style="color:#417630;"><b> {{  $basket_info->user->city_id   }} </b></span></li>
+								<li><i class="fa fa-map-marker"></i> Location : <span style="color:#417630;"><b> {{  $basket_info->product->user->city->title  }} </b></span></li>
 								<li><i class="fa fa-dollar"></i> Expected Return : <span style="color:#777777;"><b> 9-13% per 6 months</b></span></li>
 								<li><i class="fa fa-clock-o"></i>Harvest Period : <span style="color:#777777;"><b>After 6 month</b></span> </li>
 							</ul>
@@ -51,7 +51,7 @@
 				<br>
 				<div class="row" >
 					<div class="col-md-12 col-xs-12 textt">
-						<p class="p1">In cooperation with CV Mitra Garuda, Cooperative Andhika, and MUI with Bali-Buleleng peanut farmers, iGrow began planting peanuts this season.&nbsp; The cost of planting per hectare includes the lease of land, seed, and costs of planting, maintenance, harvesting and marketing, administration, and supervision fees ($ 1,173 per hectare per 6 months).</p>
+						<p class="p1">{{  $basket_info->product->description   }}</p>
 					</div>
 				</div>
 

@@ -24,7 +24,7 @@
                                   <a href="/cnprofile/{{ $user->id }}">
                                          <i class="fa fa-pencil-square-o" aria-hidden="true" style="float: right;"></i>
                                   </a>
-                                  <a href="/basket/{{ $user->id }}">
+                                  <a href="/basket">
                                          <i class="fa fa-shopping-cart" aria-hidden="true" style="float: right; "></i>
                                   </a>
                                 @endif

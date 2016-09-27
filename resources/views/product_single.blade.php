@@ -1,5 +1,6 @@
 @extends('layouts.main_layout')
 
+
 @section('content')
 <section id="productsingle">
 <div class="container-fluid">
@@ -29,7 +30,7 @@
 
 							<ul>
 								<li><i class="fa fa-calendar"></i>Contract Period : <span style="color:#777777;" > <b>6 months</b> </span> </li>
-								<li><i class="fa fa-map-marker"></i> Location : <span style="color:#417630;"><b>{{ $product->user->address }}</b></span></li>
+								<li><i class="fa fa-map-marker"></i> Location : <span style="color:#417630;"><b>{{ $product->user->city->title }}</b></span></li>
 								<li><i class="fa fa-dollar"></i> Expected Return : <span style="color:#777777;"><b> 9-13% per 6 months</b></span></li>
 								<li><i class="fa fa-clock-o"></i>Harvest Period : <span style="color:#777777;"><b>After 6 month</b></span> </li>
 							</ul>
@@ -37,7 +38,7 @@
 
 							<p style="color:red; font-size:1.2em;margin-left: 25px;"><b>Out of stock</b> </p>
 							<br>
-							
+
 							<a href="/add_to_basket/{{ $product->id }}" class="notify pull-right btn btn-success">Add To Cart</a >
 						</div>
 					</div>
