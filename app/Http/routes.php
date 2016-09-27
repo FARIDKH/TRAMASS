@@ -19,12 +19,18 @@ Route::get('/user_profile','AdminController@user');
 Route::get('/admin','AdminController@index');
 //Cities and Country part
 Route::get('/admin/country','AdminController@country');
-Route::get('/admin/country/{id}/city','AdminController@city');
-Route::get('/delete/{id}','AdminController@delete');
-Route::get('/edit/{id}','AdminController@edit');
-Route::post('/update/{id}','AdminController@update');
-Route::post('/admin/country/{id}/city','AdminController@create');
+//County->city CRUD
+Route::get('/admin/country/{id}/city','CountyCrud@city');
+Route::get('/delete/{id}','CountyCrud@delete');
+Route::get('/edit/{id}','CountyCrud@edit');
+Route::post('/update/{id}','CountyCrud@update');
+Route::post('/admin/country/{id}/city','CountyCrud@create');
+//End of country->city CRUD
+
 //End Cities and Country part
+
+//how many users live in each city
+Route::get('/peopleCount/{city_id}/', 'AdminController@people');
 
 
 
@@ -32,6 +38,10 @@ Route::post('/admin/country/{id}/city','AdminController@create');
 Route::auth();
 
 Route::get('/register','AdminController@countries');
+
+//we create usersupload
+/*Route::post('/register','AdminController@userCreate');*/
+
 
 Route::group(['middleware' => 'auth'],function(){
 

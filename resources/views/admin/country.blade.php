@@ -21,7 +21,6 @@
             <th>Id</th>
             <th>Country name</th>
             <th>City</th>
-            <th>Type</th>
           </tr>
           @foreach($country as $count)
           <tr>

@@ -33,21 +33,7 @@
       </div>
 
 
-      <form>
-    <div class="form-group">
-      <label for="disabledSelect">Disabled select menu</label>
-      <select id="disabledSelect" class="form-control">
-        <option>Disabled select</option>
-        <option>Hey </option>
-      </select>
-    </div>
-   
- 
      
-    </div>
-   
- 
-</form>
   </body>
 </html>
 

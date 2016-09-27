@@ -32,18 +32,13 @@
     <tr>
             <th>{{$city->id}}</th>
             <th>{{$city->title}}</th> 
-            <th>Adamlarin sayinin linki</th>
+            <th><a href="{{url('/peopleCount/'.$city->id)}}">List</a></th>
             <th>
             <a class="btn btn-success btn-edit" href="{{url("/edit/".$city->id)}}" >Edit</a>
             <a class="btn btn-success btn-danger" href="{{ url("/delete/".$city->id) }}" >Delete</a>
             </th>
      </tr>
             @endforeach
-
-
-     
-
-
         </table>
 
         
