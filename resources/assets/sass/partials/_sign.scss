@@ -17,14 +17,14 @@ $bodyColor: #FAFAFA;
 			font-size: 16px;
 		}
 		> form{
-			input:not([type="submit"]){
+			select,input:not([type="submit"]){
 				border: 0;
 				outline: 0;
 				border-bottom: 3px solid #777777;
 				background: transparent;
 				box-shadow: none;
 			}
-			input:not([type="submit"]):focus{
+			select,input:not([type="submit"]):focus{
 				border-bottom: 5px solid #5CB85C;
 				margin-bottom: -2px;
 				box-shadow: none;

@@ -9,7 +9,7 @@ use App\Product_Category;
 use App\User;
 use Auth;
 use App\Http\Requests;
-use DB;
+
 
 
 use Illuminate\Http\Request;
