@@ -30,8 +30,8 @@ class AdminController extends Controller
   		return view('admin.user_product', ['products' => $products]);
   	}
   	public function user_delete($id) {
-  		if (\DB::table('users')->where('id', $id)->delete()):
-
+  		if (\DB::table('users')->where('id', $id)->delete()){
+        return redirect()->back();
   			if (\DB::table('products')->where('user_id', '=', $id)->delete()) {
 
   				return redirect()->back();
@@ -41,7 +41,7 @@ class AdminController extends Controller
 
   			}
 
-  		endif;
+  		}
 
   	}
 

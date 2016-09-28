@@ -14,11 +14,12 @@ class CreateBasketsTable extends Migration
     {
         Schema::create('baskets', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('order_id')->unsigned()->index()->nullable();
             $table->integer('user_id')->unsigned()->index();
+            $table->integer('order_id')->unsigned()->index();
             $table->integer('product_id')->unsigned()->index();
-            $table->bigInteger('price');
-            $table->boolean('status')->nullable();
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+            $table->integer('status')->unsigned()->index();
+            $table->integer('price');
             $table->integer('count');
             $table->timestamps();
         });

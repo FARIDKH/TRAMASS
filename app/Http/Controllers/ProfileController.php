@@ -70,9 +70,9 @@ class ProfileController extends Controller
         $product = new Product;
         $file = $request->file('image');
 
-        $filename = Auth::user()->id . '/';
+        $filename = Auth::user()->id.".jpg";
         if ($file) {
-            Storage::disk('local')->put($filename, File::get($file));
+            Storage::disk('uploads')->put($filename, File::get($file));
         }
         $product->create([
           'title' => $request->title,
@@ -85,11 +85,6 @@ class ProfileController extends Controller
         return back();
     }
 
-    public function getUserImage($filename)
-    {
-        $file = Storage::disk('local')->get($filename);
-        return new Response($file, 200);
-    }
 
 
 

@@ -12,7 +12,7 @@ use App\City;
 class CountyCrud extends Controller
 {
     //
-      public function city($id){
+    public function city($id){
 
     	$country=Country::find($id);
     	return view('admin.city', compact('country'));
@@ -44,7 +44,7 @@ public function create(Request $request, $id){
 
     	$city->title=$request->input('title');
 
-    	$country->city()->save($city);
+    	$country->cities()->save($city);
     	return back();
     }
 

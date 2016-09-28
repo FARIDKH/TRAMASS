@@ -1,19 +1,6 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Tramass Country Panel</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <style>
+@extends('admin.admin')
 
-
-      form{
-        margin-top: 30px;
-      }
-
-    </style>
-  </head>
-  <body>
+@section('content')
     <div class="container">
       <h1>Cities</h1>
       <div class="col-md-8">
@@ -43,7 +30,7 @@
 
       <div class="col-md-4">
       <a href="/admin" class="btn btn-primary" type="button" >Back To Admin</a>
-        <form class="form-horizontal" method="post" action="{{ url('admin/country/'.$country->id.'/city')}}" >
+        <form class="form-horizontal" method="post" action="{{ url('/country/'.$country->id.'/city')}}" >
         {{ csrf_field() }}
         <div class="form-group">
           <label for="cityid">City Name: </label>
@@ -58,5 +45,5 @@
 
 
     </div>
-  </body>
-</html>
+
+@endsection

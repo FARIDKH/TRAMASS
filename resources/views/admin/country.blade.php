@@ -1,14 +1,6 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Tramass Country Panel</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <style>
+@extends('admin.admin')
 
-    </style>
-  </head>
-  <body>
+@section('content')
     <div class="container">
       <h1>Crud Country</h1>
       <div class="col-md-8">
@@ -21,7 +13,7 @@
           @foreach($country as $count)
           <tr>
             <td>{{$count->id}}</td>
-            <td><a href="{{url('/admin/country/'.$count->id.'/city')}}">{{$count->title}}</a></td>
+            <td><a href="{{url('country/'.$count->id.'/city')}}">{{$count->title}}</a></td>
             <td>
               @foreach($count->cities as $city)
               <li>{{$city->title}}</li>
@@ -35,3 +27,4 @@
     </div>
   </body>
 </html>
+@stop
