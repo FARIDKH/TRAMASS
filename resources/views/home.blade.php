@@ -4,18 +4,18 @@
 @section('header')
 
 <div class="row header_heading">
-                           <h1>IMPROVE <span>YO</span>UR CROP!</h1>
+                           <h1>MƏHSULLARINIZI ONLİNE BAZARDA SATMAQ İSTƏYİRSİNİZ?</h1>
                            <div class="hidden-sm hidden-xs divider"></div>
                        </div>
                        <div class="row">
-                           <h3>IMPLEMENTING NEW TECHNOLOGIES FOR AGRICULTURE GROWTH</h3>
+                           <h3>TRAMASS İLƏ MALLARINIZI DÜNYA VƏ ÖLKƏ BAZARINDAKI ALICILARA ÇATDIRIN</h3>
                        </div>
                        <div class="row button_part_header">
-                           <button class="btn defaultButton">READ MORE
+                           <button class="btn defaultButton">DAHA ÇOX
                                <div></div>
                            </button>
                            @if(Auth::guest())
-                           <a class="btn successButton" href="/register">JOIN US
+                           <a class="btn successButton" href="/register">QEYDİYYATDAN KEÇ
                            </a>
 
                             @else
@@ -54,17 +54,17 @@
         <section id="welcome">
             <div class="container first_container">
               <div class="row col-lg-12  col-md-12  col-sm-12">
-                <p class="starting_prgph"> We continue to develop our capacities. Even more fruits and vegetables will be grown and gathered in the nearest future. The total number of our livestock is also increasing.</p>
+                <p class="starting_prgph"> İmkanlarımızın inkişafı davam edir. Hər gün minlərlə insan bizə inanıb məhsullarının alqı-satısını bizimlə gerçəkləşdirir.</p>
                 <div class="line"> </div>
               </div>
-                   <h1 class="col-md-4 col-sm-6 col-xs-6"> WELCOME</h1>
+                   <h1 class="col-md-4 col-sm-6 col-xs-6">XOŞ GƏLMİSİNİZ</h1>
             </div>
                <div class="row">
                  <div class="col-lg-6 col-md-12 col-xs-12 first_img">
                    <img src="img/page-1_img01.jpg" alt="" />
                    <div class=" col-lg-12 col-md-12 col-sm-12  first_prgph">
                      <p>
-                       We are a world-leading provider of beef and agricultural products. We own and operate a strategic balance of properties, feedlots and farms comprising around 10 million hectares of land. This equates to roughly 1% of country’s land mass. Having been established in 1826, we are the oldest continuously operating company in the country.
+                       Minlərlə satıcı öz malını müvafiq qiymətə satmaq istəsə belə , plansız şəkildə istehsal proseslərinə başladığı üçün nəticə gözlənildiyi kimi olmur. TRAMASS - ın yaradılış səbəbi istehsalçı və istehlakçı arasında online əlaqə qurmaq və onların bazar fəaliyyətinin keyfiyyətini maksimum dərəcəyə çıxarmaqdır.
                      </p>
                    </div>
                  </div>
@@ -72,12 +72,12 @@
                    <img src="img/page-1_img02.jpg" alt="" />
                    <div class=" col-lg-12 col-md-12  col-sm-12 second_prgph">
                      <p>
-                       We are a world-leading provider of beef and agricultural products. We own and operate a strategic balance of properties, feedlots and farms comprising around 10 million hectares of land. This equates to roughly 1% of country’s land mass. Having been established in 1826, we are the oldest continuously operating company in the country.
+                       Minlərlə satıcı öz malını müvafiq qiymətə satmaq istəsə belə , plansız şəkildə istehsal proseslərinə başladığı üçün nəticə gözlənildiyi kimi olmur. TRAMASS - ın yaradılış səbəbi istehsalçı və istehlakçı arasında online əlaqə qurmaq və onların bazar fəaliyyətinin keyfiyyətini maksimum dərəcəyə çıxarmaqdır.
                      </p>
                    </div>
                  </div>
                  <div class="row">
-                   <button>READ </button>
+                   <button>OXU</button>
                  </div>
                 </div>
 
@@ -90,35 +90,35 @@
             <div class="container">
                 <div class="col-md-8 col-sm-12 col-xs-12  header_service">
                     <div class="row">
-                        <h1>Recommendations to minimize the effects of the practices on agricultural crop <br> production.</h1>
+                        <h1>Əsas xidmətimiz - ticarət zamanı yaşanan problemləri aradan qaldırmaq</h1>
                         <div class="divider"></div>
                     </div>
                 </div>
                 <div class="service_part">
                     <div class="col-md-6 col-sm-12 col-xs-12 left_service">
                         <div class="row">
-                            <h1>SERVICES</h1>
+                            <h1>XİDMƏTLƏRİMİZ</h1>
                         </div>
                         <div class="row">
-                            <p>We provide inspection, testing, and risk management services across the whole agricultural supply chain. From seeds to crops, our expert team performs independent assessments of quality of your agricultural products and processes. We offer the best agronomic advice possible based on our knowledge.</p>
+                            <p>
+                              TRAMASS-ın ekspert qrupu kənd təsərrüfatının zənciri vasitəsilə məhsulların araşdırılması , test olunması və risk menecment servislərini təklif edir. Biz öz aqronomik biliklərimizə əsaslanaraq sizə ən yaxşı məsləhətləri <br> təklif edirik. 
+                            </p>                            
                         </div>
                         <div class="row">
                             <button class="btn">
-                              <div></div>
-                               READ MORE
+                              
+                               OXU
 
                             </button>
                         </div>
                     </div>
                     <div class="col-md-6 col-sm-12 col-xs-12 right_service">
                         <ul>
-                            <li>Agricultural Cargo Inspection</li>
-                            <li>Agricultural Services A-Z</li>
-                            <li>Food Aid Program Inspection</li>
-                            <li>GMO Seed Testing Services</li>
-                            <li>Grain Inspection and Testing</li>
-                            <li>Oilseeds Testing</li>
-                            <li>Precision Farming</li>
+                            <li>Məhsulların Daşınması</li>
+                            <li>Məhsul Yardımları</li>
+                            <li>Məhsulların və istehsalçıların dəyərləndirilməsi</li>
+                            <li>Məhsulların dünya və ölkə bazarındakı statistikaları</li>
+                            <li>İstehsalçı və istehlakçının bir araya gətirilməsi</li>
                         </ul>
                     </div>
                 </div>
@@ -132,34 +132,30 @@
                 <div class="col-md-3 col-sm-6  sep_fruit_1">
                    <div class="fruit_slide_effect_01"></div>
                    <div class="content_sep_fruit_01">
-                        <h1>CORN</h1>
+                        <h1>QARĞIDALI</h1>
                         <div class="divider"></div>
-                        <span>READ MORE</span>
                    </div>
                 </div>
                 <div class="col-md-3 col-sm-6 sep_fruit_2">
                   <div class="fruit_slide_effect_02"></div>
                    <div class="content_sep_fruit_02">
-                        <h1>CUCUMBERS</h1>
+                        <h1>XİYAR</h1>
                         <div class="divider"></div>
-                        <span>READ MORE</span>
                    </div>
 
                 </div>
                 <div class="col-md-3 col-sm-6 sep_fruit_3">
                     <div class="fruit_slide_effect_03"></div>
                     <div class="content_sep_fruit_03">
-                        <h1>TOMATOES</h1>
+                        <h1>POMİDOR</h1>
                         <div class="divider"></div>
-                        <span>READ MORE</span>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 sep_fruit_4">
                     <div class="fruit_slide_effect_04"></div>
                     <div class="content_sep_fruit_04">
-                        <h1>PEAS</h1>
+                        <h1>LOBYA</h1>
                         <div class="divider"></div>
-                        <span>READ MORE</span>
                     </div>
                 </div>
             </div>
@@ -170,22 +166,20 @@
             <div class="container">
                 <div class="col-md-8 col-sm-12 col-xs-12  header_core">
                     <div class="row">
-                        <h1>Our mission is profitable growth through superior customer service, innovation, quality and commitment.</h1>
+                        <h1>Bizim məqsədimiz sizə doğru təkliflər verərək ticarət zamanı  yüksək səviyyədə rahatlıq yaratmaqdır</h1>
                         <div class="divider"></div>
                     </div>
                 </div>
                 <div class="content_core">
                     <div class="col-md-6 col-sm-12 col-xs-12 left_core">
                         <div class="row">
-                            <h1>CORE VALUES</h1>
+                            <h1>ƏSAS DƏYƏRLƏR</h1>
                         </div>
                         <div class="row">
-                            <p>Our core values guide us in how we conduct ourselves—personally and professionally. In this ever-changing world of agriculture, our core values are constant. Our values underlie our work, how we interact with each other and which strategies we employ to fulfill our mission.</p>
+                            <p>Daimi dəyişikliklərə məruz qalan kənd təsərrüfatı iqtisadiyyatında , əsas dəyərlərimiz sabit qalır. Əsas dəyərlərimiz işimiz, bir-birimiz ilə necə ünsiyyət qurduğumuz və məqsədimizi gerçəkləşdirmək üçün hansı strategiyaları istifadə etməyimizdir.</p>
                         </div>
                         <div class="row">
-                            <button class="btn">
-                                <div></div>
-                            READ MORE</button>
+                            <button class="btn">OXU</button>
                         </div>
                     </div>
                     <div class="col-md-6 col-sm-12 col-xs-12 right_core">

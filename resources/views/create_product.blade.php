@@ -79,11 +79,8 @@
                                 <label for="count">Count</label>
                                 <textarea name="count" id="count" cols="30" class="form-control" rows="2" placeholder="Hectar Count"></textarea>
                             </div> -->
-                            <div class="form-group">
-                                <label for="price">Price for hectare in AZN</label>
-                                <input type="text" class="form-control" name="price" id="price" placeholder="Price">
-                            </div>
-                            <div class="form-group">
+                            
+                            <div class="form-group col-md-3">
                               <label for="">Category</label>
                                 <select class="form-control" name="product_category_id" >
                                     @foreach($categories as $category)
@@ -92,7 +89,32 @@
                                 </select>
 
                             </div>
+                            <div class="form-group col-md-3">
+                              <label for="">Constant</label>
+                                <select class="form-control" name="constant_id" >
+                                    @foreach($constants as $constant)
+                                      <option value="{{ $constant->id }}">{{ $constant->title }}</option>
+                                    @endforeach
+                                </select>
 
+                            </div>
+                            
+                            <div class="form-group col-md-3">
+                                <label for="price">Count</label>
+                                <select class="form-control" name="count" >
+                                    @for($i=0;$i<500;$i++)
+                                      <option value="{{ $i }}">{{ $i }}</option>
+                                    @endfor
+                                </select>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="price">Price for one in AZN</label>
+                                <input type="number" class="form-control" name="price" id="price" >
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="date_limit">Date Limit</label>
+                                <input type="date" name="date_limit" value="{{ Carbon\Carbon::now() }}">
+                            </div>
                             <button type="submit" name="change_profile"
                             class="btn btn-success btn-lg text-capitalize pull-right">Create Product</button>
                         </form>

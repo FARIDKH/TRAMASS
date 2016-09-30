@@ -7,9 +7,10 @@ use App\Basket;
 use App\Product;
 use App\Product_Category;
 use App\User;
+use App\Constant;
 use Auth;
 use App\Http\Requests;
-
+use Carbon\Carbon; 
 
 
 use Illuminate\Http\Request;
@@ -20,8 +21,11 @@ use Illuminate\Support\Facades\Storage;
 class ProfileController extends Controller
 {
     protected $user;
-
+    protected $constants;
+    protected $baskets;
     public function __construct(){
+      $this->baskets = Basket::all();
+      $this->constants = Constant::all();
       $this->user =  Auth::user();
     }
     public function profile($id){
@@ -56,9 +60,10 @@ class ProfileController extends Controller
     {
 
         $categories = Product_Category::all();
+        $constants = $this->constants;
         if($id == $this->user->id){
             if($this->user->type == 1 && $this->user->id == Auth::user()->id ){
-                return view('create_product',compact('categories'));
+                return view('create_product',compact('categories','constants'));
             } else {
                 return view('errors.503');
             }
@@ -70,16 +75,21 @@ class ProfileController extends Controller
         $product = new Product;
         $file = $request->file('image');
 
-        $filename = Auth::user()->id.".jpg";
+
+        $filename = Auth::user()->id.'/'.date('jYhisA').".jpg";
         if ($file) {
             Storage::disk('uploads')->put($filename, File::get($file));
         }
+
         $product->create([
+          'image' => $filename,
           'title' => $request->title,
           'description' => $request->description,
-          'price' => $request->price,
-          'image' => $filename,
           'product_category_id' => $request->product_category_id,
+          'constant_id' => $request->constant_id,
+          'count' => $request->count,
+          'price' => $request->price,
+          'date_limit' => $request->date_limit,
           'user_id' => Auth::user()->id
         ]);
         return back();
@@ -88,49 +98,60 @@ class ProfileController extends Controller
 
 
 
-    public function add_to_basket($id)
+    public function add_to_basket(Request $request,$id)
     {
 
+        $now = Carbon::now();
         $product = Product::find($id);
         $user = $this->user;
-
-        if($user->type == 0){
-          $basket = new Basket;
-          $basket->create([
-                      'order_id' => NULL,
-                      'user_id' => Auth::user()->id,
-                      'product_id' => $product->id,
-                      'status' => NULL,
-                      'price' => $product->price,
-                      'count' => 1
-                  ]);
-        }
-        foreach($user->products as $product_info){
-
-            if($product->id == $product_info->id && $product_info){
-
+        if($now < $product->date_limit){
+            if($request){
+              $ferq = $product->count - $request->count;
+              $product->count = $ferq;
             } else {
+              $ferq = 5;
+            }
 
-                $basket = new Basket;
-                $basket->create([
-                            'order_id' => NULL,
-                            'user_id' => Auth::user()->id,
-                            'product_id' => $product->id,
-                            'status' => NULL,
-                            'price' => $product->price,
-                            'count' => 1
-                        ]);
 
-                }
+            
 
-          }
 
-        return redirect('/basket');
+            if($ferq>=0){
+              $product->save();
+            }
+            if($ferq<0){
+               $basket = $this->user->baskets;
+               return view('basket',compact('basket','ferq'));
+            } else {
+                  $basket = new Basket;
+                  $basket->create([
+                              'order_id' => NULL,
+                              'user_id' => Auth::user()->id,
+                              'product_id' => $product->id,
+                              'status' => NULL,
+                              'price' => $product->price,
+                              'count' => $request->count,
+                          ]);
+              }
+              
+
+                  if($product->user->id == Auth::user()->id){
+                      return redirect('/basket');
+                  }
+
+                
+              
+
+              return redirect('/basket');
+            }  else {
+          return 'bu mal artiq satila bilmez';
+        }
+
     }
-
     public function basket(){
         $basket = $this->user->baskets;
         return view('basket',compact('basket'));
     }
+
 
 }

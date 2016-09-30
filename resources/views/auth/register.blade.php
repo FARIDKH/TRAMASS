@@ -59,8 +59,7 @@
 
                     </div>
                       <div class="form-group">
-                        <label  class="col-md-4 control-label">City-id</label>
-                        <input  id ="city" type="text" class="form-control city_id" name="city_id" value="">
+                        <input  id ="city" type="hidde" class="form-control city_id" name="city_id" value="" style="display:none">
 
                     </div>
 

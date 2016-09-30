@@ -1,17 +1,34 @@
 @extends('layouts.main_layout')
 
 @section('content')
-<section id="productsingle">
+
+		
+<section id="productsingle"  style="transition:all 0.3s ease">
 <div class="container-fluid">
 	<div class="container">
 
+		
+		
 
 		@foreach($basket as $basket_info)
 		<div class="row">
+			
+			@if(isset($ferq))
+				@if($ferq<0)
+					<script>
+						setTimeout(function(){ 
+							document.getElementsByClassName('alert_message')[0].setAttribute("class", "hidden");
+						}, 3000);
+					</script>
+					@else 
+				@endif
+		
+			@endif
+			
+			
 
 
-
-				<div  class="peanutbtn">
+			<div  class="peanutbtn">
              <h1 class="pull-left" style="min-width:200px">{{ $basket_info->product->title }} by {{ $basket_info->product->user->name }} {{$basket_info->product->user->surname }}</h1>
              <button class=" profit pull-right btn btn-success"><i class="fa fa-line-chart " aria-hidden="true"></i><a href="">PROFIT SIMULATION</a> </button>
 				</div>
@@ -22,7 +39,7 @@
 				<div class="row">
 					<div class="col-md-5 col-xs-12">
 						<div>
-							<img  class="img img-responsive" src="/img/11.jpg" alt="">
+							<img  class="img img-responsive" src="/uploads/{{$basket_info->product->image}}" alt="">
 						</div>
 					</div>
 					<div class="col-md-7 col-xs-12">

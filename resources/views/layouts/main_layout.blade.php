@@ -34,24 +34,24 @@
                                 <div class="navbar-header col-md-3 col-sm-12 col-xs-12 ">
                                     <a class="navbar-brand" href="{{ url('/') }}"><span>TRA</span>MASS</a>
                                 </div>
-                                <ul class="nav navbar-nav navbar-right">
+                                <ul class="col-md-9 nav navbar-nav navbar-right">
                                       @if (Auth::guest())
 
-                                              <li class="active"><a href="{{ url('/') }}">HOME</a></li>
-                                              <li><a href="{{ url('/about') }}">ABOUT US</a></li>
-                                              <li><a href="{{ url('/login') }}">LOG IN</a></li>
-                                              <li><a href="{{ url('/register') }}">SIGN UP</a></li>
+                                              <li class="active"><a href="{{ url('/home') }}">Əsas Səhifə</a></li>
+                                              <li><a href="{{ url('/about') }}">HAQQIMIZDA</a></li>
+                                              <li><a href="{{ url('/login') }}">DAXİL OL</a></li>
+                                              <li><a href="{{ url('/register') }}">QEYDİYYAT</a></li>
 
                                       @else
-                                          <li class="active"><a href="{{ url('/') }}">HOME</a></li>
-                                          <li><a href="{{ url('/about') }}">ABOUT US</a></li>
+                                          <li class="active"><a href="{{ url('/') }}">Əsas Səhifə</a></li>
+                                          <li><a href="{{ url('/about') }}">HAQQIMIZDA</a></li>
                                           <li>
                                               <a href="/profile/{{ Auth::user()->id }}"role="button" aria-expanded="false">
                                                   {{ Auth::user()->name}}
                                               </a>
 
                                           </li>
-                                          <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
+                                          <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>ÇIXIŞ</a></li>
 
                                       @endif
                                 </ul>
@@ -85,23 +85,23 @@
                                   <ul class="nav navbar-nav navbar-right">
                                         @if (Auth::guest())
 
-                                                <li class="active"><a href="{{ url('/') }}">HOME</a></li>
-                                                <li><a href="{{ url('/about') }}">ABOUT US</a></li>
-                                                <li><a href="{{ url('/login') }}">LOG IN</a></li>
-                                                <li><a href="{{ url('/register') }}">SIGN UP</a></li>
+                                              <li class="active"><a href="{{ url('/home') }}">Əsas Səhifə</a></li>
+                                              <li><a href="{{ url('/about') }}">HAQQIMIZDA</a></li>
+                                              <li><a href="{{ url('/login') }}">DAXİL OL</a></li>
+                                              <li><a href="{{ url('/register') }}">QEYDİYYAT</a></li>
 
-                                        @else
-                                            <li class="active"><a href="{{ url('/') }}">HOME</a></li>
-                                            <li><a href="{{ url('/about') }}">ABOUT US</a></li>
-                                            <li>
-                                                <a href="/profile/{{ Auth::user()->id }}" role="button" aria-expanded="false">
-                                                    {{ Auth::user()->name }}
-                                                </a>
+                                      @else
+                                          <li class="active"><a href="{{ url('/') }}">Əsas Səhifə</a></li>
+                                          <li><a href="{{ url('/about') }}">HAQQIMIZDA</a></li>
+                                          <li>
+                                              <a href="/profile/{{ Auth::user()->id }}"role="button" aria-expanded="false">
+                                                  {{ Auth::user()->name}}
+                                              </a>
 
-                                            </li>
-                                            <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
+                                          </li>
+                                          <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>ÇIXIŞ</a></li>
 
-                                        @endif
+                                      @endif
                                   </ul>
 
                                 </div>

@@ -7,68 +7,33 @@
 <section id="product">
 <div class="container-fluid">
 <div class="container">
-	<div class="row h2"><h2>Our Seed</h2></div>
+	<div class="row h2"><h2>All products</h2></div>
 	<br>
 
-	<div class="row ">
-	<div class="col-md-3  col-xs-12 " >
-		<div style="background-color:white" class="elsen text-center">
-			<img  src="/img/2.jpg" alt="">
-			<h4 >Date Palm</h4>
-			<p class=" p">$407</p>
-			<b  style="font-size:11pt; color:#787878">Return : 20%-30% per year</b>
-			<div class="hoverr">
-				<h2 style="margin-top:80px;">Date Palm</h2>
-				<form action="">
-					<button class="btnn">INVEST NOW</button>
-				</form>
-			</div>
-		</div>
-	</div>
-	<div class="col-md-3 col-xs-12">
-		<div style="background-color:white" class=" elsen text-center">
-			<img src="/img/15.jpg" alt="">
-			<h4 >Avocado</h4>
-			<p class=" p">$203</p>
-			<b  style="font-size:11pt; color:#787878">Return : 15% per year</b>
-			<div class="hoverr">
-				<h2 style="margin-top:80px;">Avocado</h2>
-				<form action="">
-					<button class="btnn">INVEST NOW</button>
-				</form>
-			</div>
-		</div>
-	</div>
-	<div class="col-md-3 col-xs-12">
-		<div style="background-color:white" class=" elsen text-center">
-			<img src="/img/14.jpg" alt="">
-			<h4 >Fragrant Roots</h4>
-			<p class=" p">$814</p>
-			<b  style="font-size:11pt; color:#787878">Return : 15%</b>
-			<div class="hoverr">
-				<h2 style="margin-top:80px;">Fragrant Roots</h2>
-				<form action="">
-					<button class="btnn">INVEST NOW</button>
-				</form>
-			</div>
-		</div>
-	</div>
-		<div class="col-md-3 col-xs-12">
-		<div style="background-color:white" class=" elsen text-center">
-			<img src="/img/13.jpg" alt="">
-			<h4>Deli Water Apple</h4>
-			<p class=" p">$122</p>
-			<b  style="font-size:11pt; color:#787878">Return : 7%-20% per year</b>
-			<div class="hoverr">
-				<h2 style="margin-top:80px;">Deli Water Apple</h2>
-				<form action="">
-					<button class="btnn">INVEST NOW</button>
-				</form>
-			</div>
-		</div>
-	</div>
-	</div>
-	<br>
+
+
+	
+		@foreach($products as $product)
+			
+				<div class="col-md-3 col-xs-12 product">
+					<div style="background-color:white" class="elsen text-center">
+						<img  src="/uploads/{{ $product->image }}" alt="{{ $product->title }}">
+						<h4 >{{ $product->title }} by {{ $product->user->name }} {{ $product->user->surname }}</h4>
+						<p class=" p">{{ $product->price }} AZN / {{ $product->constant->title }}</p>
+						<b  style="font-size:11pt; color:#787878">Return : 20%-30% per year</b>
+						<div class="hoverr">
+							<h2 style="margin-top:80px;">{{ $product->title }}</h2>
+							<form action="">
+								<a href="/product_single/{{  $product->id }}" class="btn btnn">INVEST NOW</a>
+							</form>
+						</div>
+					</div>
+				</div>
+			
+		@endforeach
+	
+
+<!-- 	<br>
 	<br>
 	<br>
 	<div class="row ">
@@ -129,8 +94,8 @@
 			</div>
 		</div>
 	</div>
-	</div>
-	<br>
+	</div> -->
+<!-- 	<br>
 	<br>
 	<br>
 	<div class="row ">
@@ -192,7 +157,7 @@
 			</div>
 		</div>
 	</div>
-	</div>
+	</div> -->
 </div>
 
 </div>

@@ -116,6 +116,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <li class="active"><a href="/user_profile"><i class="fa fa-link"></i> <span>User</span></a></li>
         <li><a href="/country"><i class="fa fa-link"></i> <span>Countries</span></a></li>
         <li><a href="/product_category"><i class="fa fa-link"></i> <span>Product Category</span></a></li>
+        <li><a href="/constant"><i class="fa fa-link"></i> <span>Constants</span></a></li>
       </ul>
       <!-- /.sidebar-menu -->
     </section>

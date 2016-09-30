@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Product_Category;
 use App\Http\Requests;
-
+use App\Constant;
 use App\Country;
 use App\City;
 use App\User;
@@ -25,7 +25,6 @@ class AdminController extends Controller
   	}
 
   	public function user_product($id) {
-
   		$products = \DB::table('products')->where('user_id', '=', $id)->orderby('id', "DESC")->get();
   		return view('admin.user_product', ['products' => $products]);
   	}
@@ -144,4 +143,16 @@ class AdminController extends Controller
 
     }
 
+    public function create_constant(Request $request)
+    { 
+        $constant = new Constant;
+        $constant->title=$request->title;
+        $constant->save();
+        return back();
+    }
+    public function constant(Request $request){
+        
+        $constants = Constant::all();
+        return view('admin.constant',compact('constants'));
+    }  
 }

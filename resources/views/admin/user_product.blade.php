@@ -21,7 +21,7 @@
           <td>{{$product->title}}</td>
           <td>{{$product->description}}</td>
           <td>{{$product->price}}</td>
-          <td>{{$product->image}}</td>
+          <td><img src="/uploads/{{$product->image}}" style="width:100%"</td>
           <td>{{$product->created_at}}</td>
           <td>{{$product->updated_at}}</td>
           <td>{{$product->product_category_id}}</td>

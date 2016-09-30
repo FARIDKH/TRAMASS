@@ -16,20 +16,8 @@ Route::get('/home','PagesController@home');
 Route::get('/about','PagesController@about');
 
 
-Route::get('/user_profile','AdminController@user');
-Route::get('/admin','AdminController@index');
-Route::post('/product_category','AdminController@store');
-Route::get('/product_category','AdminController@product_category');
-Route::get('/user_product/{id}', 'AdminController@user_product');
-Route::get('/user_delete/{id}', 'AdminController@user_delete');
-//Cities and Country part
-Route::get('/country','AdminController@country');
-//County->city CRUD
-Route::get('/country/{id}/city','CountyCrud@city');
-Route::get('/delete/{id}','CountyCrud@delete');
-Route::get('/edit/{id}','CountyCrud@edit');
-Route::post('/update/{id}','CountyCrud@update');
-Route::post('/country/{id}/city','CountyCrud@create');
+
+
 //End of country->city CRUD
 
 //End Cities and Country part
@@ -41,13 +29,30 @@ Route::get('/peopleCount/{city_id}/', 'AdminController@people');
 
 
 Route::auth();
-
 Route::get('/register','AdminController@countries');
+Route::get('/user_profile','AdminController@user');
+Route::get('/admin','AdminController@index');
+Route::post('/product_category','AdminController@store');
+Route::get('/product_category','AdminController@product_category');
+Route::get('/user_product/{id}', 'AdminController@user_product');
+Route::get('/user_delete/{id}', 'AdminController@user_delete');
+Route::get('/constant', 'AdminController@constant');
+Route::post('/create_constant', 'AdminController@create_constant');
+//Cities and Country part
+Route::get('/country','AdminController@country');
+//County->city CRUD
+Route::get('/country/{id}/city','CountyCrud@city');
+Route::get('/delete/{id}','CountyCrud@delete');
+Route::get('/edit/{id}','CountyCrud@edit');
+Route::post('/update/{id}','CountyCrud@update');
+Route::post('/country/{id}/city','CountyCrud@create');
+
+
 
 //we create usersupload
 /*Route::post('/register','AdminController@userCreate');*/
 
-
+    Route::get('/','PagesController@home');
 Route::group(['middleware' => 'auth'],function(){
 
 
@@ -55,13 +60,13 @@ Route::group(['middleware' => 'auth'],function(){
     Route::get('/profile/{id}/','ProfileController@profile');
     Route::post('/profile/{id}/','ProfileController@change_profile');
     Route::get('/add_to_basket/{id}','ProfileController@add_to_basket');
+    Route::post('/add_to_basket/{id}','ProfileController@add_to_basket');
     Route::get('/basket','ProfileController@basket');
 
 
     Route::get('/create_product/{id}','ProfileController@show_create_page');
     Route::post('/create_product/{id}','ProfileController@create_product');
     Route::get('/cnprofile/{id}','ProfileController@cnprofile');
-    Route::get('/product', 'PagesController@product');
     Route::get('/product_single/{id}', 'PagesController@product_single');
 
 

@@ -1,7 +1,6 @@
 @extends('layouts.main_layout')
 
 
-
 @section('content')
 
 <div class="container-fluid" id="profile">
@@ -22,10 +21,10 @@
               <!--change-profile link-->
 
                                   <a href="/cnprofile/{{ $user->id }}">
-                                         <i class="fa fa-pencil-square-o" aria-hidden="true" style="float: right;"></i>
+                                         <i class="fa fa-pencil-square-o fa-2x" aria-hidden="true" style="float: right;"></i>
                                   </a>
                                   <a href="/basket">
-                                         <i class="fa fa-shopping-cart" aria-hidden="true" style="float: right; "></i>
+                                         <i class="fa fa-shopping-cart fa-2x" aria-hidden="true" style="float: right; "></i>
                                   </a>
                                 @endif
                                 </h2>
@@ -62,21 +61,23 @@
                         <h2 class="text-center text-capitalize">
                         Pending Payment
                         </h2>
-                        @foreach($user->products as $user_product)
+                    @foreach($user->products as $user_product)
                             <div class="row penting">
                                 <hr>
                                 <div class="col-md-6">
                                         <ul class="media-list">
                                             <li class="media">
                                               <a class="media-left" href="#">
-                                                 <img src="" alt="" class="img-responsive">
+                                                 <img src="/uploads/{{ $user_product->image }}" alt="{{ $user_product->title }}">
                                              </a>
                                              <div class="media-body">
-                                                 <h3 class="media-heading"><a href="/product_single/{{ $user_product->id }}">{{ $user_product->title }}</a></h3>
+                                                 <h3 class="media-heading"><a href="/product_single/{{ $user_product->id }}">
+                                                 {{ $user_product->title }}</a></h3>
                                                  <br>
-                                             <i class="fa fa-bookmark" aria-hidden="true"></i>{{ $user_product->product_category->title }}</p>
-
+                                             <i class="fa fa-bookmark" aria-hidden="true"></i> 
+                                             {{ $user_product->product_category->title }}
                                             </li>
+
                                     </ul>
                                 </div>
 
@@ -87,22 +88,12 @@
                                             <tr>
                                                 <td class="pull-right" style="border-top-style:hidden;">
 
-                                                    Price
+                                                    Price for one {{  $user_product->constant->title }}
                                                 </td>
                                                 <td>
                                                     :
                                                 </td>
-                                                <td> {{  $user_product->price }}</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="pull-right" style="border-top-style:hidden;">
-
-                                                    Seed Planted
-                                                </td>
-                                                <td>
-                                                    :
-                                                </td>
-                                                <td> Participated</td>
+                                                <td> {{  $user_product->price }} AZN</td>
                                             </tr>
                                         </tbody>
 
