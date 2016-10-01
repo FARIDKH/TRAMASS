@@ -28,7 +28,8 @@
                                   </a>
                                 @endif
                                 </h2>
-                                <p>No description is available</p>
+                                <br>    
+{{--                                 <p>No description is available</p>
                                 <!--Table about planted absorbed participated;-->
                                 <table class=" table" style=" border-top-style:hidden;">
                                     <tbody>
@@ -47,11 +48,12 @@
                                         </tr>
                                     </tbody>
 
-                                </table>
+                                </table> --}}
 <!--button for invest-->
                                 <div class="text-left">
-                                    @if(Auth::user()->type && Auth::user()->id == $user->id)
+                                    @if(Auth::user()->type == 1 && Auth::user()->id == $user->id)
                                     <a type="button" class="btn btn-success btn-lg" href="/create_product/{{ Auth::user()->id }}">Create Product</a>
+                                    <a type="button" class="btn btn-success btn-lg" href="/request">Request</a>
                                     @endif
                                 </div>
 
@@ -59,7 +61,7 @@
                         </div>
                         <!--penting part-->
                         <h2 class="text-center text-capitalize">
-                        Pending Payment
+                        Əldə olan mallar
                         </h2>
                     @foreach($user->products as $user_product)
                             <div class="row penting">
@@ -105,37 +107,40 @@
                     @endforeach
                     <hr>
                     <!--seed part-->
-                    <div class="row seed text-center">
+                        <div class="row seed text-center">
 
                     <!--title-->
-                        <h2 class="text-center text-capitalize">
-                        my seed
-                        </h2>
-                        <hr>
-                        <!-- two button part-->
-                        <div class="col-md-6 col-xs-6 text-uppercase text-center" id="left">
-                            <a name="button"> on planting</a>
-                        </div>
-                        <div class="col-md-6 col-xs-2 text-uppercase text-center" id="right">
-                            <a name="button">
-                            harvested</a>
-                        </div>
+                                <h2 class="text-center text-capitalize">
+                                Alqı-satqılarım
+                                </h2>
+                                <hr>
+                                <!-- two button part-->
+                                <div class="col-md-12 col-xs-12 text-uppercase text-left" id="left">
+                                        @foreach($baskets as $basket)
+                                        
+
+                                            @if($basket->id == Auth::user()->id)
+            
+                
+                                                <h4>{{ $basket->product->user->id }} adli usere verdiyiniz sifaris qebul olmadi</h4>
+                                        
+                                                <img src="" alt="">
+
+
+                                            @endif
+
+                                        @endforeach
+                                </div>
+                       
                         <!--line which scrol(left-right)-->
-                        <div class="col-md-6 line">
+                        {{-- <div class="col-md-6 line">
 
                         </div>
-                        <br>
+                        <br> --}}
                         <!-- button part end-->
 
                         <!--part where we put some information-->
-                        <div class="col-md-12 text-center leftInfo" >
-                        <img src="/img/empty-state.png" class="img-responsive" alt="Responsive image">
-                        <p class="text-center">Whoops you don't have any on planting seed</p>
-                        </div>
-
-                        <div class="col-md-12 text-center rightInfo" style="display: none">
-                        <img src="/img/empty-state.png" class="img-responsive" alt="Responsive image">
-                        <p class="text-center">Whoops Bla bla bla</p>
+                        
                         </div>
                     </div>
                 </div>
@@ -144,7 +149,7 @@
 
                 <!--right part (global col-md-3)-->
 
-                <div class="col-md-3">
+                {{-- <div class="col-md-3">
 
                 <!--part about time -->
                     <div class="upcoming">
@@ -237,7 +242,7 @@
                             <p>1 month ago</p>
                         </span>
                     </div>
-                    <!--end info part-->
+                    <!--end info part--> --}}
 
                 </div>
             </div>

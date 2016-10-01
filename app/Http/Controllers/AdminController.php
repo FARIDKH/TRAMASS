@@ -9,6 +9,9 @@ use App\Constant;
 use App\Country;
 use App\City;
 use App\User;
+use App\Order;
+
+
 
 class AdminController extends Controller
 {
@@ -155,4 +158,9 @@ class AdminController extends Controller
         $constants = Constant::all();
         return view('admin.constant',compact('constants'));
     }  
+
+    public function orders(){
+        $orders = Order::all();
+        return view('admin.orders',compact('orders'));
+    }
 }

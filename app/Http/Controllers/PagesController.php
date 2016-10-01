@@ -22,7 +22,7 @@ class PagesController extends Controller
     protected $products;
     public function __construct(){
       $this->user = User::class;
-      $this->products = Product::all();
+      $this->products = Product::orderBy('id','desc')->get();
     }
 
     public function home(){
@@ -42,4 +42,16 @@ class PagesController extends Controller
   		return view('product_single',compact('product'));
     }
 
+    public function search()
+    {
+
+        $search = $_GET['search'];
+        if($search){
+                  $results = Product::where('title','LIKE','%'.$search.'%')->orWhere('count','LIKE','%'.$search.'%')->get(); 
+                  return view('search',compact('results'));
+        } else {
+          return back();
+        }
+
+    }
 }

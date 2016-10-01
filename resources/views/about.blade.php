@@ -8,14 +8,16 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <h1>WHY CHOOSE US</h1>
+                        <h1>NİYƏ BİZ?</h1>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-4">
                         <i class="material-icons">filter_1</i>
-                        <h3>We are innovators in agricultural business.</h3>
-                        <p>We can call ourselves the innovators in agricultural business. And these are not just words. They have solid background. You can find real proof reading more about our company.</p>
+                        <h3>Biz kənd təsərrüfatı üzrə ixtisaslaşmış mütəxəssis</h3>  
+                        <p>Bizim özümüzü mütəxəssis adlandırmağımız sadəcə söz deyil. İşçilərmizin kifaət qədər iş təcrübəsi var.
+                        Siz əsl sübutu bizim haqqımızda araşdıraraq tapa bilərsiniz
+                        </p>
                     </div>
                     <div class="col-md-4">
                         <i class="material-icons">filter_2</i>

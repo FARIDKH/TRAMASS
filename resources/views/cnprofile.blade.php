@@ -95,11 +95,15 @@
                                 <span class="text-left">*informasi No Telephone tidak dipublikasikan</span>
                             </div>
 
-                            <div class="form-group">
-                                <label for="telephone">Seller status</label>
-                                <input type="checkbox" name="seller_status" value="1"   @if(Auth::user()->type) checked value="0" @endif  > 
-                            </div>
+                            
 
+                            <select name="type" id="type">
+                                
+                               
+                                <option value="0">Alıcı</option>
+                                <option value="1">Satıcı</option>
+                                <option value="2">Alıcı və Satıcı</option>
+                            </select>
                             <h3 class="text-capitalize">Informasi Ahli Waris</h3>
                             <div class="form-group">
                                 <label for="informasi">Nama Ahli Waris</label>

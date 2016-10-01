@@ -29,8 +29,9 @@ class ProfileController extends Controller
       $this->user =  Auth::user();
     }
     public function profile($id){
+        $baskets = Basket::all();
         $user = User::find($id);
-        return view('profile' , compact('user'));
+        return view('profile' , compact('user','baskets'));
     }
 
     public function cnprofile($id){
@@ -43,14 +44,20 @@ class ProfileController extends Controller
       }
     }
 
-    public function change_profile(){
+    public function change_profile(Request $request){
       if(isset($_POST['change_profile'])){
 
-              if(isset($_POST['seller_status'])){
-                  $this->user->type = 1;
-              } else {
-                  $this->user->type = 0;
-              }
+              // if(isset($_POST['seller_status'])){
+              //     $this->user->type = 1;
+              // } else {
+              //     $this->user->type = 0;
+              // }
+              // if(isset($_POST['seller_buyer_status'])){
+              //     $this->user->type= 2;
+              // } else {
+              //   $this->user->type = 0;
+              // }
+          $this->user->type = $request->type;
           $this->user->save();
           return redirect()->action('ProfileController@profile', ['id' => Auth::user()->id]);
       }
@@ -104,16 +111,21 @@ class ProfileController extends Controller
         $now = Carbon::now();
         $product = Product::find($id);
         $user = $this->user;
-        if($now < $product->date_limit){
+        if($now < $product->date_limit && $user->type == 1 || $user->type == 0){
+            if($product->user->id == Auth::user()->id){
+                return redirect('/basket');
+            }
             if($request){
-              $ferq = $product->count - $request->count;
-              $product->count = $ferq;
+              
+                  $ferq = $product->count - $request->count;
+                  $product->count = $ferq;
+              
             } else {
-              $ferq = 5;
+              $ferq = -1;
             }
 
 
-            
+              
 
 
             if($ferq>=0){
@@ -132,19 +144,10 @@ class ProfileController extends Controller
                               'price' => $product->price,
                               'count' => $request->count,
                           ]);
-              }
-              
-
-                  if($product->user->id == Auth::user()->id){
-                      return redirect('/basket');
-                  }
-
-                
-              
-
-              return redirect('/basket');
+              } return redirect('/basket');
             }  else {
-          return 'bu mal artiq satila bilmez';
+          echo 'bu malin muddeti bitdiyinden satila bilmez';
+          return back();
         }
 
     }

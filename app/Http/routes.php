@@ -29,23 +29,26 @@ Route::get('/peopleCount/{city_id}/', 'AdminController@people');
 
 
 Route::auth();
-Route::get('/register','AdminController@countries');
-Route::get('/user_profile','AdminController@user');
-Route::get('/admin','AdminController@index');
-Route::post('/product_category','AdminController@store');
-Route::get('/product_category','AdminController@product_category');
-Route::get('/user_product/{id}', 'AdminController@user_product');
-Route::get('/user_delete/{id}', 'AdminController@user_delete');
-Route::get('/constant', 'AdminController@constant');
-Route::post('/create_constant', 'AdminController@create_constant');
-//Cities and Country part
-Route::get('/country','AdminController@country');
-//County->city CRUD
-Route::get('/country/{id}/city','CountyCrud@city');
-Route::get('/delete/{id}','CountyCrud@delete');
-Route::get('/edit/{id}','CountyCrud@edit');
-Route::post('/update/{id}','CountyCrud@update');
-Route::post('/country/{id}/city','CountyCrud@create');
+
+    Route::get('/register','AdminController@countries');
+    Route::get('/user_profile','AdminController@user');
+    Route::get('/admin','AdminController@index');
+    Route::post('/product_category','AdminController@store');
+    Route::get('/product_category','AdminController@product_category');
+    Route::get('/user_product/{id}', 'AdminController@user_product');
+    Route::get('/user_delete/{id}', 'AdminController@user_delete');
+    Route::get('/constant', 'AdminController@constant');
+    Route::post('/create_constant', 'AdminController@create_constant');
+
+    Route::get('/orders', 'AdminController@orders');
+    //Cities and Country part
+    Route::get('/country','AdminController@country');
+    //County->city CRUD
+    Route::get('/country/{id}/city','CountyCrud@city');
+    Route::get('/delete/{id}','CountyCrud@delete');
+    Route::get('/edit/{id}','CountyCrud@edit');
+    Route::post('/update/{id}','CountyCrud@update');
+    Route::post('/country/{id}/city','CountyCrud@create');
 
 
 
@@ -62,13 +65,23 @@ Route::group(['middleware' => 'auth'],function(){
     Route::get('/add_to_basket/{id}','ProfileController@add_to_basket');
     Route::post('/add_to_basket/{id}','ProfileController@add_to_basket');
     Route::get('/basket','ProfileController@basket');
+    
+    Route::post('/basket','ProfileController@basket');
 
+    // //// //// //// //// //// //
 
+    Route::get('/request','RequestController@show_requests');
+    Route::get('/add_request/{id}','RequestController@add_request');
+    Route::get('/reject_request/{id}','RequestController@reject_request');
+    Route::get('/accept_request/{id}','RequestController@accept_request');
+    // // //// //// //// //// ////     // // //// //// //// //// //// 
     Route::get('/create_product/{id}','ProfileController@show_create_page');
     Route::post('/create_product/{id}','ProfileController@create_product');
     Route::get('/cnprofile/{id}','ProfileController@cnprofile');
     Route::get('/product_single/{id}', 'PagesController@product_single');
 
+
+    Route::get('/search', 'PagesController@search');
 
 
 

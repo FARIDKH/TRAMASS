@@ -117,6 +117,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <li><a href="/country"><i class="fa fa-link"></i> <span>Countries</span></a></li>
         <li><a href="/product_category"><i class="fa fa-link"></i> <span>Product Category</span></a></li>
         <li><a href="/constant"><i class="fa fa-link"></i> <span>Constants</span></a></li>
+        <li><a href="/orders"><i class="fa fa-link"></i> <span>Orders</span></a></li>
       </ul>
       <!-- /.sidebar-menu -->
     </section>
