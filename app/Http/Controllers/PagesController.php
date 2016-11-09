@@ -26,12 +26,14 @@ class PagesController extends Controller
     }
 
     public function home(){
+      $products = $this->products;
       if(Auth::guest()){
-        return view('home');
+        return view('home',compact('products'));
       } else {
-        $products = $this->products;
+        
         return view('product',compact('products'));
       }
+      
     }
     public function about(){
     	return view('about');

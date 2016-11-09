@@ -1,7 +1,9 @@
 
 #services{
-    padding:200px 0;
-    overflow:hidden;
+    padding-bottom:150px;
+    .service_container{
+        padding:50px 0 300px 0;
+    }
     .divider{ 
         margin-top:40px;
         width:800px;
@@ -56,7 +58,16 @@
     }
     .left_service{
         padding:50px 0;
-        border-right: 2px solid white;
+        position: relative;
+        .service_detailed_info{
+            position: absolute;
+            width:95%;
+            height: auto;
+            border-radius: 3px;
+            background-color: #D7CCC8;
+            text-align: center;
+            display: none;
+        }
     }
     .right_service{
         position:absolute;
@@ -65,17 +76,21 @@
         height: 100%;
         background:url('../../img/services/page-1_img03.jpg') no-repeat center;
         background-size:cover;
+        border-left:2px solid white;        
         ul{
             list-style: none;
             position:relative;
-            bottom:-400px;
             left:5px;
+            top:150px;
             li{
                 color:$thirdColor ;
                 position:relative;
                 font-size:30px;
                 padding:10px;
-                
+                transition:all 0.1s ease;
+                &:hover{
+                    color:$mainColor;
+                }
                 &:before{
                     content: "";
                     width:70px;

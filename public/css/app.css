@@ -15,7 +15,7 @@
       #scroll_navbar .navbar-header a span {
         color: #C9DB22; }
   #scroll_navbar .navbar-right li {
-    margin: 0 50px; }
+    margin: 0 25px; }
     #scroll_navbar .navbar-right li a {
       font-size: 20px;
       color: white;
@@ -78,7 +78,7 @@
       right: 0;
       margin: 0 auto; }
   #header .row:nth-child(2) h1 {
-    font-size: 100px;
+    font-size: 75px;
     font-weight: 700;
     line-height: 90px; }
   #header .button_part_header {
@@ -146,11 +146,12 @@
   height: 20px; }
 
 #services {
-  padding: 200px 0;
-  overflow: hidden;
+  padding-bottom: 150px;
   position: relative;
   background-color: #35362F;
   color: white; }
+  #services .service_container {
+    padding: 50px 0 300px 0; }
   #services .divider {
     margin-top: 40px;
     width: 800px;
@@ -191,24 +192,36 @@
         background-color: white; }
   #services .left_service {
     padding: 50px 0;
-    border-right: 2px solid white; }
+    position: relative; }
+    #services .left_service .service_detailed_info {
+      position: absolute;
+      width: 95%;
+      height: auto;
+      border-radius: 3px;
+      background-color: #D7CCC8;
+      text-align: center;
+      display: none; }
   #services .right_service {
     position: absolute;
     top: 0;
     right: 0;
     height: 100%;
     background: url("../../img/services/page-1_img03.jpg") no-repeat center;
-    background-size: cover; }
+    background-size: cover;
+    border-left: 2px solid white; }
     #services .right_service ul {
       list-style: none;
       position: relative;
-      bottom: -400px;
-      left: 5px; }
+      left: 5px;
+      top: 150px; }
       #services .right_service ul li {
-        color: #CCDF17;
+        color: #212121;
         position: relative;
         font-size: 30px;
-        padding: 10px; }
+        padding: 10px;
+        transition: all 0.1s ease; }
+        #services .right_service ul li:hover {
+          color: #C9DB22; }
         #services .right_service ul li:before {
           content: "";
           width: 70px;
@@ -339,72 +352,12 @@
     #coreValues .right_core img {
       height: 100%; }
 
-#gallery_header {
-  padding: 125px 0;
-  text-align: center;
-  color: #35362F; }
-  #gallery_header h1 {
-    font-weight: 900;
-    font-size: 50px;
-    margin-bottom: 25px; }
-  #gallery_header button {
-    background-color: transparent;
-    color: #35362F;
-    border: 5px solid #35362F;
-    border-radius: 0;
-    font-weight: 700;
-    padding: 20px 40px;
-    margin-right: 20px;
-    transition: all 0.3s ease;
-    position: relative; }
-    #gallery_header button:hover {
-      color: #C9DB22;
-      background-color: #35362F; }
-  #gallery_header .divider {
-    width: 350px;
-    position: relative;
-    opacity: 1;
-    margin: 0 auto; }
-    #gallery_header .divider:after {
-      content: " ";
-      width: 70px;
-      height: 5px;
-      background-color: #35362F;
-      border-radius: 1px;
-      position: absolute;
-      left: 0px;
-      right: 0;
-      margin: 0 auto; }
-
-#gallery {
-  overflow-y: hidden; }
-  #gallery .grid-item {
-    width: 25%;
-    height: 430px;
-    position: relative; }
-    #gallery .grid-item i {
-      position: absolute;
-      left: 140px;
-      top: 150px;
-      transition: all 0.3s ease;
-      color: yellow;
-      border: 5px solid yellow;
-      padding: 5px;
-      border-radius: 10px;
-      opacity: 0; }
-    #gallery .grid-item:hover i {
-      opacity: 1; }
-  #gallery .grid-item--width2 {
-    width: 25%;
-    height: 330px; }
-  #gallery img {
+#myCarousel {
+  margin: 50px 0; }
+  #myCarousel img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: all 0.3s ease; }
-    #gallery img:hover {
-      height: 109%;
-      opacity: 0.9; }
+    height: 500px;
+    object-fit: cover; }
 
 @media (max-width: 480px) and (max-width: 766px) {
   #welcome .starting_prgph {
