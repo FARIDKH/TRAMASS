@@ -37,13 +37,13 @@
                                 <ul class="col-md-9 nav navbar-nav navbar-right">
                                       @if (Auth::guest())
 
-                                              <li class="active"><a href="{{ url('/home') }}">Əsas Səhifə</a></li>
+                                              <li class="active"><a href="{{ url('/home') }}">ƏSAS SƏHİFƏ</a></li>
                                               <li><a href="{{ url('/about') }}">HAQQIMIZDA</a></li>
                                               <li><a href="{{ url('/login') }}">DAXİL OL</a></li>
                                               <li><a href="{{ url('/register') }}">QEYDİYYAT</a></li>
 
                                       @else
-                                          <li class="active"><a href="{{ url('/') }}">Əsas Səhifə</a></li>
+                                          <li class="active"><a href="{{ url('/') }}">ƏSAS SƏHİFƏ</a></li>
                                           <li><a href="{{ url('/about') }}">HAQQIMIZDA</a></li>
                                           <li>
                                               <a href="/profile/{{ Auth::user()->id }}"role="button" aria-expanded="false">
@@ -85,13 +85,13 @@
                                   <ul class="nav navbar-nav navbar-right">
                                         @if (Auth::guest())
 
-                                              <li class="active"><a href="{{ url('/home') }}">Əsas Səhifə</a></li>
+                                              <li class="active"><a href="{{ url('/home') }}">ƏSAS SƏHİFƏ</a></li>
                                               <li><a href="{{ url('/about') }}">HAQQIMIZDA</a></li>
                                               <li><a href="{{ url('/login') }}">DAXİL OL</a></li>
                                               <li><a href="{{ url('/register') }}">QEYDİYYAT</a></li>
 
                                       @else
-                                          <li class="active"><a href="{{ url('/') }}">Əsas Səhifə</a></li>
+                                          <li class="active"><a href="{{ url('/') }}">ƏSAS SƏHİFƏ</a></li>
                                           <li><a href="{{ url('/about') }}">HAQQIMIZDA</a></li>
                                           <li>
                                               <a href="/profile/{{ Auth::user()->id }}"role="button" aria-expanded="false">
