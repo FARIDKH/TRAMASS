@@ -25,6 +25,11 @@ class PagesController extends Controller
       $this->products = Product::orderBy('id','desc')->get();
     }
 
+    public function newT()
+    {
+      $products = $this->products;
+      return view('new',compact('products'));
+    }
     public function home(){
       $products = $this->products;
       if(Auth::guest()){

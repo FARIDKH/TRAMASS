@@ -25,8 +25,8 @@
       </head>
     <body>
 
-        <section id="scroll_navbar">
-          <div class="container-fluid">
+        {{-- <section id="scroll_navbar">
+          <div class="container-fluid hidden-sm hidden-xs">
              <div class="container">
                   <div class="row">
                     <nav class="navbar">
@@ -61,57 +61,119 @@
               </div>
           </div>
 
-        </section>
+        </section> --}}
+      <section id="nav">
+        <div class="secondNav">
+        </div>
+        <div class="row">
+          <nav>
+            <div class="container-fluid">
+                <div class="col-lg-10 col-md-10 col-sm-10">
+                  <div class="logo">
+                    TRAMASS
+                  </div>
+                  <ul class="mainMenu">
+                    <li id="firstItem"><a href="#" class="first" >Home <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                      <div class="menu">
+                          <ul class="subMenu">
+                              <li  ><a href="#" style="text-decoration-color:red;">Home</a></li>
+                              <li ><a href="#" style="text-decoration-color:red;">Home</a></li>
+                              <li ><a href="#" style="text-decoration-color:red;">Home</a></li>
+                          </ul>
+                      </div>
+                    </li>
+
+                    <li id="secondItem"><a href="#"  class="second">Portfolio <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                      <div class="menu2">
+                        <ul class="subMenu">
+                          <li ><a href="#"  style="text-decoration-color:red;">HomeHomeHomeHomeHome</a></li>
+                          <li><a href="#"  style="text-decoration-color:red;">HomeHomeHomeHomeHomeHomeHome</a></li>
+                          <li><a href="#" style="text-decoration-color:red;" >GuestHomeHomeHomeHomeHomeHome</a></li>
+                      </ul>
+                    </div>
+                    </li>
+                    <li  id="fifthItem"><a href="#" class="fifth">Blog </a></li>
+                    <li id="thirdItem" > <a href="#" class="third">Pages <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                      <div class="menu3">
+                        <ul class="subMenu">
+                          <li ><a href="#" style="text-decoration-color:red;" >HomeHomeHomeHomeHome</a></li>
+                          <li><a href="#" style="text-decoration-color:red;" >HomeHomeHomeHomeHomeHomeHome</a></li>
+                          <li><a href="#"  style="text-decoration-color:red;">GuestHomeHomeHomeHomeHomeHome</a></li>
+                      </ul>
+                    </div>
+                    </li>
+                    <li id="fourthItem" ><a href="#" class="fourth">Elements <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                      <div class="menu4">
+                        <ul class="subMenu">
+                          <li ><a href="#" style="text-decoration-color:red;" >HomeHomeHomeHomeHome</a></li>
+                          <li><a href="#" style="text-decoration-color:red;" >HomeHomeHomeHomeHomeHomeHome</a></li>
+                          <li><a href="#" style="text-decoration-color:red;" >GuestHomeHomeHomeHomeHomeHome</a></li>
+                      </ul>
+                    </div>
+                    </li>
+                  </ul>
+                </div>
+              <div class="col-md-2 icon">
+                      <a href="#" class="fa fa-cart-plus"><span> 0</span></a>
+                      <a href="#" class="fa fa-search "></a>
+              </div>
+
+            </div>
+          </nav>
+
+        </div>
+
+      </section>
 
         <!-- header start -->
 
-        <section id="header">
-              <div class="col-md-12">
-                  <div class="row">
-                    <nav class="navbar">
-                          <div class="container-fluid">
-                                <div class="navbar-header">
+<!--         <section id="header">
+      <div class="col-md-12">
+          <div class="row">
+            <nav class="navbar">
+                  <div class="container-fluid">
+                        <div class="navbar-header">
 
-                                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                                        <a class="navbar-brand" href="#"><span>T</span></a>
-                                    </button>
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                                <a class="navbar-brand" href="#"><span>T</span></a>
+                            </button>
 
-                                    <a class="hidden-xs  navbar-brand" href="{{ url('/')}}"><span>TRA</span>MASS</a>
+                            <a class="hidden-xs  navbar-brand" href="{{ url('/')}}"><span>TRA</span>MASS</a>
 
-                                </div>
+                        </div>
 
-                                <div class="collapse navbar-collapse" id="myNavbar">
+                        <div class="collapse navbar-collapse" id="myNavbar">
 
-                                  <ul class="nav navbar-nav navbar-right">
-                                        @if (Auth::guest())
+                          <ul class="nav navbar-nav navbar-right">
+                                @if (Auth::guest())
 
-                                              <li class="active"><a href="{{ url('/home') }}">ƏSAS SƏHİFƏ</a></li>
-                                              <li><a href="{{ url('/about') }}">HAQQIMIZDA</a></li>
-                                              <li><a href="{{ url('/login') }}">DAXİL OL</a></li>
-                                              <li><a href="{{ url('/register') }}">QEYDİYYAT</a></li>
+                                      <li class="active"><a href="{{ url('/home') }}">ƏSAS SƏHİFƏ</a></li>
+                                      <li><a href="{{ url('/about') }}">HAQQIMIZDA</a></li>
+                                      <li><a href="{{ url('/login') }}">DAXİL OL</a></li>
+                                      <li><a href="{{ url('/register') }}">QEYDİYYAT</a></li>
 
-                                      @else
-                                          <li class="active"><a href="{{ url('/') }}">ƏSAS SƏHİFƏ</a></li>
-                                          <li><a href="{{ url('/about') }}">HAQQIMIZDA</a></li>
-                                          <li>
-                                              <a href="/profile/{{ Auth::user()->id }}"role="button" aria-expanded="false">
-                                                  {{ Auth::user()->name}}
-                                              </a>
+                              @else
+                                  <li class="active"><a href="{{ url('/') }}">ƏSAS SƏHİFƏ</a></li>
+                                  <li><a href="{{ url('/about') }}">HAQQIMIZDA</a></li>
+                                  <li>
+                                      <a href="/profile/{{ Auth::user()->id }}"role="button" aria-expanded="false">
+                                          {{ Auth::user()->name}}
+                                      </a>
 
-                                          </li>
-                                          <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>ÇIXIŞ</a></li>
+                                  </li>
+                                  <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>ÇIXIŞ</a></li>
 
-                                      @endif
-                                  </ul>
+                              @endif
+                          </ul>
 
-                                </div>
-                          </div>
-                    </nav>
-                   </div>
-                       @yield('header')
-              </div>
-        </section>
-
+                        </div>
+                  </div>
+            </nav>
+           </div>
+               @yield('header')
+      {{-- </div> --}}
+</section>
+ -->
         <!-- header ending -->
 
        @yield('content')
@@ -119,57 +181,18 @@
        <!-- footer start -->
 
         <section id="footer">
-          <div class="container">
-
-
-                  <div class="col-md-7">
-
-                      <div class="row">
-                        <h1> 8901 Marmora road,
-                            <br> Glasgow, D04 89GR <br>
-                            +1 (800) 2345 6789</h1>
-                            <div class="line">
-
-                            </div>
-                      </div>
-
-                    <div class="row">
-                       <h2>CONTACT US</h2>
-
-                    </div>
-                    <div class="row">
-                      <input type="text" name="name" value="" placeholder="Your name"><br>
-                      <input type="text" name="name" value="" placeholder="Your email"><br>
-                      <textarea name="textarea" rows="1" cols="40" placeholder="Your message"></textarea><br>
-                    </div>
-
-                    <div class="row">
-                      <button>SEND</button>
-                    </div>
-                    <div class="row">
-                      <span>Tramass © 2016 • Privacy Policy</span>
-                    </div>
-
-               </div>
-
-               <div class="col-md-5">
-                 <div class="row plan">
-                       <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d26081603.294420466!2d-95.677068!3d37.06250000000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2s!4v1473521487781" width="370" height="420" frameborder="2" style="border:0" allowfullscreen></iframe>
-
-                 </div>
-                 <ul>
-                   <li><a href="http://www.facebook.com" target="_blank ">Facebook</a></li>
-                   <li><a href="http://www.twitter.com">Twitter</a></li>
-                   <li><a href="http://www.youtube.com">YouTube</a></li>
-                   <li><a href="http://www.google.com">Google +</a></li>
-                   <li><a href="http://www.pinterest.com">Pinterest</a></li>
-
-                 </ul>
-
-               </div>
-
+          <div class="row">
+              <a href="" class="fa fa-facebook" aria-hidden="true"></a>
+              <a href="" class="fa fa-pinterest" aria-hidden="true"></a>
+              <a href="" class="fa fa-twitter" aria-hidden="true"></a>
+              <a href="" class="fa fa-instagram" aria-hidden="true"></a>
+              <a href="" class="fa fa-youtube" aria-hidden="true"></a>
           </div>
-         </section>
+          <span>
+              <i class="fa fa-copyright" aria-hidden="true"></i>
+              Copyright
+          </span>
+        </section>
 
         <!-- footer ending -->
 
@@ -179,27 +202,12 @@
 <!--        <script src="/ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>-->
         <script src="/js/vendor/jquery-1.11.2.min.js"></script>
         <script src="/js/vendor/bootstrap.min.js"></script>
+        <script src="/js/navbar.js"></script>
+        <script src="/js/navbarDetails.js"></script>
+        <script src="/js/animate.js"></script>
 <!--        <script src="/js/main.js"></script>-->
 
         <script>
-            $(document).scroll(function(){
-                var wScroll = $(this).scrollTop();
-
-                if(wScroll > $('#header').offset().top * 1.5){
-
-                    $( "#scroll_navbar" ).slideDown( "fast", function() {
-                        // Animation complete.
-                    });
-
-                };
-                if(wScroll <= $('#header').offset().top * 1.5){
-                    $( "#scroll_navbar" ).slideUp( "fast", function() {
-                        // Animation complete.
-                    });
-
-                };
-
-            })
         </script>
 
         @yield('script')

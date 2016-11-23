@@ -142,32 +142,24 @@
               <!-- Wrapper for slides -->
               <div class="carousel-inner" role="listbox">
 
-                @foreach($products as $product)
-                  <div class="item active">
-                    <img src="/uploads/{{ $product->image }}" alt="{{ $product->title }}">
-                    <div class="carousel-caption">
-                      <h3>{{ $product->title }}</h3>
-                      <p>{{ $product->price }} AZN / {{ $product->constant->title }}</p>
-                    </div>
-                  </div>
 
+                <div class="item active">
+                    <img src="/uploads/{{ $products[1]->image }}" alt="{{ $products[1]->title }}">
+                    <div class="carousel-caption">
+                      <h3>{{ $products[1]->title }}</h3>
+                      <p>{{ $products[1]->price }} AZN / {{ $products[1]->constant->title }}</p>
+                    </div>
+                </div>
+                @for($i=0;$i<count($products);$i++)
                   <div class="item">
-                    <img src="/uploads/{{ $product->image }}" alt="{{ $product->title }}">
+                    <img src="/uploads/{{ $products[$i]->image }}" alt="{{ $products[$i]->title }}">
                     <div class="carousel-caption">
-                      <h3>{{ $product->title }}</h3>
-                      <p>{{ $product->price }} AZN / {{ $product->constant->title }}</p>
+                      <h3>{{ $products[$i]->title }}</h3>
+                      <p>{{ $products[$i]->price }} AZN / {{ $products[$i]->constant->title }}</p>
                     </div>
                   </div>
 
-                  <div class="item">
-                    <img src="/uploads/{{ $product->image }}" alt="{{ $product->title }}">
-                    <div class="carousel-caption">
-                      <h3>{{ $product->title }}</h3>
-                      <p>{{ $product->price }} AZN / {{ $product->constant->title }}</p>
-                    </div>
-                  </div>
-
-                @endforeach
+                @endfor
                   
                   <!-- Left and right controls -->
                   <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
@@ -198,26 +190,25 @@
 
         function service_info(listOrder){
           $(".service_detailed_info").css("display","none");
-          console.log("."+listOrder+"_detailed")
-
           $("."+listOrder).mouseenter(function(){
               $("."+listOrder+"_detailed").fadeIn()
           });
           $("."+listOrder).mouseleave(function(){
               $("."+listOrder+"_detailed").fadeOut()
               $(".service_info_1_detailed").fadeIn()              
-          });
+          });                   
         }
 
-        
-              
-          
-        service_info('service_info_1');
-        service_info('service_info_2');
-        service_info('service_info_3'); 
-        service_info('service_info_4');
-        service_info('service_info_5');
+         for(i=0;i<6;i++){
+            service_info('service_info_' + i);
+         }
+
+       
         $(".service_info_1_detailed").fadeIn()
+
+
+        
+
 
        function fruitSlide(hoverContent,slideeffect){
            $(hoverContent).mouseenter(function(){

@@ -22,10 +22,11 @@
                 <!--start man info part-->
                 <div class="row content">
                     <div class="col-md-3">
+                        <form method="post" action="/profile/{{$user->id}}  " >
                         <div class="card">
 
                         <!--start all post part-->
-                        <form method="post" action="/profile/{{$user->id}}  " >
+                        
                           {{ csrf_field() }}
                         <!--picure post part-->
                             <div class="card-block"> Picture </div>
@@ -61,74 +62,24 @@
                     </div>
 
                     <!--start another info inputs-->
-                    <div class="col-md-9">
+                        <div class="col-md-9">                            
 
-
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">Password</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Email address</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="email@email.com" readonly>
-                            </div>
-                            <div class="form-group">
-                                <label for="biodata">Biodata</label>
-                                <textarea name="" id="biodata" cols="30" class="form-control" rows="2"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="province">Province</label>
-                                <input type="text" class="form-control" id="province" value="o">
-                            </div>
-                            <div class="form-group">
-                                <label for="region">Region</label>
-                                <input type="text" class="form-control" id="region" value="o">
-                            </div>
-                            <div class="form-group">
-                                <label for="address">Address</label>
-                                <input type="text" class="form-control" id="address" value="o">
-                                <span class="text-left">*informasi Alamat tidak dipublikasikan</span>
-                            </div>
-                            <div class="form-group">
-                                <label for="telephone">Telephone</label>
-                                <input type="text" class="form-control" id="telephone" value="o">
-                                <span class="text-left">*informasi No Telephone tidak dipublikasikan</span>
-                            </div>
+                                <select name="type" id="type">                               
+                                    <option value="0">Alıcı</option>
+                                    <option value="1">Satıcı</option>
+                                    <option value="2">Alıcı və Satıcı</option>
+                                </select>
+                                
+                                <button type="submit" name="change_profile" formnovalidate="" class="btn btn-success btn-lg text-capitalize pull-right">Update profile</button>
 
                             
 
-                            <select name="type" id="type">
-                                
-                               
-                                <option value="0">Alıcı</option>
-                                <option value="1">Satıcı</option>
-                                <option value="2">Alıcı və Satıcı</option>
-                            </select>
-                            <h3 class="text-capitalize">Informasi Ahli Waris</h3>
-                            <div class="form-group">
-                                <label for="informasi">Nama Ahli Waris</label>
-                                <input type="text" class="form-control" id="informasi" value="o">
-
-                            </div>
-                            <div class="form-group">
-                                <label for="notelp">No Telp. Ahli Waris</label>
-                                <input type="text" class="form-control" id="notelp" value="o">
-
-                            </div>
-                            <div class="form-group">
-                                <label for="almat">Alamat Ahli Waris</label>
-                                <textarea name="" cols="30" class="form-control" rows="2" id="ealmat"></textarea>
-                            </div>
-
-                            <button type="submit" name="change_profile" formnovalidate="" class="btn btn-success btn-lg text-capitalize pull-right">Update profile</button>
-                        </form>
-
-                        <!--end -->
+                            <!--end -->
 
 
-                    </div>
+                        </div>
 
-
+                    </form>
                 </div>
             </div>
         </div>

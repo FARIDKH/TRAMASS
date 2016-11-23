@@ -11,6 +11,9 @@
 |
 */
 
+Route::get('/a','PagesController@newT');
+
+
 Route::get('/','PagesController@home');
 Route::get('/home','PagesController@home');
 Route::get('/about','PagesController@about');
