@@ -11,13 +11,14 @@
 |
 */
 
-Route::get('/a','PagesController@newT');
-
+Route::get('/products','PagesController@products');
+Route::post('/products','ProductController@filter');
+Route::get('/products/{product_category_id}','ProductController@filter');
 
 Route::get('/','PagesController@home');
 Route::get('/home','PagesController@home');
 Route::get('/about','PagesController@about');
-
+    
 
 
 

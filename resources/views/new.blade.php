@@ -9,34 +9,27 @@
 	</div>
 </section>
 
-
-
 <div id="left_side_filter">
 	<div class="nav-search">		
 		<div class="">			
-			<h4>FILTER BY PRICE</h4>
-			From
-			<input type="range" min="1" max="500" step="1" value="1" class="product_price_from" name="product_price">
-			To
-			<input type="range" min="501" max="1000" step="1" value="500" class="product_price_to" name="product_price">
-			<span class="price_range_from"></span>
-			-
-			<span class="price_range_to"></span>
-			<span class="price_filter"></span>
-			<span id="price_filter">FILTER</span>
+			<h3>FILTER BY PRICE</h3>			
 		</div>
 
 	</div>
 	<div class="product_category">
-		<h4>
+		<h3>
 			PRODUCT CATEGORIES
-		</h4>
-		<ul>
+		</h3>
+		<ul>	
+			@foreach($product_categories as $product_category)
+			<li>
+				<span class="product_count_in_category">
+					{{ count($product_category->products) }}
+				</span>					
+				<a href="/products/{{$product_category->id}}">{{ $product_category->title }}</a>
+			</li>
+			@endforeach
 			
-			<div class="product_count_in_category">
-				45
-			</div>					
-			<li>Alma</li>					
 		</ul>
 	</div>
 	<div class="active-nav">
@@ -46,9 +39,11 @@
 
 
 
+
+
 <section id="products">	
-	<div class="container">		
-		<div class="row">
+	<div class="container-fluid">		
+		<div class="hidden">
 			<ul class="nav navbar-nav">
 				<li class="dropdown">
 			        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Default Sorting
@@ -64,61 +59,72 @@
 		    </ul>
 		</div>		
 		<div class="col-md-2 hidden-sm hidden-xs leftPage">			
-			<h4>
+			<h3>
 				FILTER BY PRICE
-			</h4>
-			From
-			<input type="range" min="1" max="500" step="1" value="1" class="product_price_from" name="product_price">
-			To
-			<input type="range" min="501" max="1500" step="1" value="501" class="product_price_to" name="product_price">
-			<span class="price_range_from"></span>
-			-
-			<span class="price_range_to"></span>
-			<span id="price_filter">FILTER</span>
+			</h3>
+			<div class="filter-slider"></div><br>
+			<form action="/products" method="get">
+				{{ csrf_field() }}
+				Qiymet Araligi : <input type="text" name="price_range_from" class="price_range"><br>
+				<input type="submit" name="price_filter" class="price_filter" value="FILTER">
+				- <input type="text" name="price_range_to" class="price_range">				
+			</form>
+			
+
 			<hr>
 			<div class="hidden-sm hidden-xs product_category">
-				<h4>
+				<h3>
 					PRODUCT CATEGORIES
-				</h4>
-				<ul>
-					<div class="product_count_in_category">
-						45
-					</div>					
-					<li>Alma</li>	
+				</h3>
+				<ul>					
+					@foreach($product_categories as $product_category)
+					<li>
+						<span class="product_count_in_category">
+							{{ count($product_category->products) }}
+						</span>					
+						<a href="/products/{{$product_category->id}}">{{ $product_category->title }}</a>
+					</li>
+					@endforeach					
 				</ul>
 			</div>	
 		</div>	 
-		<div class="col-md-10 col-sm-12 col-xs-12 rightPage">				
+		<div class="col-md-10 col-sm-12 col-xs-12 rightPage">
+			@if(!count($products))
+				<h1>No product was found</h1>
+			@endif
+			<ul>
 				@foreach($products as $product)
-				<div class="product_and_quick_view">
-					<div class="product">
-						<div class="row product_top">
-							<div>
-								<img  src="/uploads/{{ $product->image }}" alt="{{ $product->title }}">
-							</div>
-							<div class="quick_view_little">
-								<i class="fa fa-eye" aria-hidden="true"></i>
-								<span id="quick_view_{{$product->id}}">Quick view</span>
-							</div>
-							<div class="date_of_product">
-								<span>25 <br> 	DAY</span>
-							</div>
+					<li>
+						<div class="product_and_quick_view">
+							<div class="product">
+								<div class="row product_top">
+									<div>
+										<img  src="/uploads/{{ $product->image }}" alt="{{ $product->title }}">
+									</div>
+									<div class="quick_view_little">
+										<i class="fa fa-eye" aria-hidden="true"></i>
+										<span id="quick_view_{{$product->id}}">Quick view</span>
+									</div>
+									{{-- <div class="date_of_product">
+										<span><br></span>
+									</div> --}}
+								</div>
+								<div class="row product_bottom">
+									<span>
+									 	{{ $product->title }}
+									</span><br>
+									<span class="price">
+										<span>{{ $product->price +25 }} AZN </span> {{ $product->price }} AZN 
+									</span>
+									<div>
+										<span><a href="">ADD TO CART</a></span>
+									</div>
+								</div>
+							</div>					
 						</div>
-						<div class="row product_bottom">
-							<span>
-							 	{{ $product->title }}
-							</span><br>
-							<span class="price">
-								<span>{{ $product->price +25 }} AZN </span> {{ $product->price }} AZN 
-							</span>
-							<div>
-								<span><a href="">ADD TO CART</a></span>
-							</div>
-						</div>
-					</div>					
-				</div>
+					</li>
 				@endforeach	
-				
+			</ul>
 		 </div>
 	</div>
 	
@@ -130,7 +136,8 @@
 	
 	@foreach($products as $product)
 		
-			<div id="product_single_quick_view_{{ $product->id }}" class="product_single_quick_view  hidden-sm hidden-xs ">			<div class="col-md-6 product_single_quick_view_left">
+			<div id="product_single_quick_view_{{ $product->id }}" class="product_single_quick_view  hidden-sm hidden-xs ">			
+				<div class="col-md-6 product_single_quick_view_left">
 					<div>
 						<img  src="/uploads/{{ $product->image }}" alt="{{ $product->title }}">
 					</div>
@@ -143,7 +150,7 @@
 					<div class="row">
 						<span>{{ $product->price }} AZN </span><br>
 						<p>
-							{{ $product->description }} AZN 
+							{{ $product->description }} 
 						</p>
 					</div>
 					<div class="row">
@@ -162,24 +169,173 @@
 
 <script>
 
-	var isLessThanScreen;
+	var isLessThanScreen,
+	 	slider = $('.filter-slider'),
+	 	_token = $('input[name=_token]'),
+		price_range_from = $('input[name=price_range_from]'),
+		price_range_to = $('input[name=price_range_to]')
+	$(function(){
+		slider.slider({
+			max:250,
+			min:1,
+			values : [25,225],
+			step:1,
+			range:true,
+			slide:updateBackground
+		})	
+
+		function updateBackground(e,ui)
+		{
+			price_range_from.val(ui.values[0] + ' AZN')
+			price_range_to.val(ui.values[1]+ ' AZN')
+		}
+	})
+
+
+	$('.product_category ul li').hover(function(){
+		$(this).find('.product_count_in_category').css({
+			border:'1px solid #388E3C',
+			backgroundColor:'white'
+		})
+	},function(){
+		$(this).find('.product_count_in_category').css({
+			border:'1px solid #F5F5F5',
+			backgroundColor:'#F5F5F5'
+		})
+	})
+
 
 	$(document).ready(function(){  
-		var price_range_from = $(".price_range_from")
-		var price_range_to = $(".price_range_to")
+
+		$('input[name=price_filter]').click(function(event){
+			event.preventDefault();
+			$.ajax({
+				url : '/products',
+				type:'POST',
+				dataType:'JSON',
+				data:{
+					price_range_from:parseInt(price_range_from.val()),
+					price_range_to:parseInt(price_range_to.val()),
+					_token: _token.val()
+				},
+				success:function(data)
+				{	
+					console.log(data)
+					$('.rightPage h1').remove()				
+					if(!data.length)
+					{
+						$('.rightPage').append('<h1>No product was found</h1>')
+					}
+					$('.product_and_quick_view').remove()	
+					$('.product').remove()
+					$('.product_single_quick_view').remove()
+
+					$.each(data,function(key,value){
+						$("#quick_view").append('<div id="product_single_quick_view_'+value.id+'" class="product_single_quick_view hidden-sm hidden-xs">')
+							$('#product_single_quick_view_'+value.id).append('<div class="col-md-6 product_single_quick_view_left">')
+								$('#product_single_quick_view_'+value.id+' .product_single_quick_view_left').append('<div>')
+									$('#product_single_quick_view_'+value.id+' .product_single_quick_view_left div').append('<img src="/uploads/'+value.image+'">')
+								$('#product_single_quick_view_'+value.id+' .product_single_quick_view_left').append('</div>')
+							$('#product_single_quick_view_'+value.id).append('</div>')
+							$('#product_single_quick_view_'+value.id).append('<div class="col-md-6 product_single_quick_view_right">')
+								$('#product_single_quick_view_'+value.id+' .product_single_quick_view_right').append('<div>')
+								$('#product_single_quick_view_'+value.id+' .product_single_quick_view_right div:first').append('<i class="fa fa-times" aria-hidden="true"></i>')
+								$('#product_single_quick_view_'+value.id+' .product_single_quick_view_right').append('</div>')
+
+								$('#product_single_quick_view_'+value.id+' .product_single_quick_view_right').append('<div class="row">')
+									$('#product_single_quick_view_'+value.id+' .product_single_quick_view_right div:nth-child(2)').append('<h1>'+value.title+'</h1>')
+								$('#product_single_quick_view_'+value.id+' .product_single_quick_view_right').append('</div>')
+
+								$('#product_single_quick_view_'+value.id+' .product_single_quick_view_right').append('<div class="row">')
+									$('#product_single_quick_view_'+value.id+' .product_single_quick_view_right div:nth-child(3)').append('</span>'+value.price+'</span><br>')
+									$('#product_single_quick_view_'+value.id+' .product_single_quick_view_right div:nth-child(3)').append('</p>'+value.description+'</p>')
+								$('#product_single_quick_view_'+value.id+' .product_single_quick_view_right').append('</div>')
+								$('#product_single_quick_view_'+value.id+' .product_single_quick_view_right').append('<div class="row">')
+									$('#product_single_quick_view_'+value.id+' .product_single_quick_view_right div:nth-child(4)').append('<input type="number">')
+								$('#product_single_quick_view_'+value.id+' .product_single_quick_view_right').append('</div>')
+
+								$('#product_single_quick_view_'+value.id+' .product_single_quick_view_right').append('<div class="row">')
+									$('#product_single_quick_view_'+value.id+' .product_single_quick_view_right div:nth-child(5)').append('<a href="">ADD TO CART</a>')
+								$('#product_single_quick_view_'+value.id+' .product_single_quick_view_right').append('</div>')
 
 
-		price_range_from.text("$1"); 
-		price_range_to.text("$500");
-		$('.product_price_from').change(function(){
-			var price = $(this).val();
-			$(".price_range_from").text("$" + price);  
-			console.log('hi')
-		})
-		$('.product_price_to').change(function(){
-			var price = $(this).val(); 
-			$(".price_range_to").text("$" + price);   
-		})
+
+							$('#product_single_quick_view_'+value.id).append('</div>')
+						$('#quick_view').append('</div>')	
+
+
+						$('.rightPage ul').append('<li>')
+							$('.rightPage li').append('<div id="product_'+value.id+'" class="product">')
+								$("#product_"+value.id).append('<div class="row product_top">')
+									$("#product_"+value.id+" .product_top").append('<div>')
+										$("#product_"+value.id+" .product_top div").append('<img src="/uploads/'+value.image+'">')
+									$("#product_"+value.id+" .product_top").append('</div>')
+									$("#product_"+value.id+" .product_top").append('<div class="quick_view_little">')
+									
+									$("#product_"+value.id+" .product_top .quick_view_little").append('<i class="fa fa-eye" aria-hidden="true"> ')
+									$("#product_"+value.id+" .product_top .quick_view_little").append('<span id="quick_view_'+value.id+'">Quick view</span>')								
+									$("#product_"+value.id+" .product_top").append('</div>')					
+								$("#product_"+value.id).append('</div>')
+								$("#product_"+value.id).append('<div class="row product_bottom">')
+									$("#product_"+value.id+" .product_bottom").append('<span>')
+										$("#product_"+value.id+" .product_bottom span:first").append(value.title)
+									$("#product_"+value.id+" .product_bottom").append('</span><br>')
+									$("#product_"+value.id+" .product_bottom").append('<span class="price">')
+										$("#product_"+value.id+" .product_bottom .price").append(value.price+' AZN')
+									$("#product_"+value.id+" .product_bottom").append('</span>')
+									$("#product_"+value.id+" .product_bottom").append('<div>')
+										$("#product_"+value.id+" .product_bottom div").append('<span style="display:inline"><a href="">ADD TO CART</a></span>')
+									$("#product_"+value.id+" .product_bottom").append('</div>')
+								$("#product_"+value.id).append('</div>')	
+							$('.rightPage ul').append('</div>')
+						$('.rightPage ul').append('</li>')
+						$('.product').hover(function(){		
+			
+							$(this).find('.quick_view_little').css({
+								'opacity':1
+							});
+							$(this).find('.product_bottom span:nth-child(3)').css({
+								"transform" : "translateY(-20px)",
+								'opacity' : 0
+							})
+							
+							$(this).find(".product_bottom div").css({
+								"transform" : "translateY(-20px)",
+								'opacity' : 1
+							})
+							
+						}, function(){
+							$(this).find('.quick_view_little').css({
+								'opacity':0
+							});
+							$(this).find('.product_bottom span:nth-child(3)').css({
+								"transform" : "translateY(0px)",
+								'opacity' : 1
+							})
+							$(this).find('.product_bottom div').css({
+								"transform" : "translateY(0px)",
+								'opacity' : 0
+							})
+							
+						});
+						$('#quick_view_'+value.id).click(function(){
+							$('.background_filter').fadeIn();			
+							$('#product_single_quick_view_'+value.id).fadeIn();
+						})
+						exit()
+					})	
+					
+						
+
+
+				},
+				error : function()
+				{
+					console.log('There is something wrong')
+				}
+			})
+		});
+
 
 		$('.background_filter').css({
 			height : $(window).height()
@@ -219,6 +375,7 @@
 		
 		
 		$('.product').hover(function(){		
+			
 			$(this).find('.quick_view_little').css({
 				'opacity':1
 			});
@@ -255,15 +412,19 @@
 		})
 		@endforeach
 		
-		
-		$('.fa-times').click(function(){
-			$('.background_filter').fadeOut();
-			$('.product_single_quick_view').fadeOut()
-		});
+		function exit()
+		{
+			$('.fa-times').click(function(){
+				$('.background_filter').fadeOut();
+				$('.product_single_quick_view').fadeOut()
+			});
 
-		$(document).keyup(function(e) { 
-			if (e.keyCode === 27)   $('.fa-times').click(); 
-		});
+			$(document).keyup(function(e) { 
+				if (e.keyCode === 27)   $('.fa-times').click(); 
+			});
+		}
+		exit()
+
 
 		$('.active-nav').click(function(){
 			$('#left_side_filter').css({
@@ -272,26 +433,30 @@
 			$(this).css({
 				opacity:0
 			});
-			
+			$('section:not(#left_side_filter)').css({
+				transition:'all 0.4s ease',
+				transform : 'translateX(275px)'
+			});
 		});
 		
 				
 		// $('section:not(#left_side_filter)').click(function(){			
-		// 	// $('#left_side_filter').css({
-		// 	// 	transform : 'translateX(-275px)'
-		// 	// });
-		// 	// $('section:not(#left_side_filter)').css({
-		// 	// 	transform : 'translateX(0px)'
-		// 	// });
+		// 	$('#left_side_filter').css({
+		// 		transform : 'translateX(-275px)'
+		// 	});
+		// 	$('section:not(#left_side_filter)').css({
+		// 		transform : 'translateX(0px)'
+		// 	});
 		// 	if(isLessThanScreen)
 		// 	{
 		// 		$('.active-nav').css({
 		// 				opacity:1
-		// 		});
-				
+		// 		});				
 		// 	}
 		// });
+		
 
+		
 
 	});
 

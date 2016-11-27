@@ -20,22 +20,23 @@ class PagesController extends Controller
 {
     protected $user;
     protected $products;
+    protected $product_categories;
     public function __construct(){
       $this->user = User::class;
+      $this->product_categories = Product_Category::class;
       $this->products = Product::orderBy('id','desc')->get();
     }
-
-    public function newT()
+    public function products()
     {
       $products = $this->products;
-      return view('new',compact('products'));
+      $product_categories = Product_Category::all();      
+      return view('new',compact('products','product_categories'));
     }
     public function home(){
       $products = $this->products;
       if(Auth::guest()){
         return view('home',compact('products'));
-      } else {
-        
+      } else {        
         return view('product',compact('products'));
       }
       
@@ -51,11 +52,10 @@ class PagesController extends Controller
 
     public function search()
     {
-
         $search = $_GET['search'];
         if($search){
-                  $results = Product::where('title','LIKE','%'.$search.'%')->orWhere('count','LIKE','%'.$search.'%')->get(); 
-                  return view('search',compact('results'));
+          $results = Product::where('title','LIKE','%'.$search.'%')->orWhere('count','LIKE','%'.$search.'%')->get(); 
+          return view('search',compact('results'));
         } else {
           return back();
         }

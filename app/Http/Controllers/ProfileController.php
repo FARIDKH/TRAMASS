@@ -92,7 +92,7 @@ class ProfileController extends Controller
           'image' => $filename,
           'title' => $request->title,
           'description' => $request->description,
-          'product_category_id' => $request->product_category_id,
+          'product__category_id' => $request->product_category_id,
           'constant_id' => $request->constant_id,
           'count' => $request->count,
           'price' => $request->price,
@@ -123,11 +123,6 @@ class ProfileController extends Controller
             } else {
               $ferq = -1;
             }
-
-
-              
-
-
             if($ferq>=0){
               $product->save();
             }
