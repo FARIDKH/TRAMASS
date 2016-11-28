@@ -12,8 +12,8 @@
 
 
 <div id="left_side_filter">
-	<div class="nav-search">		
-		<div class="">			
+	<div class="nav-search">
+		<div class="">
 			<h4>FILTER BY PRICE</h4>
 			From
 			<input type="range" min="1" max="500" step="1" value="1" class="product_price_from" name="product_price">
@@ -32,11 +32,11 @@
 			PRODUCT CATEGORIES
 		</h4>
 		<ul>
-			
+
 			<div class="product_count_in_category">
 				45
-			</div>					
-			<li>Alma</li>					
+			</div>
+			<li>Alma</li>
 		</ul>
 	</div>
 	<div class="active-nav">
@@ -46,8 +46,8 @@
 
 
 
-<section id="products">	
-	<div class="container">		
+<section id="products">
+	<div class="container">
 		<div class="row">
 			<ul class="nav navbar-nav">
 				<li class="dropdown">
@@ -56,14 +56,14 @@
 			        <ul class="dropdown-menu">
 			          	<li><a href="#">Default Sorting</a></li>
 			          	<li><a href="#">Default Sorting</a></li>
-			          	<li><a href="#">Default Sorting</a></li> 
-			          	<li><a href="#">Lorem ipsum dolor sit </a></li> 
-			          	<li><a href="#">Lorem ipsum dolor Sorting </a></li> 
+			          	<li><a href="#">Default Sorting</a></li>
+			          	<li><a href="#">Lorem ipsum dolor sit </a></li>
+			          	<li><a href="#">Lorem ipsum dolor Sorting </a></li>
 			        </ul>
 			  	</li>
 		    </ul>
-		</div>		
-		<div class="col-md-2 hidden-sm hidden-xs leftPage">			
+		</div>
+		<div class="col-md-2 hidden-sm hidden-xs leftPage">
 			<h4>
 				FILTER BY PRICE
 			</h4>
@@ -83,12 +83,12 @@
 				<ul>
 					<div class="product_count_in_category">
 						45
-					</div>					
-					<li>Alma</li>	
+					</div>
+					<li>Alma</li>
 				</ul>
-			</div>	
-		</div>	 
-		<div class="col-md-10 col-sm-12 col-xs-12 rightPage">				
+			</div>
+		</div>
+		<div class="col-md-10 col-sm-12 col-xs-12 rightPage">
 				@foreach($products as $product)
 				<div class="product_and_quick_view">
 					<div class="product">
@@ -109,27 +109,31 @@
 							 	{{ $product->title }}
 							</span><br>
 							<span class="price">
-								<span>{{ $product->price +25 }} AZN </span> {{ $product->price }} AZN 
+								<span>{{ $product->price +25 }} AZN </span> {{ $product->price }} AZN
 							</span>
 							<div>
-								<span><a href="">ADD TO CART</a></span>
+								<form action="/add_to_basket/{{ $product->id }}" method="post">
+										{{ csrf_field() }}
+										<span><a type="submit" name="submit" href="/add_to_basket/{{ $product->id }}">ADD TO CART</a></span>
+
+							</form>
 							</div>
 						</div>
-					</div>					
+					</div>
 				</div>
-				@endforeach	
-				
+				@endforeach
+
 		 </div>
 	</div>
-	
+
 
 
 </section>
 <div class="background_filter"></div>
 <section id="quick_view">
-	
+
 	@foreach($products as $product)
-		
+
 			<div id="product_single_quick_view_{{ $product->id }}" class="product_single_quick_view  hidden-sm hidden-xs ">			<div class="col-md-6 product_single_quick_view_left">
 					<div>
 						<img  src="/uploads/{{ $product->image }}" alt="{{ $product->title }}">
@@ -143,19 +147,24 @@
 					<div class="row">
 						<span>{{ $product->price }} AZN </span><br>
 						<p>
-							{{ $product->description }} AZN 
+							{{ $product->description }} AZN
 						</p>
 					</div>
+					<form action="/add_to_basket/{{ $product->id }}" method="post">
+
 					<div class="row">
-						<input type="number">
+						<input type="number" min="1">
 					</div>
 					<div class="row">
-						<a href="">ADD TO CART</a>
+								{{ csrf_field() }}
+						<a  type="submit" name="submit" href="/add_to_basket/{{ $product->id }}" style="color:red;">ADD TO CART</a>
+					</form>
+
 					</div>
-				</div>					
+				</div>
 			</div>
-		
-	@endforeach	
+
+	@endforeach
 
 </section>
 
@@ -164,21 +173,21 @@
 
 	var isLessThanScreen;
 
-	$(document).ready(function(){  
+	$(document).ready(function(){
 		var price_range_from = $(".price_range_from")
 		var price_range_to = $(".price_range_to")
 
 
-		price_range_from.text("$1"); 
+		price_range_from.text("$1");
 		price_range_to.text("$500");
 		$('.product_price_from').change(function(){
 			var price = $(this).val();
-			$(".price_range_from").text("$" + price);  
+			$(".price_range_from").text("$" + price);
 			console.log('hi')
 		})
 		$('.product_price_to').change(function(){
-			var price = $(this).val(); 
-			$(".price_range_to").text("$" + price);   
+			var price = $(this).val();
+			$(".price_range_to").text("$" + price);
 		})
 
 		$('.background_filter').css({
@@ -214,11 +223,11 @@
 			isLessThanScreen = false;
 		}
 
-			
 
-		
-		
-		$('.product').hover(function(){		
+
+
+
+		$('.product').hover(function(){
 			$(this).find('.quick_view_little').css({
 				'opacity':1
 			});
@@ -226,12 +235,12 @@
 				"transform" : "translateY(-20px)",
 				'opacity' : 0
 			})
-			
+
 			$(this).find(".product_bottom div").css({
 				"transform" : "translateY(-20px)",
 				'opacity' : 1
 			})
-			
+
 		}, function(){
 			$(this).find('.quick_view_little').css({
 				'opacity':0
@@ -244,25 +253,25 @@
 				"transform" : "translateY(0px)",
 				'opacity' : 0
 			})
-			
+
 		});
 
 
 		@foreach($products as $product)
 		$('#quick_view_{{$product->id}}').click(function(){
-			$('.background_filter').fadeIn();			
+			$('.background_filter').fadeIn();
 			$('#product_single_quick_view_{{ $product->id }}').fadeIn();
 		})
 		@endforeach
-		
-		
+
+
 		$('.fa-times').click(function(){
 			$('.background_filter').fadeOut();
 			$('.product_single_quick_view').fadeOut()
 		});
 
-		$(document).keyup(function(e) { 
-			if (e.keyCode === 27)   $('.fa-times').click(); 
+		$(document).keyup(function(e) {
+			if (e.keyCode === 27)   $('.fa-times').click();
 		});
 
 		$('.active-nav').click(function(){
@@ -272,11 +281,11 @@
 			$(this).css({
 				opacity:0
 			});
-			
+
 		});
-		
-				
-		// $('section:not(#left_side_filter)').click(function(){			
+
+
+		// $('section:not(#left_side_filter)').click(function(){
 		// 	// $('#left_side_filter').css({
 		// 	// 	transform : 'translateX(-275px)'
 		// 	// });
@@ -288,7 +297,7 @@
 		// 		$('.active-nav').css({
 		// 				opacity:1
 		// 		});
-				
+
 		// 	}
 		// });
 
@@ -297,7 +306,7 @@
 
 
 
-	
+
 </script>
 
 @stop

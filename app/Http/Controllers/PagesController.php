@@ -35,26 +35,25 @@ class PagesController extends Controller
       if(Auth::guest()){
         return view('home',compact('products'));
       } else {
-        
         return view('product',compact('products'));
       }
-      
+
     }
     public function about(){
     	return view('about');
     }
-    
-  	public function product_single($id) {
-      $product = Product::find($id);
-  		return view('product_single',compact('product'));
-    }
+
+    public function product_single($id) {
+        $product = Product::find($id);
+    		return view('product_single',compact('product'));
+      }
 
     public function search()
     {
 
         $search = $_GET['search'];
         if($search){
-                  $results = Product::where('title','LIKE','%'.$search.'%')->orWhere('count','LIKE','%'.$search.'%')->get(); 
+                  $results = Product::where('title','LIKE','%'.$search.'%')->orWhere('count','LIKE','%'.$search.'%')->get();
                   return view('search',compact('results'));
         } else {
           return back();

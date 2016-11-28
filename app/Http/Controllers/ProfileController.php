@@ -10,7 +10,7 @@ use App\User;
 use App\Constant;
 use Auth;
 use App\Http\Requests;
-use Carbon\Carbon; 
+use Carbon\Carbon;
 
 
 use Illuminate\Http\Request;
@@ -107,7 +107,6 @@ class ProfileController extends Controller
 
     public function add_to_basket(Request $request,$id)
     {
-
         $now = Carbon::now();
         $product = Product::find($id);
         $user = $this->user;
@@ -116,21 +115,21 @@ class ProfileController extends Controller
                 return redirect('/basket');
             }
             if($request){
-              
                   $ferq = $product->count - $request->count;
                   $product->count = $ferq;
-              
+
             } else {
               $ferq = -1;
             }
 
-
-              
-
-
             if($ferq>=0){
               $product->save();
             }
+            if($request->count == NULL)
+            {
+              $request->count = 1;
+            }
+
             if($ferq<0){
                $basket = $this->user->baskets;
                return view('basket',compact('basket','ferq'));
@@ -151,6 +150,7 @@ class ProfileController extends Controller
         }
 
     }
+
     public function basket(){
         $basket = $this->user->baskets;
         return view('basket',compact('basket'));

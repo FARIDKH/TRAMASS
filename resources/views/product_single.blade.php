@@ -39,14 +39,14 @@
 										{{ csrf_field() }}
 										<div class="form-group col-md-3">
 			                                <label for="count">Count</label>
-			                                <input type="number" class="form-control" name="count" id="count">
+			                                <input type="number" min="1" class="form-control" name="count" id="count">
 			                                {{-- <select class="form-control" name="count" id="count">
 			                                    @for($i=0;$i<500;$i++)
 			                                      <option value="{{ $i }}">{{ $i }}</option>
 			                                    @endfor
 			                                </select> --}}
 			                            </div>
-			                        
+
 								</li>
 							</ul>
 							<br>
