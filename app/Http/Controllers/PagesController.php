@@ -36,19 +36,19 @@ class PagesController extends Controller
       $products = $this->products;
       if(Auth::guest()){
         return view('home',compact('products'));
-      } else {        
+      } else {
         return view('product',compact('products'));
       }
-      
+
     }
     public function about(){
     	return view('about');
     }
-    
-  	public function product_single($id) {
-      $product = Product::find($id);
-  		return view('product_single',compact('product'));
-    }
+
+    public function product_single($id) {
+        $product = Product::find($id);
+    		return view('product_single',compact('product'));
+      }
 
     public function search()
     {

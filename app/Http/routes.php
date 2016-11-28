@@ -69,7 +69,7 @@ Route::group(['middleware' => 'auth'],function(){
     Route::get('/add_to_basket/{id}','ProfileController@add_to_basket');
     Route::post('/add_to_basket/{id}','ProfileController@add_to_basket');
     Route::get('/basket','ProfileController@basket');
-    
+
     Route::post('/basket','ProfileController@basket');
 
     // //// //// //// //// //// //
@@ -78,7 +78,7 @@ Route::group(['middleware' => 'auth'],function(){
     Route::get('/add_request/{id}','RequestController@add_request');
     Route::get('/reject_request/{id}','RequestController@reject_request');
     Route::get('/accept_request/{id}','RequestController@accept_request');
-    // // //// //// //// //// ////     // // //// //// //// //// //// 
+    // // //// //// //// //// ////     // // //// //// //// //// ////
     Route::get('/create_product/{id}','ProfileController@show_create_page');
     Route::post('/create_product/{id}','ProfileController@create_product');
     Route::get('/cnprofile/{id}','ProfileController@cnprofile');

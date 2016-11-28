@@ -20,7 +20,7 @@ class CreateBasketsTable extends Migration
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->integer('status')->unsigned()->index()->nullable();
             $table->integer('price');
-            $table->integer('count');     
+            $table->integer('count')->nullable();     
             $table->timestamps();
         });
     }

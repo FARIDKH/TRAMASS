@@ -12,9 +12,8 @@
 <div id="left_side_filter">
 	<div class="nav-search">		
 		<div class="">			
-			<h3>FILTER BY PRICE</h3>			
-		</div>
-
+			<h3>FILTER BY PRICE</h3>
+		</div>		
 	</div>
 	<div class="product_category">
 		<h3>
@@ -29,13 +28,13 @@
 				<a href="/products/{{$product_category->id}}">{{ $product_category->title }}</a>
 			</li>
 			@endforeach
-			
 		</ul>
 	</div>
 	<div class="active-nav">
 		<i class="fa fa-caret-left" aria-hidden="true"></i>
 	</div>
 </div>
+
 
 
 
@@ -51,17 +50,17 @@
 			        <ul class="dropdown-menu">
 			          	<li><a href="#">Default Sorting</a></li>
 			          	<li><a href="#">Default Sorting</a></li>
-			          	<li><a href="#">Default Sorting</a></li> 
-			          	<li><a href="#">Lorem ipsum dolor sit </a></li> 
-			          	<li><a href="#">Lorem ipsum dolor Sorting </a></li> 
+			          	<li><a href="#">Default Sorting</a></li>
+			          	<li><a href="#">Lorem ipsum dolor sit </a></li>
+			          	<li><a href="#">Lorem ipsum dolor Sorting </a></li>
 			        </ul>
 			  	</li>
 		    </ul>
 		</div>		
-		<div class="col-md-2 hidden-sm hidden-xs leftPage">			
-			<h3>
+		<div class="col-md-2 hidden-sm hidden-xs leftPage">
+			<h4>
 				FILTER BY PRICE
-			</h3>
+			</h4>
 			<div class="filter-slider"></div><br>
 			<form action="/products" method="get">
 				{{ csrf_field() }}
@@ -125,17 +124,51 @@
 					</li>
 				@endforeach	
 			</ul>
+		</div>
+		<div class="col-md-10 col-sm-12 col-xs-12 rightPage">
+				@foreach($products as $product)
+				<div class="product_and_quick_view">
+					<div class="product">
+						<div class="row product_top">
+							<div>
+								<img  src="/uploads/{{ $product->image }}" alt="{{ $product->title }}">
+							</div>
+							<div class="quick_view_little">
+								<i class="fa fa-eye" aria-hidden="true"></i>
+								<span id="quick_view_{{$product->id}}">Quick view</span>
+							</div>
+							<div class="date_of_product">
+								<span>25 <br> 	DAY</span>
+							</div>
+						</div>
+						<div class="row product_bottom">
+							<span>
+							 	{{ $product->title }}
+							</span><br>
+							<span class="price">
+								<span>{{ $product->price +25 }} AZN </span> {{ $product->price }} AZN
+							</span>
+							<div>
+								<form action="/add_to_basket/{{ $product->id }}" method="post">
+										{{ csrf_field() }}
+										<span><a type="submit" name="submit" href="/add_to_basket/{{ $product->id }}">ADD TO CART</a></span>
+
+							</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				@endforeach
 		 </div>
 	</div>
-	
+
 
 
 </section>
 <div class="background_filter"></div>
 <section id="quick_view">
-	
+
 	@foreach($products as $product)
-		
 			<div id="product_single_quick_view_{{ $product->id }}" class="product_single_quick_view  hidden-sm hidden-xs ">			
 				<div class="col-md-6 product_single_quick_view_left">
 					<div>
@@ -149,48 +182,69 @@
 					</div>
 					<div class="row">
 						<span>{{ $product->price }} AZN </span><br>
-						<p>
-							{{ $product->description }} 
-						</p>
+						<p>{{ $product->description }}</p>
+					</div>
+					<form action="/add_to_basket/{{ $product->id }}" method="post">
+
+					<div class="row">
+						<input type="number" min="1">
 					</div>
 					<div class="row">
-						<input type="number">
+								{{ csrf_field() }}
+						<a  type="submit" name="submit" href="/add_to_basket/{{ $product->id }}" style="color:red;">ADD TO CART</a>
+					</form>
+
 					</div>
-					<div class="row">
-						<a href="">ADD TO CART</a>
-					</div>
-				</div>					
+				</div>
 			</div>
-		
-	@endforeach	
+
+	@endforeach
 
 </section>
 
 
 <script>
 
-	var isLessThanScreen,
+
+
+		var isLessThanScreen,
 	 	slider = $('.filter-slider'),
 	 	_token = $('input[name=_token]'),
 		price_range_from = $('input[name=price_range_from]'),
 		price_range_to = $('input[name=price_range_to]')
-	$(function(){
-		slider.slider({
-			max:250,
-			min:1,
-			values : [25,225],
-			step:1,
-			range:true,
-			slide:updateBackground
-		})	
+		$(function(){
+			slider.slider({
+				max:250,
+				min:1,
+				values : [25,225],
+				step:1,
+				range:true,
+				slide:updateBackground
+			})	
 
-		function updateBackground(e,ui)
-		{
-			price_range_from.val(ui.values[0] + ' AZN')
-			price_range_to.val(ui.values[1]+ ' AZN')
-		}
-	})
+			function updateBackground(e,ui)
+			{
+				price_range_from.val(ui.values[0] + ' AZN')
+				price_range_to.val(ui.values[1]+ ' AZN')
+			}
+		})
 
+		var price_range_from = $(".price_range_from")
+		var price_range_to = $(".price_range_to")
+
+
+		price_range_from.text("$1");
+		price_range_to.text("$500");
+		$('.product_price_from').change(function(){
+			var price = $(this).val();
+			$(".price_range_from").text("$" + price);
+			console.log('hi')
+		})
+		$('.product_price_to').change(function(){
+			var price = $(this).val();
+			$(".price_range_to").text("$" + price);
+		})
+	
 
 	$('.product_category ul li').hover(function(){
 		$(this).find('.product_count_in_category').css({
@@ -201,11 +255,9 @@
 		$(this).find('.product_count_in_category').css({
 			border:'1px solid #F5F5F5',
 			backgroundColor:'#F5F5F5'
-		})
-	})
+		});
+	});
 
-
-	$(document).ready(function(){  
 
 		$('input[name=price_filter]').click(function(event){
 			event.preventDefault();
@@ -323,11 +375,7 @@
 							$('#product_single_quick_view_'+value.id).fadeIn();
 						})
 						exit()
-					})	
-					
-						
-
-
+					})
 				},
 				error : function()
 				{
@@ -370,12 +418,11 @@
 			isLessThanScreen = false;
 		}
 
-			
 
-		
-		
-		$('.product').hover(function(){		
-			
+
+
+
+		$('.product').hover(function(){
 			$(this).find('.quick_view_little').css({
 				'opacity':1
 			});
@@ -383,12 +430,12 @@
 				"transform" : "translateY(-20px)",
 				'opacity' : 0
 			})
-			
+
 			$(this).find(".product_bottom div").css({
 				"transform" : "translateY(-20px)",
 				'opacity' : 1
 			})
-			
+
 		}, function(){
 			$(this).find('.quick_view_little').css({
 				'opacity':0
@@ -401,16 +448,17 @@
 				"transform" : "translateY(0px)",
 				'opacity' : 0
 			})
-			
+
 		});
 
 
 		@foreach($products as $product)
 		$('#quick_view_{{$product->id}}').click(function(){
-			$('.background_filter').fadeIn();			
+			$('.background_filter').fadeIn();
 			$('#product_single_quick_view_{{ $product->id }}').fadeIn();
 		})
 		@endforeach
+
 		
 		function exit()
 		{
@@ -426,6 +474,17 @@
 		exit()
 
 
+
+		$('.fa-times').click(function(){
+			$('.background_filter').fadeOut();
+			$('.product_single_quick_view').fadeOut()
+		});
+
+		$(document).keyup(function(e) {
+			if (e.keyCode === 27)   $('.fa-times').click();
+		});
+
+
 		$('.active-nav').click(function(){
 			$('#left_side_filter').css({
 				transform : 'translateX(0px)'
@@ -433,13 +492,13 @@
 			$(this).css({
 				opacity:0
 			});
+
 			$('section:not(#left_side_filter)').css({
 				transition:'all 0.4s ease',
 				transform : 'translateX(275px)'
-			});
-		});
-		
-				
+			})
+		})
+			
 		// $('section:not(#left_side_filter)').click(function(){			
 		// 	$('#left_side_filter').css({
 		// 		transform : 'translateX(-275px)'
@@ -447,22 +506,36 @@
 		// 	$('section:not(#left_side_filter)').css({
 		// 		transform : 'translateX(0px)'
 		// 	});
+
+
+
+		// $('section:not(#left_side_filter)').click(function(){
+		// 	// $('#left_side_filter').css({
+		// 	// 	transform : 'translateX(-275px)'
+		// 	// });
+		// 	// $('section:not(#left_side_filter)').css({
+		// 	// 	transform : 'translateX(0px)'
+		// 	// });
+
 		// 	if(isLessThanScreen)
 		// 	{
 		// 		$('.active-nav').css({
 		// 				opacity:1
+
 		// 		});				
+		// 		});
+
 		// 	}
 		// });
 		
 
 		
 
-	});
-
-
-
 	
+
+
+
+
 </script>
 
 @stop
