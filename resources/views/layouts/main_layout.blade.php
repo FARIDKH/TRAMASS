@@ -52,37 +52,52 @@
                       <li id="secondItem"><a href="#"  class="second">Portfolio <i class="fa fa-angle-down" aria-hidden="true"></i></a>
                         <div class="menu2">
                           <ul class="subMenu">
-                            <li ><a href="#"  style="text-decoration-color:red;">HomeHomeHomeHomeHome</a></li>
-                            <li><a href="#"  style="text-decoration-color:red;">HomeHomeHomeHomeHomeHomeHome</a></li>
-                            <li><a href="#" style="text-decoration-color:red;" >GuestHomeHomeHomeHomeHomeHome</a></li>
-                        </ul>
+                              <li  ><a href="#" >Home</a></li>
+                              <li ><a href="#" >Home</a></li>
+                              <li ><a href="#" >Home</a></li>
+                          </ul>
                       </div>
-                      </li>
-                      <li  id="fifthItem"><a href="#" class="fifth">Blog </a></li>
-                      <li id="thirdItem" > <a href="#" class="third">Pages <i class="fa fa-angle-down" aria-hidden="true"></i></a>
-                        <div class="menu3">
-                          <ul class="subMenu">
-                            <li ><a href="#" style="text-decoration-color:red;" >HomeHomeHomeHomeHome</a></li>
-                            <li><a href="#" style="text-decoration-color:red;" >HomeHomeHomeHomeHomeHomeHome</a></li>
-                            <li><a href="#"  style="text-decoration-color:red;">GuestHomeHomeHomeHomeHomeHome</a></li>
-                        </ul>
-                      </div>
-                      </li>
-                      <li id="fourthItem" ><a href="#" class="fourth">Elements <i class="fa fa-angle-down" aria-hidden="true"></i></a>
-                        <div class="menu4">
-                          <ul class="subMenu">
-                            <li ><a href="#" style="text-decoration-color:red;" >HomeHomeHomeHomeHome</a></li>
-                            <li><a href="#" style="text-decoration-color:red;" >HomeHomeHomeHomeHomeHomeHome</a></li>
-                            <li><a href="#" style="text-decoration-color:red;" >GuestHomeHomeHomeHomeHomeHome</a></li>
-                        </ul>
-                      </div>
-                      </li>
-                    </ul>
-                  </div>
-                <div class="icon">
-                        <a href="#" class="fa fa-cart-plus"><span> 0</span></a>
-                        <a href="#" class="fa fa-search "></a>
+                    </li>
+
+                    <li id="secondItem"><a href="#"  class="second">Portfolio <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                      <div class="menu2">
+                        <ul class="subMenu">
+                          <li ><a href="#" >HomeHomeHomeHomeHome</a></li>
+                          <li><a href="#" >HomeHomeHomeHomeHomeHomeHome</a></li>
+                          <li><a href="#" >GuestHomeHomeHomeHomeHomeHome</a></li>
+                      </ul>
+                    </div>
+                    </li>
+                    <li  id="fifthItem"><a href="#" class="fifth">Blog </a></li>
+                    <li id="thirdItem" > <a href="#" class="third">Pages <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                      <div class="menu3">
+                        <ul class="subMenu">
+                          <li ><a href="#" >HomeHomeHomeHomeHome</a></li>
+                          <li><a href="#" >HomeHomeHomeHomeHomeHomeHome</a></li>
+                          <li><a href="#" >GuestHomeHomeHomeHomeHomeHome</a></li>
+                      </ul>
+                    </div>
+                    </li>
+                    <li id="fourthItem" ><a href="#" class="fourth">Elements <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                      <div class="menu4">
+                        <ul class="subMenu">
+                          <li ><a href="#" >HomeHomeHomeHomeHome</a></li>
+                          <li><a href="#" >HomeHomeHomeHomeHomeHomeHome</a></li>
+                          <li><a href="#" >GuestHomeHomeHomeHomeHomeHome</a></li>
+                      </ul>
+                    </div>
+                    </li>
+                  </ul>
                 </div>
+              <div class="col-md-2 icon">
+                      <a href="{{ url('/basket') }}" class="fa fa-cart-plus"><span>
+                    
+                      </span></a>
+                      <a href="" class="fa fa-search "></a>
+              </div>
+
+            </div>
+          </nav>
 
               
             </nav>

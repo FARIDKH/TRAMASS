@@ -2,32 +2,32 @@
 
 @section('content')
 
-		
+
 <section id="productsingle"  style="transition:all 0.3s ease">
 <div class="container-fluid">
 	<div class="container">
 
-		
-		
+
+
 
 		@foreach($basket as $basket_info)
 
 			@if($basket_info->status == 0)
 			<div class="row">
-				
+
 				@if(isset($ferq))
 					@if($ferq<0)
 						<script>
-							setTimeout(function(){ 
+							setTimeout(function(){
 								document.getElementsByClassName('alert_message')[0].setAttribute("class", "hidden");
 							}, 3000);
 						</script>
-						@else 
+						@else
 					@endif
-			
+
 				@endif
-				
-				
+
+
 
 
 				<div  class="peanutbtn">

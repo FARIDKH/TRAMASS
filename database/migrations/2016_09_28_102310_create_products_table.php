@@ -22,7 +22,7 @@ class CreateProductsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('product__category_id')->unsigned()->index();
             $table->integer('constant_id')->unsigned()->index();
-            $table->integer('count')->unsigned();
+            $table->integer('count')->unsigned()->nullable();
             $table->date('date_limit');
             $table->timestamps();
         });
