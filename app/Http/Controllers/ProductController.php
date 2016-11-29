@@ -23,7 +23,7 @@ class ProductController extends Controller
         if($request->ajax())
         {
             $products = Product::where('price','<',$price_range_to)->where('price','>',$price_range_from)->get();
-            return json_encode($products);            
+            return json_encode($products);
         }
 
         if($request->product_category_id)
@@ -32,7 +32,7 @@ class ProductController extends Controller
              return view('new', compact('products','product_categories'));
         }
 
-       
+
 
     }
 }
