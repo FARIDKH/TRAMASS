@@ -154,6 +154,10 @@ class ProfileController extends Controller
         $basket = $this->user->baskets;
         return view('basket',compact('basket'));
     }
+    public function count(){
+        $basket = $this->user->baskets;
+        return view('main_layout',compact('basket'));
+    }
 
 
 }

@@ -5,14 +5,11 @@
     <section id="singleItem">
         <div class="container">
           <div class="row">
-                <div class="pageDirections">
-                  <div class="col-md-8 hyperlink">
-                    <a href="#">Home</a> > <a href="#">Shop</a> > <a href="#">Basket</a>
+                  <div class="productDirections" >
+                    <a href="/product_single/{{  $product->id - 1 }}" class="fa fa-angle-left "></a>
+                    <a href="/product_single/{{  $product->id + 1 }}" class="fa fa-angle-right "></a>
                   </div>
-                  <div class="col-md-4">
 
-                  </div>
-                </div>
               <div class="col-md-12 itemPage">
                     <div class="vertical-Images-list col-md-2">
                       <ul class="vertical-Images">
@@ -25,11 +22,12 @@
                           <img src="/uploads/{{ $product->image }}" alt="">
                     </div>
                     <div class="mainInfo col-md-4">
-                          <h1>Oatmeal Wood Table Lamp</h1>
-                          <span>$666.00</span>
-                          <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+                          <h1>{{ $product->title }}</h1>
+                          <span>${{ $product->price }}</span>
+                          <p>{{$product->description}}</p>
                           <input type="number" name="number" value="1" min="1">
-                          <button type="button" name="button">add to cart</button>
+                          <button type="button" name="button" ><a href="/add_to_basket/{{ $product->id }}">add to cart</a></button>
+
                     </div>
               </div>
           </div>
@@ -60,22 +58,22 @@
     </section>
     <section id="products">
     	<div class="container-fluid">
-    		<div class="col-md-10 col-sm-12 col-xs-12 rightPage">
+    		<div class="col-md-12 col-sm-12 col-xs-12 rightPage">
     			@if(!count($products))
     				<h1>No product was found</h1>
     			@endif
     			<ul>
-    				@foreach($products as $producties)
+    				@foreach($products as $product)
     					<li>
     						<div class="product_and_quick_view">
     							<div class="product">
     								<div class="row product_top">
     									<div>
-    										<img  src="/uploads/{{ $producties->image }}" alt="{{ $producties->title }}">
+    										<img  src="/uploads/{{ $product->image }}" alt="{{ $product->title }}">
     									</div>
     									<div class="quick_view_little">
     										<i class="fa fa-eye" aria-hidden="true"></i>
-    										<span id="quick_view_{{$producties->id}}">Quick view</span>
+    										<span id="quick_view_{{$product->id}}">Quick view</span>
     									</div>
     									{{-- <div class="date_of_product">
     										<span><br></span>
@@ -83,13 +81,13 @@
     								</div>
     								<div class="row product_bottom">
     									<span>
-    									 	{{ $producties->title }}
+    									 	{{ $product->title }}
     									</span><br>
     									<span class="price">
-    										<span>{{ $producties->price +25 }} AZN </span> {{ $producties->price }} AZN
+    										<span>{{ $product->price +25 }} AZN </span> {{ $product->price }} AZN
     									</span>
     									<div>
-    										<span><a href="/add_to_basket/{{ $producties->id }}">ADD TO CART</a></span>
+    										<span><a href="/add_to_basket/{{ $product->id }}">ADD TO CART</a></span>
     									</div>
     								</div>
     							</div>
@@ -98,10 +96,6 @@
     				@endforeach
     			</ul>
     		</div>
-
     	</div>
-
-
-
     </section>
 @endsection

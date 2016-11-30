@@ -98,7 +98,8 @@
 							<div class="product">
 								<div class="row product_top">
 									<div>
-										<img  src="/uploads/{{ $product->image }}" alt="{{ $product->title }}">
+										<a href="/product_single/{{  $product->id }}"><img  src="/uploads/{{ $product->image }}" alt="{{ $product->title }}" ></a>
+
 									</div>
 									<div class="quick_view_little">
 										<i class="fa fa-eye" aria-hidden="true"></i>
