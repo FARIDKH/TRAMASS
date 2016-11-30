@@ -29,16 +29,15 @@ class PagesController extends Controller
     public function products()
     {
       $products = $this->products;
-      $product_categories = Product_Category::all();
-      return view('new' ,compact('products','product_categories'));
+      $product_categories = Product_Category::all();      
+      return view('new',compact('products','product_categories'));
     }
-
     public function home(){
       $products = $this->products;
       if(Auth::guest()){
         return view('home',compact('products'));
       } else {
-        return view('product'  ,compact('products'));
+        return view('product',compact('products'));
       }
 
     }
@@ -47,16 +46,15 @@ class PagesController extends Controller
     }
 
     public function product_single($id) {
-        $products = $this->products;
         $product = Product::find($id);
-    		return view('product-info',compact('product','products'));
+    		return view('product_single',compact('product'));
       }
 
     public function search()
     {
         $search = $_GET['search'];
         if($search){
-          $results = Product::where('title','LIKE','%'.$search.'%')->orWhere('count','LIKE','%'.$search.'%')->get();
+          $results = Product::where('title','LIKE','%'.$search.'%')->orWhere('count','LIKE','%'.$search.'%')->get(); 
           return view('search',compact('results'));
         } else {
           return back();
