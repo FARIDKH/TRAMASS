@@ -10,21 +10,21 @@
 </section>
 
 <div id="left_side_filter">
-	<div class="nav-search">		
-		<div class="">			
+	<div class="nav-search">
+		<div class="">
 			<h3>FILTER BY PRICE</h3>
-		</div>		
+		</div>
 	</div>
 	<div class="product_category">
 		<h3>
 			PRODUCT CATEGORIES
 		</h3>
-		<ul>	
+		<ul>
 			@foreach($product_categories as $product_category)
 			<li>
 				<span class="product_count_in_category">
 					{{ count($product_category->products) }}
-				</span>					
+				</span>
 				<a href="/products/{{$product_category->id}}">{{ $product_category->title }}</a>
 			</li>
 			@endforeach
@@ -34,12 +34,6 @@
 		<i class="fa fa-caret-left" aria-hidden="true"></i>
 	</div>
 </div>
-
-
-
-
-
-
 <section id="products">	
 	<div class="container-fluid">
 		<div class="col-md-12">
@@ -128,7 +122,7 @@
 <section id="quick_view">
 
 	@foreach($products as $product)
-			<div id="product_single_quick_view_{{ $product->id }}" class="product_single_quick_view  hidden-sm hidden-xs ">			
+			<div id="product_single_quick_view_{{ $product->id }}" class="product_single_quick_view  hidden-sm hidden-xs ">
 				<div class="col-md-6 product_single_quick_view_left">
 					<div>
 						<img  src="/uploads/{{ $product->image }}" alt="{{ $product->title }}">
@@ -187,12 +181,6 @@
 				price_range_to.val(ui.values[1]+ ' AZN')
 			}
 		})
-
-
-
-
-	
-
 		$('.product_category ul li').hover(function(){
 			$(this).find('.product_count_in_category').css({
 				border:'1px solid #388E3C',
@@ -218,14 +206,14 @@
 					_token: _token.val()
 				},
 				success:function(data)
-				{	
+				{
 					console.log(data)
-					$('.rightPage h1').remove()				
+					$('.rightPage h1').remove()
 					if(!data.length)
 					{
 						$('.rightPage').append('<h1>No product was found</h1>')
 					}
-					$('.product_and_quick_view').remove()	
+					$('.product_and_quick_view').remove()
 					$('.product').remove()
 					$('.product_single_quick_view').remove()
 
@@ -260,7 +248,7 @@
 
 
 							$('#product_single_quick_view_'+value.id).append('</div>')
-						$('#quick_view').append('</div>')	
+						$('#quick_view').append('</div>')
 
 
 						
@@ -270,10 +258,10 @@
 										$("#product_"+value.id+" .product_top div").append('<img src="/uploads/'+value.image+'">')
 									$("#product_"+value.id+" .product_top").append('</div>')
 									$("#product_"+value.id+" .product_top").append('<div class="quick_view_little">')
-									
+
 									$("#product_"+value.id+" .product_top .quick_view_little").append('<i class="fa fa-eye" aria-hidden="true"> ')
-									$("#product_"+value.id+" .product_top .quick_view_little").append('<span id="quick_view_'+value.id+'">Quick view</span>')								
-									$("#product_"+value.id+" .product_top").append('</div>')					
+									$("#product_"+value.id+" .product_top .quick_view_little").append('<span id="quick_view_'+value.id+'">Quick view</span>')
+									$("#product_"+value.id+" .product_top").append('</div>')
 								$("#product_"+value.id).append('</div>')
 								$("#product_"+value.id).append('<div class="row product_bottom">')
 									$("#product_"+value.id+" .product_bottom").append('<span>')
@@ -289,6 +277,7 @@
 							$('.rightPage').append('</div>')
 						$('.product').hover(function(){		
 			
+
 							$(this).find('.quick_view_little').css({
 								'opacity':1
 							});
@@ -296,12 +285,12 @@
 								"transform" : "translateY(-20px)",
 								'opacity' : 0
 							})
-							
+
 							$(this).find(".product_bottom div").css({
 								"transform" : "translateY(-20px)",
 								'opacity' : 1
 							})
-							
+
 						}, function(){
 							$(this).find('.quick_view_little').css({
 								'opacity':0
@@ -314,10 +303,10 @@
 								"transform" : "translateY(0px)",
 								'opacity' : 0
 							})
-							
+
 						});
 						$('#quick_view_'+value.id).click(function(){
-							$('.background_filter').fadeIn();			
+							$('.background_filter').fadeIn();
 							$('#product_single_quick_view_'+value.id).fadeIn();
 						})
 						exit()
@@ -405,7 +394,7 @@
 		})
 		@endforeach
 
-		
+
 		function exit()
 		{
 			$('.fa-times').click(function(){
@@ -413,8 +402,8 @@
 				$('.product_single_quick_view').fadeOut()
 			});
 
-			$(document).keyup(function(e) { 
-				if (e.keyCode === 27)   $('.fa-times').click(); 
+			$(document).keyup(function(e) {
+				if (e.keyCode === 27)   $('.fa-times').click();
 			});
 		}
 		exit()
@@ -444,8 +433,8 @@
 				transform : 'translateX(275px)'
 			})
 		})
-			
-		// $('section:not(#left_side_filter)').click(function(){			
+
+		// $('section:not(#left_side_filter)').click(function(){
 		// 	$('#left_side_filter').css({
 		// 		transform : 'translateX(-275px)'
 		// 	});
@@ -468,16 +457,16 @@
 		// 		$('.active-nav').css({
 		// 				opacity:1
 
-		// 		});				
+		// 		});
 		// 		});
 
 		// 	}
 		// });
-		
 
-		
 
-	
+
+
+
 
 
 
