@@ -23,10 +23,12 @@ class ProfileController extends Controller
     protected $user;
     protected $constants;
     protected $baskets;
+    protected $products;
     public function __construct(){
       $this->baskets = Basket::all();
       $this->constants = Constant::all();
       $this->user =  Auth::user();
+      $this->products = Product::all();
     }
     public function profile($id){
         $baskets = Basket::all();
@@ -46,17 +48,6 @@ class ProfileController extends Controller
 
     public function change_profile(Request $request){
       if(isset($_POST['change_profile'])){
-
-              // if(isset($_POST['seller_status'])){
-              //     $this->user->type = 1;
-              // } else {
-              //     $this->user->type = 0;
-              // }
-              // if(isset($_POST['seller_buyer_status'])){
-              //     $this->user->type= 2;
-              // } else {
-              //   $this->user->type = 0;
-              // }
           $this->user->type = $request->type;
           $this->user->save();
           return redirect()->action('ProfileController@profile', ['id' => Auth::user()->id]);
@@ -110,14 +101,27 @@ class ProfileController extends Controller
         $now = Carbon::now();
         $product = Product::find($id);
         $user = $this->user;
-        if($now < $product->date_limit && $user->type == 1 || $user->type == 0){
+        $products = $this->products;
+        $baskets = $this->baskets;
+        if($now < $product->date_limit && $user->type == 1 || $user->type == 0){            
             if($product->user->id == Auth::user()->id){
                 return redirect('/basket');
             }
+            foreach($baskets as $basket)
+            {              
+              if($basket->user_id == Auth::user()->id)
+              {
+                if($basket->product_id == $request->id)
+                {
+                    $basket->count += 1;
+                    $basket->save();
+                    return back();
+                }
+              }
+            } 
             if($request){
-                  $ferq = $product->count - $request->count;
-                  $product->count = $ferq;
-
+              $ferq = $product->count - $request->count;
+              $product->count = $ferq;
             } else {
               $ferq = -1;
             }
@@ -128,6 +132,7 @@ class ProfileController extends Controller
             {
               $request->count = 1;
             }
+            
 
             if($ferq<0){
                $basket = $this->user->baskets;
@@ -151,8 +156,33 @@ class ProfileController extends Controller
     }
 
     public function basket(){
-        $basket = $this->user->baskets;
-        return view('basket',compact('basket'));
+        $baskets = $this->user->baskets;
+        return view('basket',compact('baskets'));
+    }
+    public function remove_from_basket(Request $request)
+    {
+        $id = $request->id;
+        $basket = Basket::find($id);
+        $basket->delete();
+        return json_encode($basket->id);
+    }
+    public function update_basket(Request $request)
+    {
+      $baskets = $this->baskets;      
+      foreach($baskets as $basket)
+      {
+        if($basket->user_id == Auth::user()->id)
+        {
+          $id = $request->id_.$basket->id;
+          $basket = Basket::find($id);
+          $count = $request->cart[$basket->id];          
+          $basket->update([
+            'count' => $count 
+          ]);
+        }       
+      }  
+      $baskets = $this->user->baskets;       
+      return back();
     }
 
 

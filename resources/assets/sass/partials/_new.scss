@@ -211,7 +211,6 @@ input[type="range"]
 		height: auto;
 		float:left;
 		padding:25px;
-
 		.product_top
 		{			
 			position:relative;
@@ -366,6 +365,19 @@ input[type="range"]
 		}
 	}
 
+}
+
+.b-red
+{
+	border:3px solid red;
+}
+.b-green
+{
+	border:3px solid green;
+}
+.b-blue
+{
+	border:3px solid blue;
 }
 
 

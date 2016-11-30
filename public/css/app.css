@@ -12,7 +12,7 @@
     z-index: 50; }
 
 nav {
-  width: 100%;
+  width: 93%;
   height: 70px;
   position: fixed;
   display: block;
@@ -21,7 +21,7 @@ nav {
     font-size: 35px;
     position: absolute;
     top: 20px;
-    left: 0px; }
+    left: 17px; }
   nav .mainMenu {
     display: -ms-flexbox;
     display: flex;
@@ -77,7 +77,7 @@ nav {
 .icon {
   position: absolute;
   top: 33px;
-  right: 60px; }
+  right: 0px; }
   .icon a {
     padding: 7px;
     position: relative;
@@ -341,7 +341,6 @@ nav {
       height: 70em; } }
 
 #footer {
-  z-index: -5;
   position: absolute;
   width: 100%;
   text-align: center;
@@ -409,62 +408,89 @@ nav {
   transition: 0.8s;
   opacity: 1; }
 
-#productsingle {
-  background-color: #FAFAFA;
-  height: auto; }
-  #productsingle .peanut {
-    background-color: white; }
-    #productsingle .peanut h1 {
-      color: #777777; }
-  #productsingle .peanutbtn button:hover {
-    transition: 0.8s;
-    box-shadow: 13px 9px 30px 0px #4a4a3a; }
-  #productsingle .profit {
-    margin-top: 20px;
-    width: 255px;
-    font-weight: 600; }
-    #productsingle .profit i {
-      margin-right: 5px;
-      font-size: 1.5em; }
-    #productsingle .profit a {
-      font-size: 0.9em;
-      text-decoration: none;
-      color: white; }
-  #productsingle .seeOther h3 {
-    color: #959595;
-    margin-top: 55px;
-    margin-bottom: 30px; }
-  #productsingle .seeOther ul li {
-    list-style: none;
-    font-size: 1.3em;
-    font-weight: 600;
-    color: #417630; }
-    #productsingle .seeOther ul li:hover {
-      cursor: pointer;
-      color: #7DAE6E; }
-  #productsingle .hectar h2 {
-    line-height: 110%;
-    font-weight: 400;
-    color: #787878;
-    letter-spacing: 2px; }
-  #productsingle .hectar ul li {
-    list-style: none;
-    font-size: 1.3em;
-    line-height: 2;
-    color: #A5A5A5; }
-    #productsingle .hectar ul li i {
-      margin-right: 15px;
-      color: #777777; }
-  #productsingle .notify {
-    width: 458px;
+#basket {
+  padding: 50px 0px; }
+  #basket h1 {
+    text-align: center;
+    padding: 50px;
+    font-size: 75px;
+    font-weight: 700; }
+  #basket table tr {
+    border-bottom: 1px solid #BDBDBD; }
+  #basket table .update-cart {
+    border: none; }
+  #basket table td {
+    padding: 20px; }
+  #basket table td.product-count, #basket table td.product-price, #basket table td.product-total-price {
+    padding: 20px 50px; }
+  #basket table .product-ignore i {
+    color: #BDBDBD;
+    cursor: pointer; }
+  #basket table .product-image div {
+    width: 100px;
+    height: 130px;
+    cursor: pointer;
+    transition: all 0.2s ease; }
+    #basket table .product-image div:hover {
+      opacity: 0.7; }
+    #basket table .product-image div img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; }
+  #basket table .product-title {
+    max-width: 200px; }
+    #basket table .product-title span {
+      font-size: 20px;
+      font-weight: 700; }
+  #basket table .product-price span, #basket table .product-total-price span {
+    font-size: 17px;
+    color: #BDBDBD; }
+  #basket table .product-count input {
+    width: 60px;
     height: 50px;
-    font-size: 1.4em; }
-    #productsingle .notify:hover {
-      transition: 0.8s;
-      box-shadow: 13px 9px 30px 0px #4a4a3a; }
-  #productsingle .textt p {
-    font-size: 1.3em;
-    color: #BEBEBE; }
+    font-size: 30px;
+    border: none;
+    border-bottom: 2px solid #BDBDBD;
+    text-align: right;
+    padding: 3px; }
+  #basket table .product-total-price span {
+    color: #404040; }
+  #basket button {
+    margin: 15px;
+    border: none;
+    background-color: transparent;
+    color: black;
+    font-size: 13px;
+    float: right; }
+  #basket .cart-total {
+    background-color: #E5E5E5;
+    padding: 50px; }
+    #basket .cart-total h3 {
+      font-size: 13px;
+      font-weight: 700;
+      display: inline-block;
+      margin-right: 30px; }
+    #basket .cart-total label {
+      font-size: 13px; }
+    #basket .cart-total span {
+      color: #9e9e9e; }
+    #basket .cart-total .col-md-9 div:first-child {
+      margin-top: 13px; }
+    #basket .cart-total .col-md-9 div {
+      margin-left: -5px; }
+    #basket .cart-total .cart-total-price {
+      margin-bottom: 20px; }
+      #basket .cart-total .cart-total-price span {
+        font-size: 25px;
+        color: #212121;
+        margin-left: 15px; }
+    #basket .cart-total .proceed {
+      margin-top: 15px;
+      text-align: center; }
+      #basket .cart-total .proceed a {
+        color: white;
+        background-color: #4CAF50;
+        padding: 15px 89px; }
 
 html {
   overflow-x: hidden;
@@ -6304,6 +6330,15 @@ input[type=range]::-webkit-slider-runnable-track {
         color: white; }
       #quick_view .product_single_quick_view_right div:last-child:hover {
         background-color: #388E3C; }
+
+.b-red {
+  border: 3px solid red; }
+
+.b-green {
+  border: 3px solid green; }
+
+.b-blue {
+  border: 3px solid blue; }
 
 #left_side_filter {
   display: none;

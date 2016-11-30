@@ -43,7 +43,7 @@
                         <h2 class="text-center text-capitalize">
                         Əldə olan mallar
                         </h2>
-                    @foreach($user->products as $user_product)
+                        @foreach($user->products as $user_product)
                             <div class="row penting">
                                 <hr>
                                 <div class="col-md-6">
@@ -57,7 +57,7 @@
                                                  {{ $user_product->title }}</a></h3>
                                                  <br>
                                              <i class="fa fa-bookmark" aria-hidden="true"></i> 
-                                             {{ $user_product->product_category->title }}
+                                             {{-- {{ $user_product->product_category->title }} --}}
                                             </li>
 
                                     </ul>

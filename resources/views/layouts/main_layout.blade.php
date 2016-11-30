@@ -89,20 +89,17 @@
                     </li>
                   </ul>
                 </div>
-              <div class="col-md-2 icon">
+              <div class="icon">
                       <a href="{{ url('/basket') }}" class="fa fa-cart-plus"><span>
                     
                       </span></a>
                       <a href="" class="fa fa-search "></a>
               </div>
 
-            </div>
+            
           </nav>
-
-              
-            </nav>
-          </div>
         </div>
+      </div>  
         
 
       </section>
