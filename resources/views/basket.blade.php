@@ -1,9 +1,7 @@
 @extends('layouts.main_layout')
 
 @section('content')
-<script>
-	var totalPrice = 0;
-</script>
+
 <section id="basket">
 	<div class="container-fluid">
 		<div class="col-md-12">
@@ -31,14 +29,11 @@
 									<span>{{ $basket->product->price }} AZN</span>
 								</td>
 								<td class="product-count">
-									<input type="number" name="cart[{{ $basket->id }}]" id="product-count-{{ $basket->id }}" min="1" value="{{ $basket->count }}">
+									<input type="number" name="cart[{{ $basket->id }}]" class="count-of-product" min="1" value="{{ $basket->count }}">
 								</td>
 								<td class="product-total-price">
-									<span>{{ $basket->product->price *  $basket->count }}</span>AZN
+									<span>{{ $basket->product->price *  $basket->count }}</span> AZN
 								</td>
-								<script>
-									 var totalPrice = totalPrice + {{ $basket->product->price *  $basket->count }}
-								</script>
 							</tr>
 						@endforeach						
 					</table>
@@ -110,9 +105,40 @@
 <script>
 	var _token = $('input[name=_token]');
 	var id = $('input[name=id]');
+	var product_price = [];
+	var total = 0;
+	function totalPriceOfProduct()
+	{
+		for(i=0;i<$('.product-total-price span').length;i++)
+		{
+			product_price[i] = $('.product-total-price span')[i].outerText	
+			total += parseInt(product_price[i])
+		}	
+		console.log(product_price)
+	}
+
+	totalPriceOfProduct()
+
+	$('.count-of-product').on('keyup mouseup',function(event){
+		
+		var product_info = $(this).parent().parent(),
+		value = $(this).val(),
+		price_of_this_product = product_info.find($('.product-price'))
+		total_price_of_this_product = product_info.find($('.product-total-price span'))
+		total_price_of_this_product.text(value * parseInt(price_of_this_product.text()))
+		newTotal = 0;
+		totalPriceOfProduct()
+
+		for(i=0;i<$('.product-total-price span').length;i++)
+		{
+			newTotal += parseInt(product_price[i]);
+		}	
+		$('.total-price').text(newTotal + " AZN")
+
+	})
 
 	$(document).ready(function(){
-		$('.total-price').text(totalPrice + " AZN")
+		$('.total-price').text(total + " AZN")
 		$('.product-ignore i').click(function(){
 			var a =$(this).parent().parent();
 			var	$this = $(this);
@@ -127,10 +153,9 @@
 				success:function()
 				{
 					var x = a.find($('.product-total-price span'))
-					totalPrice = totalPrice - x.text()
-					console.log(x.text())
+					total = total - x.text()
 					a.fadeOut();
-					$('.total-price').text(totalPrice + " AZN")
+					$('.total-price').text(total + " AZN")
 				}
 			})
 		})
