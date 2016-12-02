@@ -12,11 +12,7 @@ use App\Order;
 
 class RequestController extends Controller
 {
-
-
-
-
-	public function add_request($id)
+	function add_request($id)
 	{
 		$basket = Basket::find($id);
 		$basket->status = 1;

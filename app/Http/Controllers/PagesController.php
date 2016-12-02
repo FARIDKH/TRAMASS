@@ -31,23 +31,35 @@ class PagesController extends Controller
     {
       $products = $this->products;
       $product_categories = Product_Category::all();
-      $baskets = $this->user_product->baskets;
+      if(Auth::guest()){
+        return view('new' , compact('product_categories' , 'products'));
+      } else {
+        $baskets = $this->user_product->baskets;
+        return view('new'  ,compact('products','baskets', 'product_categories'));
+      }
       return view('new' ,compact('products','product_categories','baskets'));
     }
 
     public function home(){
-      $baskets = $this->user_product->baskets;
       $products = $this->products;
+
       if(Auth::guest()){
-        return view('home',compact('products','baskets'));
+        return view('home',compact('products'));
       } else {
-        return view('product'  ,compact('products','baskets'));
+        $baskets = $this->user_product->baskets;
+        return view('home'  ,compact('products','baskets'));
       }
 
     }
     public function about(){
+        $baskets = $this->user_product->baskets;
+      if(Auth::guest()){
+        return view('about',compact('products' , 'baskets'));
+      } else {
+        return view('about'  ,compact('products','baskets'));
+      }
       $baskets = $this->user_product->baskets;
-    	return view('about' , compact('baskets'));
+    	// return view('about' , compact('baskets'));
     }
 
     public function product_single($id) {

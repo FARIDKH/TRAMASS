@@ -72,7 +72,5 @@ class AuthController extends Controller
             'password_confirmation' => bcrypt($data['password_confirmation']),
 
         ]);
-
-
     }
 }

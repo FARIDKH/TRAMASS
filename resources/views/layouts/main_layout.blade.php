@@ -35,12 +35,10 @@
         <div class="container-fluid">
           <div class="col-md-12">
               <nav>
-                  <div class="">
-                    <div class="logo">
-                      TRAMASS
-                    </div>
+                  <div class="container-fluid">
+                      <a href="/home" class="logo" style="color:black;"> TRAMASS</a>
                     <ul class="mainMenu">
-                      <li id="firstItem"><a href="#" class="first" >Home <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                      <li id="firstItem"><a href="/home" class="first" >Home <i class="fa fa-angle-down" aria-hidden="true"></i></a>
                         <div class="menu">
                             <ul class="subMenu">
                                 <li  ><a href="#" style="text-decoration-color:red;">Home</a></li>
@@ -50,7 +48,7 @@
                         </div>
                       </li>
 
-                      <li id="secondItem"><a href="#"  class="second">Portfolio <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                      <li id="secondItem"><a href="/products"  class="second">Shop <i class="fa fa-angle-down" aria-hidden="true"></i></a>
                         <div class="menu2">
                           <ul class="subMenu">
                               <li  ><a href="#" >Home</a></li>
@@ -58,16 +56,6 @@
                               <li ><a href="#" >Home</a></li>
                           </ul>
                       </div>
-                    </li>
-
-                    <li id="secondItem"><a href="#"  class="second">Portfolio <i class="fa fa-angle-down" aria-hidden="true"></i></a>
-                      <div class="menu2">
-                        <ul class="subMenu">
-                          <li ><a href="#" >HomeHomeHomeHomeHome</a></li>
-                          <li><a href="#" >HomeHomeHomeHomeHomeHomeHome</a></li>
-                          <li><a href="#" >GuestHomeHomeHomeHomeHomeHome</a></li>
-                      </ul>
-                    </div>
                     </li>
                     <li  id="fifthItem"><a href="#" class="fifth">Blog </a></li>
                     <li id="thirdItem" > <a href="#" class="third">Pages <i class="fa fa-angle-down" aria-hidden="true"></i></a>
@@ -92,7 +80,10 @@
                 </div>
               <div class="icon">
                       <a href="{{ url('/basket') }}" class="fa fa-cart-plus"><span>
-                        {{count($baskets)}}
+                        @if(!Auth::guest())
+                          {{count($baskets)}}
+                        @endif
+
                       </span></a>
                       <a href="" class="fa fa-search "></a>
               </div>
