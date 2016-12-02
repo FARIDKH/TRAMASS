@@ -31,16 +31,17 @@ class ProfileController extends Controller
       $this->products = Product::all();
     }
     public function profile($id){
-        $baskets = Basket::all();
+        $basket = Basket::all();
         $user = User::find($id);
-        return view('profile' , compact('user','baskets'));
+        $baskets = $this->user->baskets;
+        return view('profile' , compact('user','baskets','basket'));
     }
 
     public function cnprofile($id){
       $user = $this->user;
-
+      $baskets = $this->user->baskets;
       if($id == $this->user->id){
-        return view('cnprofile',compact('user'));
+        return view('cnprofile',compact('user','baskets'));
       } else {
         return view('errors.503');
       }
@@ -59,9 +60,10 @@ class ProfileController extends Controller
 
         $categories = Product_Category::all();
         $constants = $this->constants;
+        $baskets = $this->user->baskets;
         if($id == $this->user->id){
             if($this->user->type == 1 && $this->user->id == Auth::user()->id ){
-                return view('create_product',compact('categories','constants'));
+                return view('create_product',compact('categories','constants','baskets'));
             } else {
                 return view('errors.503');
             }
@@ -72,6 +74,7 @@ class ProfileController extends Controller
     public function create_product(Request $request,$id){
         $product = new Product;
         $file = $request->file('image');
+
 
 
         $filename = Auth::user()->id.'/'.date('jYhisA').".jpg";
@@ -103,12 +106,12 @@ class ProfileController extends Controller
         $user = $this->user;
         $products = $this->products;
         $baskets = $this->baskets;
-        if($now < $product->date_limit && $user->type == 1 || $user->type == 0){            
+        if($now < $product->date_limit && $user->type == 1 || $user->type == 0){
             if($product->user->id == Auth::user()->id){
                 return redirect('/basket');
             }
             foreach($baskets as $basket)
-            {              
+            {
               if($basket->user_id == Auth::user()->id)
               {
                 if($basket->product_id == $request->id)
@@ -118,7 +121,7 @@ class ProfileController extends Controller
                     return back();
                 }
               }
-            } 
+            }
             if($request){
               $ferq = $product->count - $request->count;
               $product->count = $ferq;
@@ -132,7 +135,7 @@ class ProfileController extends Controller
             {
               $request->count = 1;
             }
-            
+
 
             if($ferq<0){
                $basket = $this->user->baskets;
@@ -168,25 +171,25 @@ class ProfileController extends Controller
     }
     public function update_basket(Request $request)
     {
-      $baskets = $this->baskets;      
+      $baskets = $this->baskets;
       foreach($baskets as $basket)
       {
         if($basket->user_id == Auth::user()->id)
         {
           $id = $request->id_.$basket->id;
           $basket = Basket::find($id);
-          $count = $request->cart[$basket->id];          
+          $count = $request->cart[$basket->id];
           $basket->update([
-            'count' => $count 
+            'count' => $count
           ]);
-        }       
-      }  
-      $baskets = $this->user->baskets;       
+        }
+      }
+      $baskets = $this->user->baskets;
       return back();
     }
     public function count(){
         $basket = $this->user->baskets;
-        return view('main_layout',compact('basket'));
+        return view('main_layout','basket',compact('basket'));
     }
 
 

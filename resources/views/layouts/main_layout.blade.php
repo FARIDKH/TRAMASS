@@ -92,15 +92,15 @@
                 </div>
               <div class="icon">
                       <a href="{{ url('/basket') }}" class="fa fa-cart-plus"><span>
-                        {{-- {{count($basket)}} --}}
+                        {{count($baskets)}}
                       </span></a>
                       <a href="" class="fa fa-search "></a>
               </div>
 
-            
+
           </nav>
        </div>
-      </div>  
+      </div>
 
 
       </section>

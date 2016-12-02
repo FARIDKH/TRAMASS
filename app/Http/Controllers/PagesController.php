@@ -23,6 +23,7 @@ class PagesController extends Controller
     protected $product_categories;
     public function __construct(){
       $this->user = User::class;
+      $this->user_product =  Auth::user();
       $this->product_categories = Product_Category::class;
       $this->products = Product::orderBy('id','desc')->get();
     }
@@ -30,26 +31,30 @@ class PagesController extends Controller
     {
       $products = $this->products;
       $product_categories = Product_Category::all();
-      return view('new' ,compact('products','product_categories'));
+      $baskets = $this->user_product->baskets;
+      return view('new' ,compact('products','product_categories','baskets'));
     }
 
     public function home(){
+      $baskets = $this->user_product->baskets;
       $products = $this->products;
       if(Auth::guest()){
-        return view('home',compact('products'));
+        return view('home',compact('products','baskets'));
       } else {
-        return view('product'  ,compact('products'));
+        return view('product'  ,compact('products','baskets'));
       }
 
     }
     public function about(){
-    	return view('about');
+      $baskets = $this->user_product->baskets;
+    	return view('about' , compact('baskets'));
     }
 
     public function product_single($id) {
+        $baskets = $this->user_product->baskets;
         $products = $this->products;
         $product = Product::find($id);
-    		return view('product-info',compact('product','products'));
+    		return view('product-info',compact('product','products','baskets'));
       }
 
     public function search()
@@ -64,4 +69,3 @@ class PagesController extends Controller
 
     }
 }
-  
