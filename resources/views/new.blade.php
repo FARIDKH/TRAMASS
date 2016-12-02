@@ -34,7 +34,7 @@
 		<i class="fa fa-caret-left" aria-hidden="true"></i>
 	</div>
 </div>
-<section id="products">	
+<section id="products">
 	<div class="container-fluid">
 		<div class="col-md-12">
 			<div class="hidden">
@@ -51,7 +51,7 @@
 				        </ul>
 				  	</li>
 			    </ul>
-			</div>		
+			</div>
 			<div class="col-md-2 hidden-sm hidden-xs leftPage">
 				<h4>
 					FILTER BY PRICE
@@ -61,36 +61,36 @@
 					{{ csrf_field() }}
 					Qiymet Araligi : <input type="text" name="price_range_from" class="price_range"><br>
 					<input type="submit" name="price_filter" class="price_filter" value="FILTER">
-					- <input type="text" name="price_range_to" class="price_range">				
+					- <input type="text" name="price_range_to" class="price_range">
 				</form>
-				
+
 				<hr>
 				<div class="hidden-sm hidden-xs product_category">
 					<h3>
 						PRODUCT CATEGORIES
 					</h3>
-					<ul>					
+					<ul>
 						@foreach($product_categories as $product_category)
 						<li>
 							<span class="product_count_in_category">
 								{{ count($product_category->products) }}
-							</span>					
+							</span>
 							<a href="/products/{{$product_category->id}}">{{ $product_category->title }}</a>
 						</li>
-						@endforeach					
+						@endforeach
 					</ul>
-				</div>	
-			</div>	 
+				</div>
+			</div>
 			<div class="col-md-10 col-sm-12 col-xs-12 rightPage">
 				@if(!count($products))
 					<h1>No product was found</h1>
 				@endif
-				
-					@foreach($products as $product)						
+
+					@foreach($products as $product)
 						<div class="product">
 							<div class="row product_top">
 								<div>
-									<img  src="/uploads/{{ $product->image }}" alt="{{ $product->title }}">		
+									<a href="/product_single/{{  $product->id }}"> <img  src="/uploads/{{ $product->image }}" alt="{{ $product->title }}"></a>	
 								</div>
 								<div class="quick_view_little">
 									<i class="fa fa-eye" aria-hidden="true"></i>
@@ -105,15 +105,15 @@
 								 	{{ $product->title }}
 								</span><br>
 								<span class="price">
-									<span>{{ $product->price +25 }} AZN </span> {{ $product->price }} AZN 
+									<span>{{ $product->price +25 }} AZN </span> {{ $product->price }} AZN
 								</span>
 								<div>
 									<span><a href="/add_to_basket/{{ $product->id }}">ADD TO CART</a></span>
 								</div>
 							</div>
-						</div>											
-					@endforeach	
-				
+						</div>
+					@endforeach
+
 			</div>
 		</div>
 	</div>
@@ -251,7 +251,7 @@
 						$('#quick_view').append('</div>')
 
 
-						
+
 							$('.rightPage').append('<div id="product_'+value.id+'" class="product">')
 								$("#product_"+value.id).append('<div class="row product_top">')
 									$("#product_"+value.id+" .product_top").append('<div>')
@@ -273,10 +273,10 @@
 									$("#product_"+value.id+" .product_bottom").append('<div>')
 										$("#product_"+value.id+" .product_bottom div").append('<span style="display:inline"><a href="">ADD TO CART</a></span>')
 									$("#product_"+value.id+" .product_bottom").append('</div>')
-								$("#product_"+value.id).append('</div>')	
+								$("#product_"+value.id).append('</div>')
 							$('.rightPage').append('</div>')
-						$('.product').hover(function(){		
-			
+						$('.product').hover(function(){
+
 
 							$(this).find('.quick_view_little').css({
 								'opacity':1

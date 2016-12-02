@@ -56,5 +56,23 @@ $(' #secondItem').hover(function (){
             color:'black'
           });
         })
+		$('#thirdItem').hover(function (){
+					$(' .third ')
+					.css({
+						color:'black'
+					});
+				})
+		$('#fourthItem').hover(function (){
+					$(' .fourth ')
+					.css({
+						color:'black'
+					});
+				})
+		$('#fifthitem').hover(function (){
+					$(' .fifth ')
+					.css({
+						color:'black'
+					});
+				})
   }
 })

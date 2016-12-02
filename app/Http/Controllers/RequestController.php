@@ -12,11 +12,7 @@ use App\Order;
 
 class RequestController extends Controller
 {
-	
-
-
-
-	public function add_request($id)
+	function add_request($id)
 	{
 		$basket = Basket::find($id);
 		$basket->status = 1;
@@ -24,9 +20,10 @@ class RequestController extends Controller
 		return back();
 	}
     public function show_requests()
-    {    	
-		$baskets = Basket::all();
-    	return view('request',compact('baskets'));
+    {
+			$baskets = $this->user_product =  Auth::user()->baskets;
+			$basket = Basket::all();
+    	return view('request',compact('baskets','baskets'));
     }
 	public function accept_request($id)
 	{

@@ -6,8 +6,8 @@
         <div class="container">
           <div class="row">
                   <div class="productDirections" >
-                    <a href="/product_single/{{  $product->id - 1 }}" class="fa fa-angle-left "></a>
-                    <a href="/product_single/{{  $product->id + 1 }}" class="fa fa-angle-right "></a>
+                    <a href="/product_single/{{  $product->id + 1 }}" class="fa fa-angle-left "></a>
+                    <a href="/product_single/{{  $product->id - 1 }}" class="fa fa-angle-right "></a>
                   </div>
 
               <div class="col-md-12 itemPage">
