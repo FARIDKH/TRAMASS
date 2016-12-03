@@ -4,6 +4,9 @@
     <div class="container">
       <h1>Crud Country</h1>
       <div class="col-md-8">
+        <form action="">
+          
+        </form>
         <table class="table table-bordered">
           <tr>
             <th>Id</th>
