@@ -29,7 +29,43 @@
           </style>
       </head>
     <body>
-     
+      <section id="nav">
+        <div class="secondNav">
+        </div>
+        <div class="container-fluid">
+          <div class="col-md-12">
+              <nav>
+                  <div class="container-fluid">
+                      <a href="/home" class="logo" style="color:black;"> TRAMASS</a>
+                  <ul class="mainMenu">
+                    <li id="firstItem"><a href="/home" class="first" >Home</a></li>
+                    <li id="secondItem"><a href="/products"  class="second">Shop</a></li>
+                    @if(Auth::guest())
+                      <li id="fourthItem" ><a href="/login" class="fourth">Sign In</a></li>
+                      <li id="fourthItem" ><a href="/register" class="fourth">Sign Up</a></li>
+                      @else
+                      <li id="fourthItem" ><a href="/profile/{{Auth::user()->id}}" class="fourth">{{ Auth::user()->name }}</a></li>
+                      <li id="fourthItem" ><a href="/logout" class="fourth">Sign Out</a></li> 
+                    @endif
+                  </ul>
+                </div>
+              <div class="icon">
+                      <a href="{{ url('/basket') }}" class="fa fa-cart-plus"><span>
+                        @if(!Auth::guest())
+                          {{count($baskets)}}
+                        @endif
+
+                      </span></a>
+                      <a href="" class="fa fa-search "></a>
+              </div>
+
+
+          </nav>
+       </div>
+      </div>
+
+
+      </section>
 
 
        @yield('content')
