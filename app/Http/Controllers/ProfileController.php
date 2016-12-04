@@ -62,10 +62,10 @@ class ProfileController extends Controller
         $constants = $this->constants;
         $baskets = $this->user->baskets;
         if($id == $this->user->id){
-            if($this->user->type == 1 && $this->user->id == Auth::user()->id ){
+            if($this->user->type != 0 && $this->user->id == Auth::user()->id ){
                 return view('create_product',compact('categories','constants','baskets'));
             } else {
-                return view('errors.503');
+                return view('errors.503',compact('baskets'));
             }
         } else {
             return view('errors.503');
@@ -74,19 +74,15 @@ class ProfileController extends Controller
     public function create_product(Request $request,$id){
         $product = new Product;
         $file = $request->file('image');
-
-
-
         $filename = Auth::user()->id.'/'.date('jYhisA').".jpg";
         if ($file) {
             Storage::disk('uploads')->put($filename, File::get($file));
         }
-
         $product->create([
           'image' => $filename,
           'title' => $request->title,
           'description' => $request->description,
-          'product__category_id' => $request->product_category_id,
+          'product__category_id' => $request->product__category_id,
           'constant_id' => $request->constant_id,
           'count' => $request->count,
           'price' => $request->price,

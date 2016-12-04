@@ -7,7 +7,7 @@
 		@foreach($baskets as $basket)
 		
 			@if($basket->product->user->id == Auth::user()->id)	
-				@if($basket->status == 1 )
+				@if($basket->status)					
 					<div class="row">
 						<div class="pull-left col-md-6">
 							
@@ -22,6 +22,10 @@
 					</div>
 					<hr>
 				@endif
+				@else 
+				<div class="row	">
+					<h1>Size her hansi bir teklif gelmiyib</h1>
+				</div>
 			@endif
 		@endforeach
 	</div>
