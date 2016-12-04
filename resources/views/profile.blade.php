@@ -40,9 +40,11 @@
                             </div>
                         </div>
                         <!--penting part-->
-                        <h2 class="text-center text-capitalize">
-                        Əldə olan mallar
-                        </h2>
+                        @if(count($user->products))
+                            <h2 class="text-center text-capitalize">Əldə olan mallar</h2>
+                         @else 
+                            <h2 class="text-center text-capitalize">Sizin əlinizdə mal yoxdur</h2>
+                        @endif
                         @foreach($user->products as $user_product)
                             <div class="row penting">
                                 <hr>
@@ -87,22 +89,7 @@
                     @endforeach
                     <hr>
                     <!--seed part-->
-                        <div class="row seed text-center">                    
-                                <h2 class="text-center text-capitalize">
-                                Alqı-satqılarım
-                                </h2>
-                                <hr>
-                                
-                                <div class="col-md-12 col-xs-12 text-uppercase text-left" id="left">
-                                    @foreach($baskets as $basket)
-                                        @if($basket->id == Auth::user()->id)                
-                                            <h4>{{ $basket->user->name }} adli usere verdiyiniz sifaris qebul olmadi</h4>
-                                        @endif
-                                    @endforeach
-                                </div>
-                       
                         
-                        </div>
                     </div>
                 </div>
 

@@ -27,8 +27,12 @@
                             <h1>{{ $product->title }}</h1>
                             <span>${{ $product->price }}</span>
                             <p>{{$product->description}}</p>
-                            <input type="number" name="count" value="1" min="1">
-                            <button type="submit" name="button" >add to cart</button>
+                            @if($product->id == Auth::user()->id)
+
+                            @else 
+                                <input type="number" name="count" value="1" min="1">
+                                <button type="submit" name="button" >add to cart</button>
+                            @endif
                         </form>
                     </div>
               </div>
@@ -57,47 +61,5 @@
                 <hr>
             </div>
         </div>
-    </section>
-    <section id="products">
-    	<div class="container-fluid">
-    		<div class="col-md-12 col-sm-12 col-xs-12 rightPage">
-    			@if(!count($products))
-    				<h1>No product was found</h1>
-    			@endif
-    			<ul>
-    				@foreach($products as $product)
-    					<li>
-    						<div class="product_and_quick_view">
-    							<div class="product">
-    								<div class="row product_top">
-    									<div>
-    										<img  src="/uploads/{{ $product->image }}" alt="{{ $product->title }}">
-    									</div>
-    									<div class="quick_view_little">
-    										<i class="fa fa-eye" aria-hidden="true"></i>
-    										<span id="quick_view_{{$product->id}}">Quick view</span>
-    									</div>
-    									{{-- <div class="date_of_product">
-    										<span><br></span>
-    									</div> --}}
-    								</div>
-    								<div class="row product_bottom">
-    									<span>
-    									 	{{ $product->title }}
-    									</span><br>
-    									<span class="price">
-    										<span>{{ $product->price +25 }} AZN </span> {{ $product->price }} AZN
-    									</span>
-    									<div>
-    										<span><a href="/add_to_basket/{{ $product->id }}">ADD TO CART</a></span>
-    									</div>
-    								</div>
-    							</div>
-    						</div>
-    					</li>
-    				@endforeach
-    			</ul>
-    		</div>
-    	</div>
     </section>
 @endsection

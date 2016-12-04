@@ -323,35 +323,35 @@
 		$('.background_filter').css({
 			height : $(window).height()
 		})
-		$(window).resize(function() {
-	  		$('.background_filter').css({
-				height : $(window).height()
-			})
-			if($(window).width() < 780)
-			{
-				$('.product').css({
-					width : $(window).width()/2.5
-				});
-				isLessThanScreen = true;
-			} else {
-				$('.product').css({
-					width : '170px'
-				});
-				isLessThanScreen = false;
-			}
-		});
-		if($(window).width() < 780)
-		{
-			$('.product').css({
-				width : $(window).width()/2.5
-			});
-			isLessThanScreen = true;
-		} else {
-			$('.product').css({
-				width : '170px'
-			});
-			isLessThanScreen = false;
-		}
+		// $(window).resize(function() {
+	 //  		$('.background_filter').css({
+		// 		height : $(window).height()
+		// 	})
+		// 	if($(window).width() < 780)
+		// 	{
+		// 		$('.product').css({
+		// 			width : $(window).width()/2.5
+		// 		});
+		// 		isLessThanScreen = true;
+		// 	} else {
+		// 		$('.product').css({
+		// 			width : '170px'
+		// 		});
+		// 		isLessThanScreen = false;
+		// 	}
+		// });
+		// if($(window).width() < 780)
+		// {
+		// 	$('.product').css({
+		// 		width : $(window).width()/2.5
+		// 	});
+		// 	isLessThanScreen = true;
+		// } else {
+		// 	$('.product').css({
+		// 		width : '170px'
+		// 	});
+		// 	isLessThanScreen = false;
+		// }
 
 
 

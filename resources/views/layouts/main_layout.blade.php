@@ -29,65 +29,7 @@
           </style>
       </head>
     <body>
-      <section id="nav">
-        <div class="secondNav">
-        </div>
-        <div class="container-fluid">
-          <div class="col-md-12">
-              <nav>
-                  <div class="container-fluid">
-                      <a href="/home" class="logo" style="color:black;"> TRAMASS</a>
-                    <ul class="mainMenu">
-                      <li id="firstItem"><a href="/home" class="first" >Home <i class="fa fa-angle-down" aria-hidden="true"></i></a>
-                        <div class="menu">
-                            <ul class="subMenu">
-                                <li  ><a href="#" style="text-decoration-color:red;">Home</a></li>
-                                <li ><a href="#" style="text-decoration-color:red;">Home</a></li>
-                                <li ><a href="#" style="text-decoration-color:red;">Home</a></li>
-                            </ul>
-                        </div>
-                      </li>
-
-                      <li id="secondItem"><a href="/products"  class="second">Shop</a>
-                        
-                    </li>
-                    <li  id="fifthItem"><a href="#" class="fifth">Blog </a></li>
-                    <li id="thirdItem" > <a href="#" class="third">Pages <i class="fa fa-angle-down" aria-hidden="true"></i></a>
-                      <div class="menu3">
-                        <ul class="subMenu">
-                          <li ><a href="#" >HomeHomeHomeHomeHome</a></li>
-                          <li><a href="#" >HomeHomeHomeHomeHomeHomeHome</a></li>
-                          <li><a href="#" >GuestHomeHomeHomeHomeHomeHome</a></li>
-                      </ul>
-                    </div>
-                    </li>
-                    @if(Auth::guest())
-                      <li id="fourthItem" ><a href="/login" class="fourth">Sign In</a></li>
-                      <li id="fourthItem" ><a href="/register" class="fourth">Sign Up</a></li>
-                      @else
-                      <li id="fourthItem" ><a href="/profile/{{Auth::user()->id}}" class="fourth">{{ Auth::user()->name }}</a></li>
-                      <li id="fourthItem" ><a href="/logout" class="fourth">Sign Out</a></li>
-
-                    @endif
-                  </ul>
-                </div>
-              <div class="icon">
-                      <a href="{{ url('/basket') }}" class="fa fa-cart-plus"><span>
-                        @if(!Auth::guest())
-                          {{count($baskets)}}
-                        @endif
-
-                      </span></a>
-                      <a href="" class="fa fa-search "></a>
-              </div>
-
-
-          </nav>
-       </div>
-      </div>
-
-
-      </section>
+     
 
 
        @yield('content')
