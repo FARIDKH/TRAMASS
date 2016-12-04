@@ -58,8 +58,6 @@
                                                  <h3 class="media-heading"><a href="/product_single/{{ $user_product->id }}">
                                                  {{ $user_product->title }}</a></h3>
                                                  <br>
-                                             <i class="fa fa-bookmark" aria-hidden="true"></i> 
-                                             {{-- {{ $user_product->product_category->title }} --}}
                                             </li>
 
                                     </ul>

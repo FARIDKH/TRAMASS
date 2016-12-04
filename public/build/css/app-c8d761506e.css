@@ -6277,6 +6277,7 @@ input[type=range]::-webkit-slider-runnable-track {
       opacity: 0;
       transition: all 0.5s ease; }
       #products .product .product_bottom div span a {
+        background-color: transparent;
         color: #4CAF50;
         transition: all 0.3s ease-out; }
         #products .product .product_bottom div span a:hover {
@@ -6387,6 +6388,10 @@ input[type=range]::-webkit-slider-runnable-track {
   .background_filter, .quick_view_little {
     display: none;
     opacity: 0; } }
+
+@media only screen and (max-width: 980px) {
+  .product {
+    width: 115px; } }
 
 #example {
   width: 100%;

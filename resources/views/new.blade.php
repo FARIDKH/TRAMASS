@@ -276,8 +276,6 @@
 								$("#product_"+value.id).append('</div>')
 							$('.rightPage').append('</div>')
 						$('.product').hover(function(){
-
-
 							$(this).find('.quick_view_little').css({
 								'opacity':1
 							});
@@ -290,7 +288,6 @@
 								"transform" : "translateY(-20px)",
 								'opacity' : 1
 							})
-
 						}, function(){
 							$(this).find('.quick_view_little').css({
 								'opacity':0
@@ -388,8 +385,18 @@
 
 
 		@foreach($products as $product)
+		$('#product_single_quick_view_{{ $product->id }}').fadeOut();
+		$('.background_filter').fadeOut(400,function(){
+				$(this).css({
+					zIndex:'-2'
+				})
+			});
 		$('#quick_view_{{$product->id}}').click(function(){
-			$('.background_filter').fadeIn();
+			$('.background_filter').fadeIn(400,function(){
+				$(this).css({
+					zIndex:'2'
+				})
+			});
 			$('#product_single_quick_view_{{ $product->id }}').fadeIn();
 		})
 		@endforeach
