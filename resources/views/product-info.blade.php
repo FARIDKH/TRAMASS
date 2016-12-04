@@ -27,7 +27,7 @@
                             <h1>{{ $product->title }}</h1>
                             <span>${{ $product->price }}</span>
                             <p>{{$product->description}}</p>
-                            @if($product->id == Auth::user()->id)
+                            @if($product->user->id == Auth::user()->id)
 
                             @else 
                                 <input type="number" name="count" value="1" min="1">
