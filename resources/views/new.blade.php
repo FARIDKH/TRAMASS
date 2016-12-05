@@ -3,20 +3,35 @@
 @section('content')
 
 
-<section id="new_product">
-	
+<section id="new_product"">
+
 		<div class="row">
 			<div class="col-md-6 leftPart">
 				<div>
-					<img src="" alt="">
+					@if(Session::has('product_name'))
+					<img src="uploads/{{Session::get('product_image')}}" alt="">
+						@else 
+							<img src="" alt="">
+					@endif
+					
 				</div>
 			</div>
 			<div class="col-md-6 rightPart">
-				<p><span class="new_product_name" ></span> baskete elave olundu</p>
+				@if(Session::has('product_name'))
+				<p><span class="new_product_name" >{{Session::get('product_name')}}</span> baskete elave olundu</p>
+					@else 
+					<p><span class="new_product_name" ></span> baskete elave olundu</p>
+				@endif
+			
+
 			</div>
-		</div>
-	
+		</div>	
 </section>
+			
+								
+
+
+
 
 <section>
 	<div class="container-fluid">
@@ -52,6 +67,7 @@
 	</div>
 </div>
 <section id="products">
+
 	<div class="container-fluid">
 		<div class="col-md-12">
 			<div class="hidden">
@@ -205,11 +221,20 @@
 					$('.new_product_name').text(data.title)
 					setTimeout(function(){
 						$('#new_product').fadeOut();
-					},5000)
+					},5000)	
+					basket_count = parseInt($('.fa-cart-plus span').text())	
+					basket_count += 1;
+					$('.fa-cart-plus span').text(basket_count)
 				}
 			})
 		})
 
+		@if(Session::has('product_name'))
+			$('#new_product').fadeIn();		
+			setTimeout(function(){
+				$('#new_product').fadeOut();
+			},5000)
+		@endif
 		var isLessThanScreen,
 	 	slider = $('.filter-slider'),
 		price_range_from = $('input[name=price_range_from]'),

@@ -10,6 +10,7 @@ use App\User;
 use App\Constant;
 use Auth;
 use App\Http\Requests;
+use Session;
 use Carbon\Carbon;
 
 
@@ -121,7 +122,7 @@ class ProfileController extends Controller
                     return json_encode($basket->product);
                   } else
                   {
-                    return back();
+                    return redirect()->back()->with('success', $this->user->baskets->last()->product->name);
                   }
                 }
               }
@@ -147,13 +148,13 @@ class ProfileController extends Controller
             } else {
                   $basket = new Basket;
                   $basket->create([
-                              'order_id' => NULL,
-                              'user_id' => Auth::user()->id,
-                              'product_id' => $product->id,
-                              'status' => NULL,
-                              'price' => $product->price,
-                              'count' => $request->count,
-                          ]);
+                      'order_id' => NULL,
+                      'user_id' => Auth::user()->id,
+                      'product_id' => $product->id,
+                      'status' => NULL,
+                      'price' => $product->price,
+                      'count' => $request->count,
+                  ]);
               } 
               if($request->ajax()) 
               {
@@ -161,7 +162,8 @@ class ProfileController extends Controller
               }
               else
               {
-                return back();
+                return redirect()->back()->with('product_name', "".$this->user->baskets->last()->product->title."")
+                ->with('product_image', "".$this->user->baskets->last()->product->image."");
               }
           }  else {
           echo 'bu malin muddeti bitdiyinden satila bilmez';
