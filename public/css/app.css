@@ -6078,10 +6078,12 @@ skin-blue .main-header .navbar {
   .skin-purple-light.sidebar-mini.sidebar-collapse .sidebar-menu > li > .treeview-menu {
     border-left: 1px solid #d2d6de; } }
 
-.product_intro h1 {
-  font-size: 60px;
-  font-weight: 700;
-  text-align: center; }
+.product_intro {
+  text-align: left;
+  padding: 25px; }
+  .product_intro h1 {
+    font-size: 60px;
+    font-weight: 700; }
 
 .background_filter {
   width: 100%;
@@ -6173,6 +6175,32 @@ input[type=range]::-webkit-slider-runnable-track {
   background-color: #F5F5F5;
   color: #616161;
   transition: all 0.4s ease; }
+
+#new_product {
+  width: 350px;
+  height: 100px;
+  overflow: hidden;
+  background-color: #4CAF50;
+  padding: 0;
+  position: fixed;
+  right: 0;
+  top: 18%;
+  z-index: 1000;
+  display: none; }
+  #new_product .leftPart div:first-child {
+    width: 100%;
+    height: 100%; }
+    #new_product .leftPart div:first-child img {
+      min-height: 100px;
+      width: 100%;
+      object-fit: cover; }
+  #new_product .rightPart {
+    padding: 10px;
+    padding-bottom: 0;
+    padding-left: 5px;
+    text-align: left;
+    color: white;
+    font-size: 20px; }
 
 #products h3 {
   font-size: 13px;
@@ -6276,11 +6304,11 @@ input[type=range]::-webkit-slider-runnable-track {
     #products .product .product_bottom div {
       opacity: 0;
       transition: all 0.5s ease; }
-      #products .product .product_bottom div span a {
+      #products .product .product_bottom div span a, #products .product .product_bottom div button {
         background-color: transparent;
         color: #4CAF50;
         transition: all 0.3s ease-out; }
-        #products .product .product_bottom div span a:hover {
+        #products .product .product_bottom div span a:hover, #products .product .product_bottom div button:hover {
           color: #C8E6C9; }
 
 #quick_view {
@@ -6331,6 +6359,10 @@ input[type=range]::-webkit-slider-runnable-track {
         color: white; }
       #quick_view .product_single_quick_view_right div:last-child:hover {
         background-color: #388E3C; }
+    #quick_view .product_single_quick_view_right button {
+      border: none;
+      background-color: transparent;
+      color: white; }
 
 .b-red {
   border: 3px solid red; }
