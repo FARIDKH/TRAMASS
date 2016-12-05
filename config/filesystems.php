@@ -65,6 +65,10 @@ return [
             'driver' => 'local',
             'root'   => public_path() . '/uploads',
         ],
+        'local_public' => [
+            'driver' => 'local',
+            'root'   => public_path(),
+        ],
     ],
 
 ];

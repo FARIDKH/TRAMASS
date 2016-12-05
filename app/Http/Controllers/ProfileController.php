@@ -75,30 +75,32 @@ class ProfileController extends Controller
         $product = new Product;
         $file = $request->file('image');
         $filename = Auth::user()->id.'/'.date('jYhisA').".jpg";
-        if ($file) {
-            Storage::disk('uploads')->put($filename, File::get($file));
-        }
-        $product->create([
-          'image' => $filename,
-          'title' => $request->title,
-          'description' => $request->description,
-          'product__category_id' => $request->product_category_id,
-          'constant_id' => $request->constant_id,
-          'count' => $request->count,
-          'price' => $request->price,
-          'date_limit' => $request->date_limit,
-          'user_id' => Auth::user()->id
-        ]);
+        
+          if ($file) {
+              Storage::disk('uploads')->put($filename, File::get($file));
+          }
+          $product->create([
+            'image' => $filename,
+            'title' => $request->title,
+            'description' => $request->description,
+            'product__category_id' => $request->product_category_id,
+            'constant_id' => $request->constant_id,
+            'count' => $request->count,
+            'price' => $request->price,
+            'date_limit' => $request->date_limit,
+            'user_id' => Auth::user()->id
+          ]);          
+        
         return back();
     }
 
 
 
 
-    public function add_to_basket(Request $request,$id)
+    public function add_to_basket(Request $request)
     {
         $now = Carbon::now();
-        $product = Product::find($id);
+        $product = Product::find($request->product_id);
         $user = $this->user;
         $products = $this->products;
         $baskets = $this->baskets;
@@ -110,11 +112,17 @@ class ProfileController extends Controller
             {
               if($basket->user_id == Auth::user()->id)
               {
-                if($basket->product_id == $request->id)
+                if($basket->product_id == $request->product_id)
                 {
-                    $basket->count += 1;
-                    $basket->save();
+                  $basket->count += 1;
+                  $basket->save();
+                  if($request->ajax())
+                  {                   
+                    return json_encode($basket->product);
+                  } else
+                  {
                     return back();
+                  }
                 }
               }
             }
@@ -146,8 +154,16 @@ class ProfileController extends Controller
                               'price' => $product->price,
                               'count' => $request->count,
                           ]);
-              } return redirect('/basket');
-            }  else {
+              } 
+              if($request->ajax()) 
+              {
+                return json_encode($this->user->baskets->last()->product);
+              }
+              else
+              {
+                return back();
+              }
+          }  else {
           echo 'bu malin muddeti bitdiyinden satila bilmez';
           return back();
         }

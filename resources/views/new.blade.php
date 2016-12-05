@@ -3,9 +3,26 @@
 @section('content')
 
 
+<section id="new_product">
+	
+		<div class="row">
+			<div class="col-md-6 leftPart">
+				<div>
+					<img src="" alt="">
+				</div>
+			</div>
+			<div class="col-md-6 rightPart">
+				<p><span class="new_product_name" ></span> baskete elave olundu</p>
+			</div>
+		</div>
+	
+</section>
+
 <section>
-	<div class="row product_intro">
-		<h1>Shop All Products</h1>
+	<div class="container-fluid">
+		<div class="product_intro">
+			<h1>Shop All Products</h1>
+		</div>
 	</div>
 </section>
 
@@ -88,6 +105,7 @@
 
 					@foreach($products as $product)
 						<div class="product">
+							<span class="product_id hidden">{{  $product->id }}</span>
 							<div class="row product_top">
 								<div>
 									<a href="/product_single/{{  $product->id }}"> <img  src="/uploads/{{ $product->image }}" alt="{{ $product->title }}"></a>	
@@ -108,7 +126,9 @@
 									<span>{{ $product->price +25 }} AZN </span> {{ $product->price }} AZN
 								</span>
 								<div>
-									<span><a href="/add_to_basket/{{ $product->id }}">ADD TO CART</a></span>
+									<span>
+										<a class="addCart" href="/add_to_basket/{{ $product->id }}">ADD TO CART</a>
+									</span>
 								</div>
 							</div>
 						</div>
@@ -123,7 +143,9 @@
 
 	@foreach($products as $product)
 			<div id="product_single_quick_view_{{ $product->id }}" class="product_single_quick_view  hidden-sm hidden-xs ">
+
 				<div class="col-md-6 product_single_quick_view_left">
+					
 					<div>
 						<img  src="/uploads/{{ $product->image }}" alt="{{ $product->title }}">
 					</div>
@@ -137,20 +159,23 @@
 						<span>{{ $product->price }} AZN </span><br>
 						<p>{{ $product->description }}</p>
 					</div>
-					<form action="/add_to_basket/{{ $product->id }}" method="post">
-
-					<div class="row">
-							<input type="number" name="count" min="1" max="{{ $product->count }}">
+					<form action="/addingBasket" method="post">
+					{{ csrf_field() }}
+						<div class="row">
+							<input type="hidden" name="product_id" value="{{$product->id}}">
+							<input type="number" name="count" min="1" value="1" max="{{ $product->count }}">
+							<span>{{ $product->constant->title }}</span>
 						</div>
 
 						<div class="row">
-									{{ csrf_field() }}
-							<button  type="submit" name="submit" href="/add_to_basket/{{ $product->id }}" style="color:red;">ADD TO CART</button>
+						
+						<button  type="submit" name="submit">ADD TO CART</button>
+						</div>
 					</form>
 
 					</div>
 				</div>
-			</div>
+				<span class="product_id hidden">{{  $product->id }}</span>
 
 	@endforeach
 
@@ -158,12 +183,35 @@
 
 
 <script>
-
-
+		var _token = $('input[name=_token]')
+		
+		$('.addCart').click(function(event){
+			event.preventDefault();
+			product = $(this).parent().parent().parent().parent();
+			product_id = product.find($('.product_id'))
+			
+			$.ajax({
+				url:'/addingBasket',
+				method:'POST',
+				dataType:'JSON',
+				data:{
+					_token:_token.val(),
+					product_id:product_id.text(),
+				},
+				success:function(data)
+				{
+					$('#new_product').fadeIn();
+					$('#new_product .leftPart img').attr('src','uploads/'+data.image+'')
+					$('.new_product_name').text(data.title)
+					setTimeout(function(){
+						$('#new_product').fadeOut();
+					},5000)
+				}
+			})
+		})
 
 		var isLessThanScreen,
 	 	slider = $('.filter-slider'),
-	 	_token = $('input[name=_token]'),
 		price_range_from = $('input[name=price_range_from]'),
 		price_range_to = $('input[name=price_range_to]')
 		$(function(){
