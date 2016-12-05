@@ -34,14 +34,14 @@
                             <div class="card-block"> Picture </div>
                             <br>
                             <div class="photo">
-                                <img class="card-img-bottom img-responsive" src="/img/dummy.png" alt="Card image cap">
+                                <img class="card-img-bottom img-responsive" src="/img/dummy.png" alt="Card image cap" id="list">
                                 <div class="text-center caption">
 
 
                                     <i id="click_trigger" class="fa fa-camera fa-2x btn btn-default btn-file" aria-hidden="true">
 
                                     </i>
-                                    <input  id="click_submit" type="file" name="image" class="image" value="select" style="display:none;">
+                                    <input  id="click_submit" type="file" name="image" class="image" value="select" style="display:none;" onchange="readURL(this)">
 
 
                                     <h3 class="text-center text-capitalize">change picture</h3>
@@ -79,7 +79,7 @@
                                 <label for="count">Count</label>
                                 <textarea name="count" id="count" cols="30" class="form-control" rows="2" placeholder="Hectar Count"></textarea>
                             </div> -->
-                            
+
                             <div class="form-group col-md-3">
                               <label for="">Category</label>
                                 <select class="form-control" id="sayam" name="product_category_id" >
@@ -98,7 +98,7 @@
                                 </select>
 
                             </div>
-                            
+
                             <div class="form-group col-md-3">
                                 <label for="price">Count</label>
                                 <select class="form-control" id="count" name="count" >
@@ -146,7 +146,7 @@
         var auth_id = $("#auth_id")
         var image= $('.image')
         var form = $('#form')
-        
+
 
 	    $('.photo').mouseenter(function(){
             $('.caption').fadeIn();
@@ -159,12 +159,30 @@
             $("#click_submit").click();
         });
 
-       
-        
+
+        if (window.FileReader) {
+  function readURL(input) {
+      if (input.files && input.files[0]) {
+          var reader = new FileReader();
+
+          reader.onload = function (e) {
+              $('#list')
+                  .attr('src', e.target.result)
+                  .width(240)
+                  .height(255);
+          };
+
+          reader.readAsDataURL(input.files[0]);
+      }
+  }
+}
+ else {
+  alert('This browser does not support FileReader');
+}
 
         // $('#create_product').click(function(event){
-        //     event.preventDefault();  
-        //     formData.append('file',image.files[0])          
+        //     event.preventDefault();
+        //     formData.append('file',image.files[0])
         //     $.ajax({
         //         async: true,
         //         url:'/creating_product',
@@ -173,7 +191,7 @@
         //         contentType: false,
         //         data:{
         //             _token:_token.val(),
-        //             title:title.val(),                    
+        //             title:title.val(),
         //             image:image.val().substring(12),
         //             description:description.val(),
         //             product_category_id:product_category_id.val(),
