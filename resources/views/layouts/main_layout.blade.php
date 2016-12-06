@@ -20,8 +20,6 @@
           <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
           <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
           <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-          <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-          <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
           <style>
               html,body{
                   font-family: "Montserrat", sans-serif;
@@ -89,16 +87,18 @@
         <!-- footer ending -->
 
 <!--        <script src="/ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>-->
-        <script src="/js/vendor/jquery-1.11.2.min.js"></script>
-        <script src="/js/vendor/bootstrap.min.js"></script>
+      
+       
 <!--        <script src="/ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>-->
-        <script src="/js/vendor/jquery-1.11.2.min.js"></script>
+      
         <script src="/js/vendor/bootstrap.min.js"></script>
         <script src="/js/navbar.js"></script>
         <script src="/js/navbarDetails.js"></script>
         <script src="/js/animate.js"></script>
 <!--        <script src="/js/main.js"></script>-->
-
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>    
+        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>    
+        
         <script>
         $.ajaxSetup({
           headers: {

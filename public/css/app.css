@@ -753,7 +753,8 @@ html {
         position: relative;
         top: 0;
         left: 0;
-        border: 0; }
+        border: 0;
+        object-fit: cover; }
       .change_pro .container .col-md-3 .photo .caption {
         top: 0px;
         position: absolute;
@@ -6092,6 +6093,7 @@ skin-blue .main-header .navbar {
   position: fixed;
   left: 0;
   top: 0;
+  z-index: 2;
   display: none; }
 
 input[type="range"] {

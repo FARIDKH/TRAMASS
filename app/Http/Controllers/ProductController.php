@@ -27,7 +27,8 @@ class ProductController extends Controller
         if($request->ajax())
         {
             $products = Product::where('price','<',$price_range_to)->where('price','>',$price_range_from)->get();
-            return json_encode($products);
+            $baskets = Auth::user()->baskets;
+            return view('new'  ,compact('products','baskets', 'product_categories'));
         }
 
         if($request->product_category_id)

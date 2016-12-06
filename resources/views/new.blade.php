@@ -144,6 +144,7 @@
 								<div>
 									<span>
 										<a class="addCart" href="/add_to_basket/{{ $product->id }}">ADD TO CART</a>
+										<a class="viewCart hidden" href="/basket">VIEW CART</a>
 									</span>
 								</div>
 							</div>
@@ -198,15 +199,32 @@
 </section>
 
 
+
+
+
+@stop
+
+@section('script')
+
+
 <script>
+	$(document).ready(function(){
+
+
 		var _token = $('input[name=_token]')
+		var addCartIsClicked = false;;
 
 		$('.addCart').click(function(event){
 			event.preventDefault();
+
+
 			product = $(this).parent().parent().parent().parent();
 			product_id = product.find($('.product_id'))
 
+			$this = $(this);
+
 			$.ajax({
+				async:true,
 				url:'/addingBasket',
 				method:'POST',
 				dataType:'JSON',
@@ -217,13 +235,18 @@
 				success:function(data)
 				{
 					$('#new_product').fadeIn();
-					$('#new_product .leftPart img').attr('src','uploads/'+data.image+'')
-					$('.new_product_name').text(data.title)
+					$('#new_product .leftPart img').attr('src','uploads/'+data[1].image+'')
+					$('.new_product_name').text(data[1].title)
 					setTimeout(function(){
 						$('#new_product').fadeOut();
+
 					},5000)
+					$this.addClass('hidden');
+					$this.siblings('.viewCart').removeClass('hidden');
+					addCartIsClicked = true;
 					basket_count = parseInt($('.fa-cart-plus span').text())
 					basket_count += 1;
+
 					$('.fa-cart-plus span').text(basket_count)
 				}
 			})
@@ -235,25 +258,7 @@
 				$('#new_product').fadeOut();
 			},5000)
 		@endif
-		var isLessThanScreen,
-	 	slider = $('.filter-slider'),
-		price_range_from = $('input[name=price_range_from]'),
-		price_range_to = $('input[name=price_range_to]')
-		$(function(){
-			slider.slider({
-				max:250,
-				min:1,
-				values : [25,225],
-				step:1,
-				range:true,
-				slide:updateBackground
-			})
-			function updateBackground(e,ui)
-			{
-				price_range_from.val(ui.values[0] + ' AZN')
-				price_range_to.val(ui.values[1]+ ' AZN')
-			}
-		})
+
 		$('.product_category ul li').hover(function(){
 			$(this).find('.product_count_in_category').css({
 				border:'1px solid #388E3C',
@@ -267,12 +272,11 @@
 		});
 
 
-		$('input[name=price_filter]').click(function(event){
+		$('.price_filter').click(function(event){
 			event.preventDefault();
 			$.ajax({
 				url : '/products',
 				type:'POST',
-				dataType:'JSON',
 				data:{
 					price_range_from:parseInt(price_range_from.val()),
 					price_range_to:parseInt(price_range_to.val()),
@@ -280,107 +284,7 @@
 				},
 				success:function(data)
 				{
-					console.log(data)
-					$('.rightPage h1').remove()
-					if(!data.length)
-					{
-						$('.rightPage').append('<h1>No product was found</h1>')
-					}
-					$('.product_and_quick_view').remove()
-					$('.product').remove()
-					$('.product_single_quick_view').remove()
-
-					$.each(data,function(key,value){
-						$("#quick_view").append('<div id="product_single_quick_view_'+value.id+'" class="product_single_quick_view hidden-sm hidden-xs">')
-							$('#product_single_quick_view_'+value.id).append('<div class="col-md-6 product_single_quick_view_left">')
-								$('#product_single_quick_view_'+value.id+' .product_single_quick_view_left').append('<div>')
-									$('#product_single_quick_view_'+value.id+' .product_single_quick_view_left div').append('<img src="/uploads/'+value.image+'">')
-								$('#product_single_quick_view_'+value.id+' .product_single_quick_view_left').append('</div>')
-							$('#product_single_quick_view_'+value.id).append('</div>')
-							$('#product_single_quick_view_'+value.id).append('<div class="col-md-6 product_single_quick_view_right">')
-								$('#product_single_quick_view_'+value.id+' .product_single_quick_view_right').append('<div>')
-								$('#product_single_quick_view_'+value.id+' .product_single_quick_view_right div:first').append('<i class="fa fa-times" aria-hidden="true"></i>')
-								$('#product_single_quick_view_'+value.id+' .product_single_quick_view_right').append('</div>')
-
-								$('#product_single_quick_view_'+value.id+' .product_single_quick_view_right').append('<div class="row">')
-									$('#product_single_quick_view_'+value.id+' .product_single_quick_view_right div:nth-child(2)').append('<h1>'+value.title+'</h1>')
-								$('#product_single_quick_view_'+value.id+' .product_single_quick_view_right').append('</div>')
-
-								$('#product_single_quick_view_'+value.id+' .product_single_quick_view_right').append('<div class="row">')
-									$('#product_single_quick_view_'+value.id+' .product_single_quick_view_right div:nth-child(3)').append('</span>'+value.price+'</span><br>')
-									$('#product_single_quick_view_'+value.id+' .product_single_quick_view_right div:nth-child(3)').append('</p>'+value.description+'</p>')
-								$('#product_single_quick_view_'+value.id+' .product_single_quick_view_right').append('</div>')
-								$('#product_single_quick_view_'+value.id+' .product_single_quick_view_right').append('<div class="row">')
-									$('#product_single_quick_view_'+value.id+' .product_single_quick_view_right div:nth-child(4)').append('<input type="number">')
-								$('#product_single_quick_view_'+value.id+' .product_single_quick_view_right').append('</div>')
-
-								$('#product_single_quick_view_'+value.id+' .product_single_quick_view_right').append('<div class="row">')
-									$('#product_single_quick_view_'+value.id+' .product_single_quick_view_right div:nth-child(5)').append('<a href="">ADD TO CART</a>')
-								$('#product_single_quick_view_'+value.id+' .product_single_quick_view_right').append('</div>')
-
-
-
-							$('#product_single_quick_view_'+value.id).append('</div>')
-						$('#quick_view').append('</div>')
-
-
-
-							$('.rightPage').append('<div id="product_'+value.id+'" class="product">')
-								$("#product_"+value.id).append('<div class="row product_top">')
-									$("#product_"+value.id+" .product_top").append('<div>')
-										$("#product_"+value.id+" .product_top div").append('<img src="/uploads/'+value.image+'">')
-									$("#product_"+value.id+" .product_top").append('</div>')
-									$("#product_"+value.id+" .product_top").append('<div class="quick_view_little">')
-
-									$("#product_"+value.id+" .product_top .quick_view_little").append('<i class="fa fa-eye" aria-hidden="true"> ')
-									$("#product_"+value.id+" .product_top .quick_view_little").append('<span id="quick_view_'+value.id+'">Quick view</span>')
-									$("#product_"+value.id+" .product_top").append('</div>')
-								$("#product_"+value.id).append('</div>')
-								$("#product_"+value.id).append('<div class="row product_bottom">')
-									$("#product_"+value.id+" .product_bottom").append('<span>')
-										$("#product_"+value.id+" .product_bottom span:first").append(value.title)
-									$("#product_"+value.id+" .product_bottom").append('</span><br>')
-									$("#product_"+value.id+" .product_bottom").append('<span class="price">')
-										$("#product_"+value.id+" .product_bottom .price").append(value.price+' AZN')
-									$("#product_"+value.id+" .product_bottom").append('</span>')
-									$("#product_"+value.id+" .product_bottom").append('<div>')
-										$("#product_"+value.id+" .product_bottom div").append('<span style="display:inline"><a href="">ADD TO CART</a></span>')
-									$("#product_"+value.id+" .product_bottom").append('</div>')
-								$("#product_"+value.id).append('</div>')
-							$('.rightPage').append('</div>')
-						$('.product').hover(function(){
-							$(this).find('.quick_view_little').css({
-								'opacity':1
-							});
-							$(this).find('.product_bottom span:nth-child(3)').css({
-								"transform" : "translateY(-20px)",
-								'opacity' : 0
-							})
-
-							$(this).find(".product_bottom div").css({
-								"transform" : "translateY(-20px)",
-								'opacity' : 1
-							})
-						}, function(){
-							$(this).find('.quick_view_little').css({
-								'opacity':0
-							});
-							$(this).find('.product_bottom span:nth-child(3)').css({
-								"transform" : "translateY(0px)",
-								'opacity' : 1
-							})
-							$(this).find('.product_bottom div').css({
-								"transform" : "translateY(0px)",
-								'opacity' : 0
-							})
-
-						});
-						$('#quick_view_'+value.id).click(function(){
-							$('.background_filter').fadeIn();
-							$('#product_single_quick_view_'+value.id).fadeIn();
-						})
-						exit()
-					})
+					$('body').html(data)
 				},
 				error : function()
 				{
@@ -546,9 +450,30 @@
 
 
 
+		var isLessThanScreen,
+	 	slider = $('.filter-slider'),
+		price_range_from = $('input[name=price_range_from]'),
+		price_range_to = $('input[name=price_range_to]')
+		$(function(){
+			slider.slider({
+				max:250,
+				min:1,
+				values : [25,225],
+				step:1,
+				range:true,
+				slide:updateBackground
+			})
+			function updateBackground(e,ui)
+			{
+				price_range_from.val(ui.values[0] + ' AZN')
+				price_range_to.val(ui.values[1]+ ' AZN')
+			}
+		})
 
 
 
+
+	})
 
 
 </script>

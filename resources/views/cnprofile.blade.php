@@ -62,15 +62,19 @@
                     </div>
 
                     <!--start another info inputs-->
-                        <div class="col-md-9">                            
-
-                                <select name="type" id="type">                               
-                                    <option value="0">Alıcı</option>
-                                    <option value="1">Satıcı</option>
-                                    <option value="2">Alıcı və Satıcı</option>
-                                </select>
-                                
-                                <button type="submit" name="change_profile" formnovalidate="" class="btn btn-success btn-lg text-capitalize pull-right">Update profile</button>
+                        <div class="col-md-9">   
+                            <div class="row">                       
+                                <div class="col-md-3">
+                                    <select name="type" class="form-control" id="type">                               
+                                        <option value="0">Alıcı</option>
+                                        <option value="1">Satıcı</option>
+                                        <option value="2">Alıcı və Satıcı</option>
+                                    </select>
+                                </div>   
+                            </div>   
+                            <div class="row">
+                                    <button type="submit" name="change_profile" formnovalidate="" class="btn btn-success btn-lg text-capitalize pull-right">Update profile</button>
+                            </div>
 
                             
 
