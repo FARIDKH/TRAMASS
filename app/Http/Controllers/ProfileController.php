@@ -30,6 +30,7 @@ class ProfileController extends Controller
       $this->constants = Constant::all();
       $this->user =  Auth::user();
       $this->products = Product::all();
+      $this->user_product =  Auth::user();
     }
     public function profile($id){
         $basket = Basket::all();
@@ -119,10 +120,14 @@ class ProfileController extends Controller
                   $basket->save();
                   if($request->ajax())
                   {                   
-                    return json_encode($basket->product);
+                    $data = [$this->user->baskets->last(),$this->user->baskets->last()->product];
+                    return json_encode($data);
                   } else
                   {
-                    return redirect()->back()->with('success', $this->user->baskets->last()->product->name);
+                    return redirect()->back()->with('product_name', "".$this->user->baskets->last()->product->title."")
+                                             ->with('product_image', "".$this->user->baskets->last()->product->image."")
+                                             ->with('basket_count', "".count($this->user->baskets)."");
+
                   }
                 }
               }
@@ -158,7 +163,8 @@ class ProfileController extends Controller
               } 
               if($request->ajax()) 
               {
-                return json_encode($this->user->baskets->last()->product);
+                $data = [$this->user->baskets->last(),$this->user->baskets->last()->product];
+                return json_encode($data);
               }
               else
               {
