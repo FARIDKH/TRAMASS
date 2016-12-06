@@ -43,7 +43,7 @@
                       <li id="fourthItem" ><a href="/register" class="fourth">Sign Up</a></li>
                       @else
                       <li id="fourthItem" ><a href="/profile/{{Auth::user()->id}}" class="fourth">{{ Auth::user()->name }}</a></li>
-                      <li id="fourthItem" ><a href="/logout" class="fourth">Sign Out</a></li> 
+                      <li id="fourthItem" ><a href="/logout" class="fourth">Sign Out</a></li>
                     @endif
                   </ul>
                 </div>

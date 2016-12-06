@@ -77,11 +77,11 @@ class ProfileController extends Controller
         $product = new Product;
         $file = $request->file('image');
         $filename = Auth::user()->id.'/'.date('jYhisA').".jpg";
-        
+
           if ($file) {
               Storage::disk('uploads')->put($filename, File::get($file));
           }
-          $product->create([
+        $product_create =  $product->create([
             'image' => $filename,
             'title' => $request->title,
             'description' => $request->description,
@@ -91,8 +91,8 @@ class ProfileController extends Controller
             'price' => $request->price,
             'date_limit' => $request->date_limit,
             'user_id' => Auth::user()->id
-          ]);          
-        
+          ]);
+          
         return back();
     }
 
@@ -119,9 +119,14 @@ class ProfileController extends Controller
                   $basket->count += 1;
                   $basket->save();
                   if($request->ajax())
+<<<<<<< HEAD
+                  {
+                    return json_encode($basket->product);
+=======
                   {                   
                     $data = [$this->user->baskets->last(),$this->user->baskets->last()->product];
                     return json_encode($data);
+>>>>>>> f3788d3270b7ce7e08964f8b5c33b421180ce99f
                   } else
                   {
                     return redirect()->back()->with('product_name', "".$this->user->baskets->last()->product->title."")
@@ -160,8 +165,8 @@ class ProfileController extends Controller
                       'price' => $product->price,
                       'count' => $request->count,
                   ]);
-              } 
-              if($request->ajax()) 
+              }
+              if($request->ajax())
               {
                 $data = [$this->user->baskets->last(),$this->user->baskets->last()->product];
                 return json_encode($data);
@@ -207,7 +212,7 @@ class ProfileController extends Controller
       $baskets = $this->user->baskets;
       return back();
     }
-  
+
 
 
 }
