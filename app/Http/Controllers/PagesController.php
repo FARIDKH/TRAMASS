@@ -66,6 +66,18 @@ class PagesController extends Controller
         $baskets = $this->user_product->baskets;
         $products = $this->products;
         $product = Product::find($id);
+
+        if ($product)   {
+          # code...
+        }else {
+          if ($id == 0) {
+            $product = Product::find(sizeof($products));
+          }
+          if ($id > sizeof($products)) {
+            $product = Product::find(1);
+          }
+        }
+
     		return view('product-info',compact('product','products','baskets'));
       }
 

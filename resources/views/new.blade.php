@@ -10,25 +10,25 @@
 				<div>
 					@if(Session::has('product_name'))
 					<img src="uploads/{{Session::get('product_image')}}" alt="">
-						@else 
+						@else
 							<img src="" alt="">
 					@endif
-					
+
 				</div>
 			</div>
 			<div class="col-md-6 rightPart">
 				@if(Session::has('product_name'))
 				<p><span class="new_product_name" >{{Session::get('product_name')}}</span> baskete elave olundu</p>
-					@else 
+					@else
 					<p><span class="new_product_name" ></span> baskete elave olundu</p>
 				@endif
-			
+
 
 			</div>
-		</div>	
+		</div>
 </section>
-			
-								
+
+
 
 
 
@@ -124,7 +124,7 @@
 							<span class="product_id hidden">{{  $product->id }}</span>
 							<div class="row product_top">
 								<div>
-									<a href="/product_single/{{  $product->id }}"> <img  src="/uploads/{{ $product->image }}" alt="{{ $product->title }}"></a>	
+									<a href="/product_single/{{  $product->id }}"> <img  src="/uploads/{{ $product->image }}" alt="{{ $product->title }}"></a>
 								</div>
 								<div class="quick_view_little">
 									<i class="fa fa-eye" aria-hidden="true"></i>
@@ -162,7 +162,7 @@
 			<div id="product_single_quick_view_{{ $product->id }}" class="product_single_quick_view  hidden-sm hidden-xs ">
 
 				<div class="col-md-6 product_single_quick_view_left">
-					
+
 					<div>
 						<img  src="/uploads/{{ $product->image }}" alt="{{ $product->title }}">
 					</div>
@@ -185,7 +185,7 @@
 						</div>
 
 						<div class="row">
-						
+
 						<button  type="submit" name="submit">ADD TO CART</button>
 						</div>
 					</form>
@@ -213,13 +213,16 @@
 
 		var _token = $('input[name=_token]')
 		var addCartIsClicked = false;;
+
 		$('.addCart').click(function(event){
 			event.preventDefault();
-			 
-			
+
+
 			product = $(this).parent().parent().parent().parent();
 			product_id = product.find($('.product_id'))
+
 			$this = $(this);
+
 			$.ajax({
 				async:true,
 				url:'/addingBasket',
@@ -236,24 +239,26 @@
 					$('.new_product_name').text(data[1].title)
 					setTimeout(function(){
 						$('#new_product').fadeOut();
-					},5000)					
+
+					},5000)
 					$this.addClass('hidden');
 					$this.siblings('.viewCart').removeClass('hidden');
 					addCartIsClicked = true;
-					basket_count = parseInt($('.fa-cart-plus span').text())	
-					basket_count += 1;					
+					basket_count = parseInt($('.fa-cart-plus span').text())
+					basket_count += 1;
+
 					$('.fa-cart-plus span').text(basket_count)
 				}
 			})
 		})
 
 		@if(Session::has('product_name'))
-			$('#new_product').fadeIn();		
+			$('#new_product').fadeIn();
 			setTimeout(function(){
 				$('#new_product').fadeOut();
 			},5000)
 		@endif
-		
+
 		$('.product_category ul li').hover(function(){
 			$(this).find('.product_count_in_category').css({
 				border:'1px solid #388E3C',
@@ -278,7 +283,7 @@
 					_token: _token.val()
 				},
 				success:function(data)
-				{					
+				{
 					$('body').html(data)
 				},
 				error : function()
@@ -444,7 +449,7 @@
 
 
 
-			
+
 		var isLessThanScreen,
 	 	slider = $('.filter-slider'),
 		price_range_from = $('input[name=price_range_from]'),
@@ -464,9 +469,9 @@
 				price_range_to.val(ui.values[1]+ ' AZN')
 			}
 		})
-	
-	
-	
+
+
+
 
 	})
 

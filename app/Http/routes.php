@@ -18,7 +18,7 @@ Route::get('/products/{product_category_id}','ProductController@filter');
 Route::get('/','PagesController@home');
 Route::get('/home','PagesController@home');
 Route::get('/about','PagesController@about');
-    
+
 
 
 
@@ -82,6 +82,7 @@ Route::group(['middleware' => 'auth'],function(){
     Route::get('/accept_request/{id}','RequestController@accept_request');
     // // //// //// //// //// ////     // // //// //// //// //// ////
     Route::get('/create_product/{id}','ProfileController@show_create_page');
+    //Route::get('creatingProduct' , 'ProfileController@create_product');
     Route::post('/create_product/{id}','ProfileController@create_product');
     Route::get('/cnprofile/{id}','ProfileController@cnprofile');
     Route::get('/product_single/{id}', 'PagesController@product_single');

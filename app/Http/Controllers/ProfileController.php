@@ -77,11 +77,11 @@ class ProfileController extends Controller
         $product = new Product;
         $file = $request->file('image');
         $filename = Auth::user()->id.'/'.date('jYhisA').".jpg";
-        
+
           if ($file) {
               Storage::disk('uploads')->put($filename, File::get($file));
           }
-          $product->create([
+        $product_create =  $product->create([
             'image' => $filename,
             'title' => $request->title,
             'description' => $request->description,
@@ -91,8 +91,8 @@ class ProfileController extends Controller
             'price' => $request->price,
             'date_limit' => $request->date_limit,
             'user_id' => Auth::user()->id
-          ]);          
-        
+          ]);
+          
         return back();
     }
 
@@ -119,15 +119,14 @@ class ProfileController extends Controller
                   $basket->count += 1;
                   $basket->save();
                   if($request->ajax())
-                  {                   
+                  {
                     $data = [$this->user->baskets->last(),$this->user->baskets->last()->product];
                     return json_encode($data);
-                  } else
+                  }
+                  else
                   {
                     return redirect()->back()->with('product_name', "".$this->user->baskets->last()->product->title."")
-                                             ->with('product_image', "".$this->user->baskets->last()->product->image."")
-                                             ->with('basket_count', "".count($this->user->baskets)."");
-
+                    ->with('product_image', "".$this->user->baskets->last()->product->image."");
                   }
                 }
               }
@@ -160,8 +159,8 @@ class ProfileController extends Controller
                       'price' => $product->price,
                       'count' => $request->count,
                   ]);
-              } 
-              if($request->ajax()) 
+              }
+              if($request->ajax())
               {
                 $data = [$this->user->baskets->last(),$this->user->baskets->last()->product];
                 return json_encode($data);
@@ -207,7 +206,7 @@ class ProfileController extends Controller
       $baskets = $this->user->baskets;
       return back();
     }
-  
+
 
 
 }
