@@ -121,21 +121,24 @@
 
 	var newTotal;
 
-	$('.count-of-product').on('keyup mouseup',function(event){		
-		product_info = $(this).parent().parent(),
-		value = $(this).val(),
-		price_of_this_product = product_info.find($('.product-price'))
-		total_price_of_this_product = product_info.find($('.product-total-price span'))
-		total_price_of_this_product.text(value * parseInt(price_of_this_product.text()))
-		newTotal = 0;
-		totalPriceOfProduct()
-		for(i=0;i<$('.product-total-price span').length;i++)
-		{
-			newTotal += parseInt(product_price[i]);
-		}	
-		$('.total-price').text(newTotal + " AZN")
-	})
-	
+	function newTotalChange()
+	{
+		$('.count-of-product').on('keyup mouseup',function(event){		
+			product_info = $(this).parent().parent(),
+			value = $(this).val(),
+			price_of_this_product = product_info.find($('.product-price'))
+			total_price_of_this_product = product_info.find($('.product-total-price span'))
+			total_price_of_this_product.text(value * parseInt(price_of_this_product.text()))
+			newTotal = 0;
+			totalPriceOfProduct()
+			for(i=0;i<$('.product-total-price span').length;i++)
+			{
+				newTotal += parseInt(product_price[i]);
+			}	
+			$('.total-price').text(newTotal + " AZN")
+		})
+	}
+	newTotalChange()
 	$(document).ready(function(){
 		$('.total-price').text(total + " AZN")
 		$('.product-ignore i').click(function(){
@@ -157,13 +160,18 @@
 					{
 						newTotal = newTotal -  x.text()
 						$('.total-price').text(newTotal + " AZN")
+						
 					} else 
 					{
 						total = total  - x.text()
 						$('.total-price').text(total + " AZN")
 					}
-					
-					a.fadeOut();
+					newTotalChange()
+					a.fadeOut(400,function(){
+						basket_count = parseInt($('.fa-cart-plus span').text())							
+						basket_count -= 1;
+						$('.fa-cart-plus span').text(basket_count)
+					});
 				}
 			})
 		})
