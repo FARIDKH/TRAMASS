@@ -610,64 +610,69 @@ html {
   font-weight: 300;
   text-shadow: none;
   padding-top: 50px;
-  font-family: "Raleway", Helvetica, Arial, sans-serif;
   font-size: 16px; }
-  #profile .content .col-md-9 {
+  #profile h2 {
+    text-align: left; }
+  #profile .content .col-md-12 {
     background: #fff; }
-    #profile .content .col-md-9 .col-md-3 {
+    #profile .content .col-md-12 .col-md-3 {
       padding: 25px; }
-    #profile .content .col-md-9 .col-md-9 {
+    #profile .content .col-md-12 .col-md-9 {
       padding: 20px; }
-      #profile .content .col-md-9 .col-md-9 h2 {
+      #profile .content .col-md-12 .col-md-9 h2 {
         font-size: 32px;
         color: #777; }
-      #profile .content .col-md-9 .col-md-9 i {
+      #profile .content .col-md-12 .col-md-9 i, #profile .content .col-md-12 .col-md-9 a {
         cursor: pointer;
         color: green;
         -webkit-text-fill-color: white;
         /* Will override color (regardless of order) */
-        -webkit-text-stroke-width: 2px;
+        -webkit-text-stroke-width: 1px;
         -webkit-text-stroke-color: green;
-        margin: 0px 15px; }
-        #profile .content .col-md-9 .col-md-9 i:hover {
+        margin: 0px 10px;
+        font-size: 40px;
+        float: right; }
+        #profile .content .col-md-12 .col-md-9 i:hover, #profile .content .col-md-12 .col-md-9 a:hover {
           -webkit-text-stroke-color: #00a400; }
-      #profile .content .col-md-9 .col-md-9 p {
+      #profile .content .col-md-12 .col-md-9 p {
         margin: 0 0 10px;
         color: #858585; }
-      #profile .content .col-md-9 .col-md-9 table {
+      #profile .content .col-md-12 .col-md-9 table {
         margin-top: 20px; }
-        #profile .content .col-md-9 .col-md-9 table td, #profile .content .col-md-9 .col-md-9 table th {
+        #profile .content .col-md-12 .col-md-9 table td, #profile .content .col-md-12 .col-md-9 table th {
           vertical-align: top;
           padding: 5px;
           text-align: left; }
-    #profile .content .col-md-9 .penting {
+    #profile .content .col-md-12 .penting {
       margin-top: 50px; }
-      #profile .content .col-md-9 .penting .col-md-6 {
+      #profile .content .col-md-12 .penting .col-md-6 {
         font-weight: 600; }
-        #profile .content .col-md-9 .penting .col-md-6 img {
-          width: 120px;
+        #profile .content .col-md-12 .penting .col-md-6 span {
+          float: right; }
+        #profile .content .col-md-12 .penting .col-md-6 img {
+          width: 200px;
           margin-right: 20px; }
-        #profile .content .col-md-9 .penting .col-md-6 h3 {
+        #profile .content .col-md-12 .penting .col-md-6 h3 {
           margin-bottom: 20px; }
-        #profile .content .col-md-9 .penting .col-md-6 a {
+        #profile .content .col-md-12 .penting .col-md-6 a {
           text-decoration: none;
           color: #417630; }
-          #profile .content .col-md-9 .penting .col-md-6 a:hover {
+          #profile .content .col-md-12 .penting .col-md-6 a:hover {
             color: #5cb85c; }
-        #profile .content .col-md-9 .penting .col-md-6 p {
+        #profile .content .col-md-12 .penting .col-md-6 p {
           font-weight: bold;
           line-height: 30px; }
-        #profile .content .col-md-9 .penting .col-md-6 table {
+        #profile .content .col-md-12 .penting .col-md-6 table {
           margin-top: 40px; }
-        #profile .content .col-md-9 .penting .col-md-6 table, #profile .content .col-md-9 .penting .col-md-6 td, #profile .content .col-md-9 .penting .col-md-6 tr {
+        #profile .content .col-md-12 .penting .col-md-6 table, #profile .content .col-md-12 .penting .col-md-6 td, #profile .content .col-md-12 .penting .col-md-6 tr {
           border-style: none; }
-    #profile .content .col-md-9 .seed {
+    #profile .content .col-md-12 .seed {
       padding: 15px; }
-      #profile .content .col-md-9 .seed .line {
+      #profile .content .col-md-12 .seed .line {
         width: 50%;
         border-top: 3px solid #417630;
         margin-bottom: 40px; }
-      #profile .content .col-md-9 .seed .col-md-6 {
+      #profile .content .col-md-12 .seed .col-md-6 {
         /* &:hover{
 								 margin-bottom: -2px;
 							}	border-bottom: 2px solid #417630;
@@ -675,13 +680,13 @@ html {
         font-size: 20px;
         padding: 10px 0 10px 0;
         /* margin-bottom: 60px; */ }
-        #profile .content .col-md-9 .seed .col-md-6 a {
+        #profile .content .col-md-12 .seed .col-md-6 a {
           text-decoration: none;
           color: #417630; }
-          #profile .content .col-md-9 .seed .col-md-6 a:hover {
+          #profile .content .col-md-12 .seed .col-md-6 a:hover {
             color: #51933c;
             cursor: pointer; }
-      #profile .content .col-md-9 .seed img {
+      #profile .content .col-md-12 .seed img {
         margin-right: auto;
         margin-left: auto;
         margin-bottom: 20px; }
@@ -6260,7 +6265,7 @@ input[type=range]::-webkit-slider-runnable-track {
   width: 170px;
   height: auto;
   float: left;
-  padding: 25px; }
+  padding: 22px; }
   #products .product .product_top {
     position: relative; }
     #products .product .product_top div:first-child {

@@ -106,8 +106,10 @@ class ProfileController extends Controller
         $user = $this->user;
         $products = $this->products;
         $baskets = $this->baskets;
-        if($now < $product->date_limit && $user->type == 1 || $user->type == 0){
-            if($product->user->id == Auth::user()->id){
+
+        if($now < $product->date_limit && $user->type == 2 || $user->type == 0){
+
+            if($product->user->id == Auth::user()->id){ 
                 return redirect('/basket');
             }
             foreach($baskets as $basket)
@@ -162,6 +164,7 @@ class ProfileController extends Controller
               }
               if($request->ajax())
               {
+
                 $data = [$this->user->baskets->last(),$this->user->baskets->last()->product];
                 return json_encode($data);
               }
