@@ -76,11 +76,11 @@ class ProfileController extends Controller
         $product = new Product;
         $file = $request->file('image');
         $filename = Auth::user()->id.'/'.date('jYhisA').".jpg";
-        
+
           if ($file) {
               Storage::disk('uploads')->put($filename, File::get($file));
           }
-          $product->create([
+        $product_create =  $product->create([
             'image' => $filename,
             'title' => $request->title,
             'description' => $request->description,
@@ -90,8 +90,8 @@ class ProfileController extends Controller
             'price' => $request->price,
             'date_limit' => $request->date_limit,
             'user_id' => Auth::user()->id
-          ]);          
-        
+          ]);
+          
         return back();
     }
 
@@ -118,7 +118,7 @@ class ProfileController extends Controller
                   $basket->count += 1;
                   $basket->save();
                   if($request->ajax())
-                  {                   
+                  {
                     return json_encode($basket->product);
                   } else
                   {
@@ -155,8 +155,8 @@ class ProfileController extends Controller
                       'price' => $product->price,
                       'count' => $request->count,
                   ]);
-              } 
-              if($request->ajax()) 
+              }
+              if($request->ajax())
               {
                 return json_encode($this->user->baskets->last()->product);
               }
@@ -201,7 +201,7 @@ class ProfileController extends Controller
       $baskets = $this->user->baskets;
       return back();
     }
-  
+
 
 
 }

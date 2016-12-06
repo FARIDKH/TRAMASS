@@ -180,13 +180,15 @@
   alert('This browser does not support FileReader');
 }
 
+
         // $('#create_product').click(function(event){
         //     event.preventDefault();
-        //     formData.append('file',image.files[0])
+        //     //formData.append('file',image.files[0])
         //     $.ajax({
         //         async: true,
-        //         url:'/creating_product',
-        //         method:'POST',
+        //         url:'/creatingProduct',
+        //         type:'POST',
+        //         beforeSend: function(xhr){xhr.setRequestHeader('X-CSRF-TOKEN',    $("#token").attr('content'));},
         //         dataType:'JSON',
         //         contentType: false,
         //         data:{
@@ -211,6 +213,7 @@
         //         }
         //     })
         // })
+
 </script>
 
 @endsection
