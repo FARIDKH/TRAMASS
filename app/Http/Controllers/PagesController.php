@@ -74,7 +74,7 @@ class PagesController extends Controller
             $product = Product::find(sizeof($products));
           }
           if ($id > sizeof($products)) {
-              $product = Product::find(1);
+            $product = Product::find(1);
           }
         }
 
