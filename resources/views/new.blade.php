@@ -141,12 +141,18 @@
 								<span class="price">
 									<span>{{ $product->price +25 }} AZN </span> {{ $product->price }} AZN
 								</span>
+								
 								<div>
+									@if(Auth::user()->type != 1)
 									<span>
 										<a class="addCart" href="/add_to_basket/{{ $product->id }}">ADD TO CART</a>
 										<a class="viewCart hidden" href="/basket">VIEW CART</a>
 									</span>
+									@else 
+										<span>Siz sadece saticisiniz</span>
+									@endif
 								</div>
+								
 							</div>
 						</div>
 					@endforeach
@@ -185,8 +191,12 @@
 						</div>
 
 						<div class="row">
-
-						<button  type="submit" name="submit">ADD TO CART</button>
+							@if(Auth::user()->type != 1)
+								<button  type="submit" name="submit">ADD TO CART</button>
+							@else 
+								<span style="color:white">SIZ SADECE SATICISINIZ</span>
+							@endif
+						
 						</div>
 					</form>
 
