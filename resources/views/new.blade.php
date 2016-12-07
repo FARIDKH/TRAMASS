@@ -142,14 +142,18 @@
 									<span>{{ $product->price +25 }} AZN </span> {{ $product->price }} AZN
 								</span>
 								
-								<div>
-									@if(Auth::user()->type != 1)
-									<span>
-										<a class="addCart" href="/add_to_basket/{{ $product->id }}">ADD TO CART</a>
-										<a class="viewCart hidden" href="/basket">VIEW CART</a>
-									</span>
-									@else 
-										<span>Siz sadece saticisiniz</span>
+								<div>	
+									@if(Auth::guest())
+
+										@else
+											@if(Auth::user()->type != 1)
+											<span>
+												<a class="addCart" href="/add_to_basket/{{ $product->id }}">ADD TO CART</a>
+												<a class="viewCart hidden" href="/basket">VIEW CART</a>
+											</span>
+											@else 
+												<span>Siz sadece saticisiniz</span>
+											@endif
 									@endif
 								</div>
 								
@@ -191,12 +195,15 @@
 						</div>
 
 						<div class="row">
-							@if(Auth::user()->type != 1)
-								<button  type="submit" name="submit">ADD TO CART</button>
-							@else 
-								<span style="color:white">SIZ SADECE SATICISINIZ</span>
-							@endif
-						
+						@if(Auth::guest())
+							<button  type="submit" name="submit"><a href="/login">ADD TO CART</a></button>
+							@else	
+								@if(Auth::user()->type != 1)
+									<button  type="submit" name="submit">ADD TO CART</button>
+								@else 
+									<span style="color:white">SIZ SADECE SATICISINIZ</span>
+								@endif
+						@endif
 						</div>
 					</form>
 
@@ -218,6 +225,7 @@
 
 
 <script>
+	
 	$(document).ready(function(){
 
 
@@ -226,13 +234,9 @@
 
 		$('.addCart').click(function(event){
 			event.preventDefault();
-
-
 			product = $(this).parent().parent().parent().parent();
 			product_id = product.find($('.product_id'))
-
 			$this = $(this);
-
 			$.ajax({
 				async:true,
 				url:'/addingBasket',
@@ -249,14 +253,12 @@
 					$('.new_product_name').text(data[1].title)
 					setTimeout(function(){
 						$('#new_product').fadeOut();
-
 					},5000)
 					$this.addClass('hidden');
 					$this.siblings('.viewCart').removeClass('hidden');
 					addCartIsClicked = true;
 					basket_count = parseInt($('.fa-cart-plus span').text())
 					basket_count += 1;
-
 					$('.fa-cart-plus span').text(basket_count)
 				}
 			})
@@ -268,6 +270,7 @@
 				$('#new_product').fadeOut();
 			},5000)
 		@endif
+
 
 		$('.product_category ul li').hover(function(){
 			$(this).find('.product_count_in_category').css({
@@ -340,21 +343,22 @@
 
 
 
-
+		
 		$('.product').hover(function(){
 			$(this).find('.quick_view_little').css({
 				'opacity':1
 			});
+			@if(!Auth::guest())
 			$(this).find('.product_bottom span:nth-child(3)').css({
 				"transform" : "translateY(-20px)",
 				'opacity' : 0
 			})
-
+			
 			$(this).find(".product_bottom div").css({
 				"transform" : "translateY(-20px)",
 				'opacity' : 1
 			})
-
+			@endif
 		}, function(){
 			$(this).find('.quick_view_little').css({
 				'opacity':0
@@ -369,7 +373,7 @@
 			})
 
 		});
-
+		
 
 		@foreach($products as $product)
 		$('#product_single_quick_view_{{ $product->id }}').fadeOut();

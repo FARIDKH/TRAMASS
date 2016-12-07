@@ -55,8 +55,7 @@
                             @if(Auth::user()->type != 1)
                               @if($product->user->id == Auth::user()->id)
 
-                                  @else 
-
+                                  @else
                                   <input type="number" class="count" name="count" value="1" min="1">
                                   <button type="submit" class="addCart" name="button" >add to cart</button>
                                   <button class="viewCart hidden" name="button" ><a href="/basket">view cart</a></button>
