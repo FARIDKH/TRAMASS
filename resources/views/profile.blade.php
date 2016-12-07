@@ -6,11 +6,10 @@
 <div class="container-fluid" id="profile">
             <div class="container">
                 <div class="row content">
-                    <div class=" col-md-9">
+                    <div class=" col-md-12">
                         <div class="row">
                             <div class="col-md-3">
                                 <img src="/img/dummy.png" alt="..." class="img-circle img-responsive">
-
                             </div>
                             <div class="col-md-9">
                                 <!--info about man-->
@@ -21,21 +20,17 @@
               <!--change-profile link-->
 
                                   <a href="/cnprofile/{{ $user->id }}">
-                                         <i class="fa fa-pencil-square-o fa-2x" aria-hidden="true" style="float: right;"></i>
+                                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                   </a>
-                                  <a href="/basket">
-                                         <i class="fa fa-shopping-cart fa-2x" aria-hidden="true" style="float: right; "></i>
-                                  </a>
+                                  @if(Auth::user()->type || Auth::user()->type  == 2 && Auth::user()->id == $user->id)
+                                    <a class="fa fa-plus" href="/create_product/{{ Auth::user()->id }}"></a>
+                                    <a class="fa fa-bell" href="/request"></a>
+                                    @endif
                                 @endif
                                 </h2>
                                 <br>    
 
-                                <div class="text-left">
-                                    @if(Auth::user()->type || Auth::user()->type  == 2 && Auth::user()->id == $user->id)
-                                    <a type="button" class="btn btn-success btn-lg" href="/create_product/{{ Auth::user()->id }}">Create Product</a>
-                                    <a type="button" class="btn btn-success btn-lg" href="/request">Request</a>
-                                    @endif
-                                </div>
+                                
 
                             </div>
                         </div>
@@ -51,7 +46,7 @@
                                 <div class="col-md-6">
                                         <ul class="media-list">
                                             <li class="media">
-                                              <a class="media-left" href="#">
+                                              <a class="media-left" href="/product_single/{{ $user_product->id }}">
                                                  <img src="/uploads/{{ $user_product->image }}" alt="{{ $user_product->title }}">
                                              </a>
                                              <div class="media-body">
@@ -64,22 +59,8 @@
                                 </div>
 
                                 <!--pending payment right part-->
-                                <div class="col-md-6">
-                                    <table class="table" style="border-top-style:hidden;">
-                                        <tbody>
-                                            <tr>
-                                                <td class="pull-right" style="border-top-style:hidden;">
-
-                                                    Price for one {{  $user_product->constant->title }}
-                                                </td>
-                                                <td>
-                                                    :
-                                                </td>
-                                                <td> {{  $user_product->price }} AZN</td>
-                                            </tr>
-                                        </tbody>
-
-                                    </table>
+                                <div class="col-md-6">                                    
+                                      <span>Price for one {{  $user_product->constant->title }} : {{  $user_product->price }} AZN</span>
                                 </div>
 
 

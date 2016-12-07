@@ -1,4 +1,4 @@
-	$fontFam:"Raleway",Helvetica,Arial,sans-serif;
+
 
 	//some global info for all page;
 	#profile{
@@ -6,15 +6,15 @@
 		color:#777;
 		font-weight:300;
 		text-shadow:none;
-
 		padding-top: 50px;
-		font-family:$fontFam;
 		font-size: 16px;
-
-
+		h2
+		{
+			text-align: left;
+		}
 		.content{
 			//style for right part(global col-md-9);
-			.col-md-9{
+			.col-md-12{
 				background:#fff;
 				//profile img
 				.col-md-3{
@@ -27,15 +27,16 @@
 					h2{
 						font-size: 32px;
 						color:#777;
-
 					}
-					i{
+					i,a{
 						cursor: pointer;
 						color:green;
 						-webkit-text-fill-color: white; /* Will override color (regardless of order) */
-						-webkit-text-stroke-width: 2px;
+						-webkit-text-stroke-width: 1px;
 						-webkit-text-stroke-color: green;
-						margin:0px 15px;
+						margin:0px 10px;
+						font-size:40px;
+						float:right;
 						&:hover{
 							-webkit-text-stroke-color: lighten(green,7%);
 						}
@@ -60,13 +61,16 @@
 				//invest a crop button part
 	//penting payment part
 				.penting{
-
 					margin-top:50px;
 					//info about some item
 					.col-md-6{
 						font-weight: 600;
+						span
+						{
+							float:right;
+						}
 						img{
-							width: 120px;
+							width: 200px;
 							margin-right: 20px;
 						}
 						h3{
