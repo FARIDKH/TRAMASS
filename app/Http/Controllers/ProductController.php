@@ -23,7 +23,11 @@ class ProductController extends Controller
         $product_categories = Product_Category::all();
         $price_range_from = $request->price_range_from;
         $price_range_to = $request->price_range_to;
-        $baskets = $this->user->baskets;
+        if(!Auth::guest())
+        {
+            $baskets = $this->user->baskets;
+        }
+        
         if($request->ajax())
         {
             $products = Product::where('price','<',$price_range_to)->where('price','>',$price_range_from)->get();
