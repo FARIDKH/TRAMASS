@@ -2,11 +2,16 @@
 
 @section('content')
     <div class="container">
-      <h1>Crud Country</h1>
       <div class="col-md-8">
-        <form action="">
-          
+        <form action="create_country" method="post">
+          {{ csrf_field() }}
+          <input type="text" class="form-control" name="title" placeholder="Country name"><br>
+          <button type="submit" class="btn btn-success">CREATE COUNTRY</button>   
         </form>
+      </div>
+      
+      <div class="col-md-8">
+        <h1>Crud Country</h1>
         <table class="table table-bordered">
           <tr>
             <th>Id</th>

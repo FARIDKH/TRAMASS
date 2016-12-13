@@ -14,12 +14,14 @@
             <tr>
               <th>Id</th>
               <th>Category Name</th>
+              <th colspan="2">ACTION</th>
             </tr>
 
             @foreach($categories as $category)
               <tr>
                   <td>{{ $category->id }}</td>
                   <td>{{ $category->title }}</td>
+                  <td><a href="/product_category_delete/{{$category->id}}" class="btn btn-default">DELETE</a></td>
               </tr>
             @endforeach
         </table>

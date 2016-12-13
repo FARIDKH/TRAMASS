@@ -48,6 +48,7 @@ Route::auth();
     //Cities and Country part
     Route::get('/country','AdminController@country');
     //County->city CRUD
+    Route::post('/create_country','AdminController@create_country');
     Route::get('/country/{id}/city','CountyCrud@city');
     Route::get('/delete/{id}','CountyCrud@delete');
     Route::get('/edit/{id}','CountyCrud@edit');
@@ -93,5 +94,8 @@ Route::group(['middleware' => 'auth'],function(){
 
 
 });
+
+
+Route::get('/product_category_delete/{id}','ProductCategoryController@destroy');
 
 //Route::get('/home', 'HomeController@index');

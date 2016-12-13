@@ -60,7 +60,7 @@
 
                                 <!--pending payment right part-->
                                 <div class="col-md-6">                                    
-                                      <span>Price for one {{  $user_product->constant->title }} : {{  $user_product->price }} AZN</span>
+                                    <span>Price for one {{  $user_product->constant->title }} : {{  $user_product->price }} AZN</span>
                                 </div>
 
 
