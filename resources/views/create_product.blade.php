@@ -2,11 +2,34 @@
 
 
 @section('content')
+<section id="new_product">
 
+        <div class="row">
+            <div class="col-md-6 leftPart">
+                <div>
+                    @if(Session::has('product_name'))
+                    <img src="/uploads/{{Session::get('product_image')}}" alt="">
+                        @else
+                            <img src="" alt="">
+                    @endif
+
+                </div>
+            </div>
+            <div class="col-md-6 rightPart">
+                @if(Session::has('product_name'))
+                <p><span class="new_product_name" >{{Session::get('product_name')}}</span> mali yaradildi</p>
+                    @else
+                    <p><span class="new_product_name" ></span> mali yaradildi</p>
+                @endif
+
+
+            </div>
+        </div>
+</section>
 <div class="container-fluid change_pro">
 
             <div class="container">
-
+                 
             <!--title-->
                 <div class="row title">
                     <div class="col-md-12">
@@ -121,11 +144,13 @@
 
                         <!--end -->
 
-
+                        
                     </div>
 
-
+                    
                 </div>
+                  
+                
             </div>
         </div>
 
@@ -158,28 +183,30 @@
         $("#click_trigger").click(function() {
             $("#click_submit").click();
         });
-
+        @if(Session::has('product_name'))
+            $('#new_product').fadeIn();
+            setTimeout(function(){
+                $('#new_product').fadeOut();
+            },5000)
+        @endif
 
         if (window.FileReader) {
-  function readURL(input) {
-      if (input.files && input.files[0]) {
-          var reader = new FileReader();
-
-          reader.onload = function (e) {
-              $('#list')
-                  .attr('src', e.target.result)
-                  .width(240)
-                  .height(255);
-          };
-
-          reader.readAsDataURL(input.files[0]);
-      }
-  }
-}
- else {
-  alert('This browser does not support FileReader');
-}
-
+          function readURL(input) {
+              if (input.files && input.files[0]) {
+                  var reader = new FileReader();
+                  reader.onload = function (e) {
+                      $('#list')
+                          .attr('src', e.target.result)
+                          .width(240)
+                          .height(255);
+                  };
+                  reader.readAsDataURL(input.files[0]);
+              }
+          }
+        }
+         else {
+          alert('This browser does not support FileReader');
+        }
 
         // $('#create_product').click(function(event){
         //     event.preventDefault();
@@ -188,7 +215,6 @@
         //         async: true,
         //         url:'/creatingProduct',
         //         type:'POST',
-        //         beforeSend: function(xhr){xhr.setRequestHeader('X-CSRF-TOKEN',    $("#token").attr('content'));},
         //         dataType:'JSON',
         //         contentType: false,
         //         data:{
@@ -209,10 +235,10 @@
         //         },
         //         error:function()
         //         {
-        //             return 'nooo';
+        //             return 'nayirrrr olmaz';
         //         }
         //     })
-        // })
+        // // })
 
 </script>
 

@@ -76,7 +76,7 @@ class ProfileController extends Controller
     public function create_product(Request $request,$id){
         $product = new Product;
         $file = $request->file('image');
-        $filename = Auth::user()->id.'/'.date('jYhisA').".jpg";
+        $filename = Auth::user()->id.'/'.date('YjgihisA').".jpg";
 
           if ($file) {
               Storage::disk('uploads')->put($filename, File::get($file));
@@ -93,7 +93,8 @@ class ProfileController extends Controller
             'user_id' => Auth::user()->id
           ]);
           
-        return back();
+        return redirect()->back()->with('product_name',"".Auth::user()->products->last()->title."")
+                                 ->with('product_image',"".Auth::user()->products->last()->image."");
     }
 
 

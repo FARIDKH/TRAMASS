@@ -6193,6 +6193,7 @@ input[type=range]::-webkit-slider-runnable-track {
   right: 0;
   top: 18%;
   z-index: 1000;
+  box-shadow: 0px 0px 5px;
   display: none; }
   #new_product .leftPart div:first-child {
     width: 100%;
