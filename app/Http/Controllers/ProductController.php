@@ -23,14 +23,13 @@ class ProductController extends Controller
         $product_categories = Product_Category::all();
         $price_range_from = $request->price_range_from;
         $price_range_to = $request->price_range_to;
-        
+        if(!Auth::guest())
+        {
+            $baskets = Auth::user()->baskets;
+        }
         if($request->ajax())
         {
-            $products = Product::where('price','<',$price_range_to)->where('price','>',$price_range_from)->get();
-            if(!Auth::guest())
-            {
-                $baskets = Auth::user()->baskets;
-            }
+            $products = Product::where('price','<',$price_range_to)->where('price','>',$price_range_from)->get();            
             return view('new'  ,compact('products','baskets', 'product_categories'));
         }
 

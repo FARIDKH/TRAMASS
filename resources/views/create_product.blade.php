@@ -17,9 +17,9 @@
             </div>
             <div class="col-md-6 rightPart">
                 @if(Session::has('product_name'))
-                <p><span class="new_product_name" >{{Session::get('product_name')}}</span> mali yaradildi</p>
+                <p><span class="new_product_name" >{{Session::get('product_name')}}</span> mali yaradildi   </p>
                     @else
-                    <p><span class="new_product_name" ></span> mali yaradildi</p>
+                    <p><span class="new_product_name" ></span> mali yaradildi   </p>
                 @endif
 
 
