@@ -70,6 +70,7 @@ Route::group(['middleware' => 'auth'],function(){
     Route::get('/add_to_basket/{id}','ProfileController@add_to_basket');
     Route::post('/addingBasket','ProfileController@add_to_basket');
     Route::post('/remove_from_basket','ProfileController@remove_from_basket');
+    Route::post('/remove_users_products','ProfileController@remove_users_products');
     Route::post('/update_basket','ProfileController@update_basket');
     Route::get('/basket','ProfileController@basket');
 

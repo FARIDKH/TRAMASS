@@ -28,30 +28,40 @@
                                     @endif
                                 @endif
                                 </h2>
-                                <br>    
+                                <br>
 
-                                
+
 
                             </div>
                         </div>
                         <!--penting part-->
                         @if(count($user->products))
                             <h2 class="text-center text-capitalize">Əldə olan mallar</h2>
-                         @else 
+                         @else
                             <h2 class="text-center text-capitalize">Sizin əlinizdə mal yoxdur</h2>
                         @endif
                         @foreach($user->products as $user_product)
-                            <div class="row penting">
+                            <div class="row penting" id="{{$user_product->id}}">
+                              <form id="product_form" action="" method="post">
                                 <hr>
                                 <div class="col-md-6">
                                         <ul class="media-list">
+                                            {{ csrf_field() }}
                                             <li class="media">
+
+                                              <input type="hidden" name="id" value="{{ $user_product->id }}">
+                                              <input type="hidden" name="id_{{ $user_product->id }}" value="{{ $user_product->id }}">
                                               <a class="media-left" href="/product_single/{{ $user_product->id }}">
                                                  <img src="/uploads/{{ $user_product->image }}" alt="{{ $user_product->title }}">
                                              </a>
                                              <div class="media-body">
                                                  <h3 class="media-heading"><a href="/product_single/{{ $user_product->id }}">
                                                  {{ $user_product->title }}</a></h3>
+                                                 @if(Auth::user()->type == 1 || Auth::user()->type == 2 && Auth::user()->id == $user->id)
+                                                  <a type="button" class="fa fa-cog " href="{{$user->id}}/product/{{$user_product->id}}/edit"></a>
+                                                  <a type="submit" class="fa fa-times "  ></a>
+
+                                                @endif
                                                  <br>
                                             </li>
 
@@ -59,16 +69,18 @@
                                 </div>
 
                                 <!--pending payment right part-->
-                                <div class="col-md-6">                                    
+                                <div class="col-md-6 detail" id="{{$user_product->id}}">
                                     <span>Price for one {{  $user_product->constant->title }} : {{  $user_product->price }} AZN</span>
                                 </div>
 
 
                         </div>
+                        </form>
                     @endforeach
-                    <hr>
+
                     <!--seed part-->
-                        
+
+
                     </div>
                 </div>
 
@@ -118,6 +130,34 @@
          $(".rightInfo").show();
 
     })
+});
+	var _token = $('input[name=_token]');
+$(document).ready(function(){
+  $('.fa-times').click(function(){
+    var inputData = $('#product_form').serialize();
+
+    var div = $('.penting');
+    var a =$(this).parent().parent();
+    id = a.find($('input[name=id]'));
+
+    var	$this = $(this);
+    $.ajax({
+      url:'/remove_users_products',
+      method:'POST',
+      dataType:'JSON',
+      data:{
+        	_token:_token.val(),
+        id:id.val(),
+      },
+      success:function()
+      {
+        a.fadeOut(400,function(){
+          alert("alindi");
+        });
+
+      }
+    })
+  })
 });
 </script>
 @endsection

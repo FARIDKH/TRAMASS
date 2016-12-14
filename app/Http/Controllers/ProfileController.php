@@ -12,6 +12,7 @@ use Auth;
 use App\Http\Requests;
 use Session;
 use Carbon\Carbon;
+use Validator;
 
 
 use Illuminate\Http\Request;
@@ -38,6 +39,13 @@ class ProfileController extends Controller
         $baskets = $this->user->baskets;
         return view('profile' , compact('user','baskets','basket'));
     }
+    public function remove_users_products(Request $request)
+    {
+        $id = $request->id;
+        $product= Product::find($id);
+        $product->delete();
+        return json_encode($product->id);
+    }
 
     public function cnprofile($id){
       $user = $this->user;
@@ -49,11 +57,17 @@ class ProfileController extends Controller
       }
     }
 
-    public function change_profile(Request $request){
+    public function change_profile(Request $request,$id){
       if(isset($_POST['change_profile'])){
-          $this->user->type = $request->type;
-          $this->user->save();
-          return redirect()->action('ProfileController@profile', ['id' => Auth::user()->id]);
+
+
+
+                $user= User::find($id);
+                $user->update($request->all());
+                $this->user->type = $request->type;
+                $this->user->save();
+                return redirect()->action('ProfileController@profile', ['id' => Auth::user()->id]);
+                return response()->json( $user );
       }
     }
 
@@ -92,7 +106,7 @@ class ProfileController extends Controller
             'date_limit' => $request->date_limit,
             'user_id' => Auth::user()->id
           ]);
-          
+
         return redirect()->back()->with('product_name',"".Auth::user()->products->last()->title."")
                                  ->with('product_image',"".Auth::user()->products->last()->image."");
     }
@@ -110,7 +124,7 @@ class ProfileController extends Controller
 
         if($now < $product->date_limit && $user->type == 2 || $user->type == 0){
 
-            if($product->user->id == Auth::user()->id){ 
+            if($product->user->id == Auth::user()->id){
                 return redirect('/basket');
             }
             foreach($baskets as $basket)
@@ -192,6 +206,7 @@ class ProfileController extends Controller
         $basket->delete();
         return json_encode($basket->id);
     }
+
     public function update_basket(Request $request)
     {
       $baskets = $this->baskets;
