@@ -142,25 +142,25 @@
               <!-- Wrapper for slides -->
               <div class="carousel-inner" role="listbox">
 
-
-                <div class="item active">
-                    <img src="/uploads/{{ $products[1]->image }}" alt="{{ $products[1]->title }}">
-                    <div class="carousel-caption">
-                      <h3>{{ $products[1]->title }}</h3>
-                      <p>{{ $products[1]->price }} AZN / {{ $products[1]->constant->title }}</p>
-                    </div>
-                </div>
-                @for($i=0;$i<count($products);$i++)
-                  <div class="item">
-                    <img src="/uploads/{{ $products[$i]->image }}" alt="{{ $products[$i]->title }}">
-                    <div class="carousel-caption">
-                      <h3>{{ $products[$i]->title }}</h3>
-                      <p>{{ $products[$i]->price }} AZN / {{ $products[$i]->constant->title }}</p>
-                    </div>
+                @if(count($products))      
+                  <div class="item active">
+                      <img src="/uploads/{{ $products[1]->image }}" alt="{{ $products[1]->title }}">
+                      <div class="carousel-caption">
+                        <h3>{{ $products[1]->title }}</h3>
+                        <p>{{ $products[1]->price }} AZN / {{ $products[1]->constant->title }}</p>
+                      </div>
                   </div>
+                  @for($i=0;$i<count($products);$i++)
+                    <div class="item">
+                      <img src="/uploads/{{ $products[$i]->image }}" alt="{{ $products[$i]->title }}">
+                      <div class="carousel-caption">
+                        <h3>{{ $products[$i]->title }}</h3>
+                        <p>{{ $products[$i]->price }} AZN / {{ $products[$i]->constant->title }}</p>
+                      </div>
+                    </div>
 
-                @endfor
-                  
+                  @endfor
+                 @endif 
                   <!-- Left and right controls -->
                   <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
                     <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>

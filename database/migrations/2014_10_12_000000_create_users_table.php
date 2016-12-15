@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('img'); //elave etdim
             $table->integer('type');
+            $table->boolean('admin');
             $table->rememberToken();
             $table->timestamps();
         });

@@ -10,20 +10,38 @@ use App\Country;
 use App\City;
 use App\User;
 use App\Order;
-
+use Auth;
 
 
 class AdminController extends Controller
 {
     public function index(){
-        return view('admin.admin');
+      return view('admin.adminLogin');
+    }
+    public function login(Request $request)
+    {     
+        $user = User::where('email','=',$request->email)->get();
+        $password = $request->password;
+        if(sizeof($user))
+        {
+          if(password_verify($password,$user[0]->password))
+          {
+            if($user[0]->admin)
+            {
+              return view('admin.admin')->with('adminIsLoggedIn',true);
+            } else {
+              return back();
+            }        
+          }
+        } else {
+          return back();
+        }
     }
 
 
 
     public function user() {
   		$users = \DB::table('users')->orderby('id', "DESC")->get();
-
   		return view('admin.user', ['users' => $users]);
   	}
 

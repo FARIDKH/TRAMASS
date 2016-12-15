@@ -3,25 +3,37 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\Auth;
 
-class admin
+class Admin
 {
     /**
      * Handle an incoming request.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
+     * @param  string|null  $guard
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next, $guard = null)
     {
-        $request->email = "tramass";
-        $request->password = "tramass";
-        if($request->email && $request->password){
-            return redirect('/admin');
+        if (Auth::guard($guard)->guest()) {
+            if ($request->ajax() || $request->wantsJson()) {
+                return response('Unauthorized.', 401);
+            } else {
+                return redirect()->guest('login');
+            }
         } else {
-            return redirect('/');
+            if(Auth::user()->admin)
+            {
+                return $next($request);
+            } else 
+            {
+                return back();
+            }
         }
-        return $next($request);
+
+        
     }
+
 }
