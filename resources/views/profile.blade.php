@@ -40,6 +40,7 @@
                          @else
                             <h2 class="text-center text-capitalize">Sizin əlinizdə mal yoxdur</h2>
                         @endif
+
                         @foreach($user->products as $user_product)
                             <div class="row penting" id="{{$user_product->id}}">
                               <form id="product_form" action="" method="post">
@@ -76,6 +77,7 @@
 
                         </div>
                         </form>
+
                     @endforeach
 
                     <!--seed part-->
@@ -137,8 +139,9 @@ $(document).ready(function(){
     var inputData = $('#product_form').serialize();
 
     var div = $('.penting');
-    var a =$(this).parent().parent();
+    var a =$(this).parent().parent().parent().parent().parent().parent() ;
     id = a.find($('input[name=id]'));
+    span = a.find($('.detail'))
 
     var	$this = $(this);
     $.ajax({
@@ -153,6 +156,7 @@ $(document).ready(function(){
       {
         a.fadeOut(400,function(){
           alert("alindi");
+
         });
 
       }

@@ -59,9 +59,6 @@ class ProfileController extends Controller
 
     public function change_profile(Request $request,$id){
       if(isset($_POST['change_profile'])){
-
-
-
                 $user= User::find($id);
                 $user->update($request->all());
                 $this->user->type = $request->type;
@@ -111,7 +108,31 @@ class ProfileController extends Controller
                                  ->with('product_image',"".Auth::user()->products->last()->image."");
     }
 
+  public function edit($id,$product_id)
+  {
+            $constants = $this->constants;
+            $product = Product::find($product_id);
+            $baskets = $this->user->baskets;
 
+        if($id == $this->user->id){
+            if( $this->user->id == Auth::user()->id ){
+                return view('edit',compact('product','constants','baskets'));
+            } else {
+                return view('errors.503');
+            }
+        } else {
+            return view('errors.503');
+        }
+}
+    public function editProduct(Request $request)
+    {
+
+      $product = Product::find($request->product_id);
+      $product->title = $request->title;
+      $product->save();
+      return response ()->json ( $product );
+
+    }
 
 
     public function add_to_basket(Request $request)
