@@ -28,7 +28,7 @@ class Admin
             {
                 return $next($request);
             } else 
-            {
+            {   
                 return back();
             }
         }
