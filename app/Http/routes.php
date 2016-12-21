@@ -35,15 +35,17 @@ Route::get('/peopleCount/{city_id}/', 'AdminController@people');
 Route::auth();
 
     Route::get('/register','AdminController@countries');
+
+Route::group(['middleware' => 'admin'],function(){
+
     Route::get('/user_profile','AdminController@user');
-    Route::get('/admin','AdminController@index');
+    
     Route::post('/product_category','AdminController@store');
     Route::get('/product_category','AdminController@product_category');
     Route::get('/user_product/{id}', 'AdminController@user_product');
     Route::get('/user_delete/{id}', 'AdminController@user_delete');
     Route::get('/constant', 'AdminController@constant');
     Route::post('/create_constant', 'AdminController@create_constant');
-
     Route::get('/orders', 'AdminController@orders');
     //Cities and Country part
     Route::get('/country','AdminController@country');
@@ -54,6 +56,9 @@ Route::auth();
     Route::get('/edit/{id}','CountyCrud@edit');
     Route::post('/update/{id}','CountyCrud@update');
     Route::post('/country/{id}/city','CountyCrud@create');
+    Route::get('/product_category_delete/{id}','ProductCategoryController@destroy');
+    
+});
 
 
 
@@ -62,7 +67,8 @@ Route::auth();
 
     Route::get('/','PagesController@home');
 Route::group(['middleware' => 'auth'],function(){
-
+    Route::get('/tramass/admin','AdminController@index');
+    Route::post('/tramass/admin','AdminController@login');
 
 
     Route::get('/profile/{id}/','ProfileController@profile');
@@ -99,6 +105,6 @@ Route::group(['middleware' => 'auth'],function(){
 });
 
 
-Route::get('/product_category_delete/{id}','ProductCategoryController@destroy');
+
 
 //Route::get('/home', 'HomeController@index');

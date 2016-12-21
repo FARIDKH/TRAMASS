@@ -1,13 +1,39 @@
-@extends('layouts.main_layout')
+<head>
+  <meta charset="utf-8">
+  <meta>
+  <title>|</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.6 -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="/css/app.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+          <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
+        page. However, you can choose any other skin. Make sure you
+        apply the skin class to the body tag so the changes take effect.
+  -->
 
-@section('content')
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+<body>
 <section id="signin">
         <div  class="container-fluid">
             <div class="row">
                 <div class="col-md-4 col-md-offset-4">
                     <h2>Sign in</h2>
                     <p>Please enter your username and password</p>
-                    <form role="form" method="POST" action="{{ url('/login') }}">
+                    <form role="form" method="POST" action="">
                         {{ csrf_field() }}
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label for="email" class="col-md-4 control-label">E-Mail Address</label>
@@ -43,15 +69,10 @@
 
 <!--                        <p class="text-center">OR</p>-->
 
-                        <button type="submit" class="btn btn-primary btn-lg text-center col-md-12 btn-2">
-                        <a href="#"  style="color:white !important">
-                            <i class="fa fa-facebook" aria-hidden="true"></i> LOGIN WITH FACEBOOK
-                        </a>
-                        </button>
                     </form>
                 </div>
             </div>
         </div>
     </section>
-
-@endsection
+</body>
+</html>
