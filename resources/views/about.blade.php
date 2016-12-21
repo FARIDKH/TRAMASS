@@ -1,7 +1,7 @@
 @extends('layouts.main_layout')
 
 @section('content')
-
+ 
 <!--  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> layout-da qosulmalidi ikonlar gore
  -->
 <section id="about">

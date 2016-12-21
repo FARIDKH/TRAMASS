@@ -12,6 +12,7 @@ use Auth;
 use App\Http\Requests;
 use Session;
 use Carbon\Carbon;
+use Validator;
 
 
 use Illuminate\Http\Request;
@@ -38,6 +39,13 @@ class ProfileController extends Controller
         $baskets = $this->user->baskets;
         return view('profile' , compact('user','baskets','basket'));
     }
+    public function remove_users_products(Request $request)
+    {
+        $id = $request->id;
+        $product= Product::find($id);
+        $product->delete();
+        return json_encode($product->id);
+    }
 
     public function cnprofile($id){
       $user = $this->user;
@@ -49,11 +57,14 @@ class ProfileController extends Controller
       }
     }
 
-    public function change_profile(Request $request){
+    public function change_profile(Request $request,$id){
       if(isset($_POST['change_profile'])){
-          $this->user->type = $request->type;
-          $this->user->save();
-          return redirect()->action('ProfileController@profile', ['id' => Auth::user()->id]);
+                $user= User::find($id);
+                $user->update($request->all());
+                $this->user->type = $request->type;
+                $this->user->save();
+                return redirect()->action('ProfileController@profile', ['id' => Auth::user()->id]);
+                return response()->json( $user );
       }
     }
 
@@ -92,13 +103,52 @@ class ProfileController extends Controller
             'date_limit' => $request->date_limit,
             'user_id' => Auth::user()->id
           ]);
-          
+
         return redirect()->back()->with('product_name',"".Auth::user()->products->last()->title."")
                                  ->with('product_image',"".Auth::user()->products->last()->image."");
     }
 
+  public function show_edit_page(Request $request,$id)
+  {
+            $constants = $this->constants;
+
+            $product = Product::find($request->product_id);
+            $user = $this->user;
+            $baskets = $this->user->baskets;
+            $categories = Product_Category::all();
 
 
+        if($id == $this->user->id){
+            if( $this->user->id == Auth::user()->id ){
+                return view('edit',compact('product','constants','baskets','categories','user'));
+            } else {
+                return view('errors.503');
+            }
+        } else {
+            return view('errors.503');
+        }
+// dd($user_product);
+}
+    public function editProduct(Request $request,$product_id)
+    {
+      $file = $request->file('image');
+      $filename = Auth::user()->id.'/'.date('YjgihisA').".jpg";
+      if(isset($_POST['update_product'])){
+          if ($file) {
+              Storage::disk('uploads')->put($filename, File::get($file));
+          }
+                $product= Product::find($request->product_id);
+                $product->update($request->all());
+                $product->update([
+                  'image' => $filename
+                ]);
+                return redirect()->action('ProfileController@profile', ['id' => Auth::user()->id]);
+                return response()->json( $product );
+      }
+      //edit product
+
+
+    }
 
     public function add_to_basket(Request $request)
     {
@@ -110,7 +160,7 @@ class ProfileController extends Controller
 
         if($now < $product->date_limit && $user->type == 2 || $user->type == 0){
 
-            if($product->user->id == Auth::user()->id){ 
+            if($product->user->id == Auth::user()->id){
                 return redirect('/basket');
             }
             foreach($baskets as $basket)
@@ -192,6 +242,7 @@ class ProfileController extends Controller
         $basket->delete();
         return json_encode($basket->id);
     }
+
     public function update_basket(Request $request)
     {
       $baskets = $this->baskets;
