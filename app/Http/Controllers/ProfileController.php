@@ -108,32 +108,47 @@ class ProfileController extends Controller
                                  ->with('product_image',"".Auth::user()->products->last()->image."");
     }
 
-  public function edit($id,$product_id)
+  public function show_edit_page(Request $request,$id)
   {
             $constants = $this->constants;
-            $product = Product::find($product_id);
+
+            $product = Product::find($request->product_id);
+            $user = $this->user;
             $baskets = $this->user->baskets;
+            $categories = Product_Category::all();
+
 
         if($id == $this->user->id){
             if( $this->user->id == Auth::user()->id ){
-                return view('edit',compact('product','constants','baskets'));
+                return view('edit',compact('product','constants','baskets','categories','user'));
             } else {
                 return view('errors.503');
             }
         } else {
             return view('errors.503');
         }
+// dd($user_product);
 }
-    public function editProduct(Request $request)
+    public function editProduct(Request $request,$product_id)
     {
+      $file = $request->file('image');
+      $filename = Auth::user()->id.'/'.date('YjgihisA').".jpg";
+      if(isset($_POST['update_product'])){
+          if ($file) {
+              Storage::disk('uploads')->put($filename, File::get($file));
+          }
+                $product= Product::find($request->product_id);
+                $product->update($request->all());
+                $product->update([
+                  'image' => $filename
+                ]);
+                return redirect()->action('ProfileController@profile', ['id' => Auth::user()->id]);
+                 return response()->json( $product );
+      }
+      //edit product
 
-      $product = Product::find($request->product_id);
-      $product->title = $request->title;
-      $product->save();
-      return response ()->json ( $product );
 
     }
-
 
     public function add_to_basket(Request $request)
     {

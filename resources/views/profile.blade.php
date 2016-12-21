@@ -58,10 +58,11 @@
                                              <div class="media-body">
                                                  <h3 class="media-heading"><a href="/product_single/{{ $user_product->id }}">
                                                  {{ $user_product->title }}</a></h3>
-                                                 @if(Auth::user()->type == 1 || Auth::user()->type == 2 && Auth::user()->id == $user->id)
-                                                  <a type="button" class="fa fa-cog " href="{{$user->id}}/product/{{$user_product->id}}/edit"></a>
-                                                  <a type="submit" class="fa fa-times "  ></a>
-
+                                                 @if($user->id == Auth::user()->id)
+                                                   @if(Auth::user()->type  == 1|| Auth::user()->type  == 2 && Auth::user()->id == $user->id)
+                                                    <a type="button" class="fa fa-cog " href="{{$user->id}}/product/{{$user_product->id}}/edit"></a>
+                                                    <a type="submit" class="fa fa-times"  ></a>
+                                                  @endif
                                                 @endif
                                                  <br>
                                             </li>

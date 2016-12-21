@@ -8,6 +8,7 @@
           <title>TRAMASS</title>
           <meta name="viewport" content="width=device-width, initial-scale=1">
           <meta name="csrf_token" content="{{ csrf_token() }}" />
+
           <link rel="apple-touch-icon" href="apple-touch-icon.png">
           <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
           <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:700|Roboto:900" rel="stylesheet">
@@ -28,7 +29,7 @@
       </head>
     <body>
 
-      
+
       <section id="nav">
         <div class="secondNav">
         </div>
@@ -89,24 +90,25 @@
         <!-- footer ending -->
 
 <!--        <script src="/ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>-->
-      
-       
+
+
 <!--        <script src="/ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>-->
-      
+
         <script src="/js/vendor/bootstrap.min.js"></script>
         <script src="/js/navbar.js"></script>
         <script src="/js/navbarDetails.js"></script>
         <script src="/js/animate.js"></script>
 <!--        <script src="/js/main.js"></script>-->
-        <script src="//code.jquery.com/jquery-1.10.2.js"></script>    
-        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>    
-        
-        <script>
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+        <script type="text/javascript">
         $.ajaxSetup({
           headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
           }
         });
+
         </script>
 
         @yield('script')
