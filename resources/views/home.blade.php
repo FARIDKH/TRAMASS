@@ -134,14 +134,14 @@
       
         <!-- sep1 ending-->
         <div class="container">
-          <div id="myCarousel" class="carousel slide" data-ride="carousel">
+          {{-- <div id="myCarousel" class="carousel slide" data-ride="carousel">
            
               
               
              
               <!-- Wrapper for slides -->
               <div class="carousel-inner" role="listbox">
-
+                <p>sdsd</p>
                 @if(count($products))      
                   <div class="item active">
                       <img src="/uploads/{{ $products[1]->image }}" alt="{{ $products[1]->title }}">
@@ -172,7 +172,7 @@
                   </a>
                 </div>
               
-          </div>
+          </div> --}}
         </div>
         
 
@@ -196,7 +196,8 @@
           $("."+listOrder).mouseleave(function(){
               $("."+listOrder+"_detailed").fadeOut()
               $(".service_info_1_detailed").fadeIn()              
-          });                   
+          });
+          $(this).stop()                   
         }
 
          for(i=0;i<6;i++){

@@ -40,7 +40,7 @@
                                   <i id="click_trigger" class="fa fa-camera fa-2x btn btn-default btn-file" aria-hidden="true">
 
                                   </i>
-                                  <input  id="click_submit" type="file" name="image" class="image" value="select" style="display:none;" onchange="readURL(this)">
+                                  <input  id="click_submit" type="file" name="image" class="image" value="/{{ $product->image }}" style="display:none;" onchange="readURL(this)">
 
 
                                   <h3 class="text-center text-capitalize">change picture</h3>

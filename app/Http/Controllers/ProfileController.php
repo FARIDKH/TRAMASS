@@ -68,23 +68,42 @@ class ProfileController extends Controller
       }
     }
 
-    public function show_create_page($id)
+    public function show_create_page()
     {
 
         $categories = Product_Category::all();
         $constants = $this->constants;
         $baskets = $this->user->baskets;
-        if($id == $this->user->id){
-            if($this->user->type != 0 && $this->user->id == Auth::user()->id ){
+        if($this->user->type != 0 && $this->user->id == Auth::user()->id ){
                 return view('create_product',compact('categories','constants','baskets'));
-            } else {
-                return view('errors.503',compact('baskets'));
-            }
-        } else {
-            return view('errors.503');
-        }
+          } else {
+              return view('errors.503',compact('baskets'));
+          }
+
+        
     }
-    public function create_product(Request $request,$id){
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            
+        ];
+    }
+    public function create_product(Request $request){
+        $this->validate($request, [
+          'title' => 'required',
+          'image' => 'required',
+          'description' => 'required|max:200',
+          'product_category_id' => 'required',
+          'constant_id' => 'required',
+          'count' => 'required',
+          'price' => 'required',
+          'date_limit' => 'required',          
+        ]);
         $product = new Product;
         $file = $request->file('image');
         $filename = Auth::user()->id.'/'.date('YjgihisA').".jpg";
@@ -103,7 +122,6 @@ class ProfileController extends Controller
             'date_limit' => $request->date_limit,
             'user_id' => Auth::user()->id
           ]);
-
         return redirect()->back()->with('product_name',"".Auth::user()->products->last()->title."")
                                  ->with('product_image',"".Auth::user()->products->last()->image."");
     }

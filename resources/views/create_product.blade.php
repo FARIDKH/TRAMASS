@@ -8,7 +8,9 @@
             <div class="col-md-6 leftPart">
                 <div>
                     @if(Session::has('product_name'))
-                    <img src="/uploads/{{Session::get('product_image')}}" alt="">
+                    <a href="https://www.google.az/">
+                        <img src="/uploads/{{Session::get('product_image')}}" alt="">
+                    </a>
                         @else
                             <img src="" alt="">
                     @endif
@@ -29,7 +31,15 @@
 <div class="container-fluid change_pro">
 
             <div class="container">
-                 
+                 @if (count($errors) > 0)
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
             <!--title-->
                 <div class="row title">
                     <div class="col-md-12">
@@ -105,7 +115,7 @@
 
                             <div class="form-group col-md-3">
                               <label for="">Category</label>
-                                <select class="form-control" id="sayam" name="product_category_id" >
+                                <select class="form-control" id="product_category_id" name="product_category_id" >
                                     @foreach($categories as $category)
                                       <option value="{{ $category->id }}">{{ $category->title }}</option>
                                     @endforeach
@@ -163,7 +173,7 @@
         var _token = $('input[name=_token]')
         var description = $("#description")
         var title = $("#title")
-        var product_category_id = $("#sayam")
+        var product_category_id = $("#product_category_id")
         var constant_id = $("#constant_id")
         var count = $("#count")
         var price = $("#price")

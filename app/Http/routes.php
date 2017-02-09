@@ -89,9 +89,9 @@ Route::group(['middleware' => 'auth'],function(){
     Route::get('/request','RequestController@show_requests');
     Route::get('/add_request/{id}','RequestController@add_request');
     Route::get('/reject_request/{id}','RequestController@reject_request');
-    Route::get('/accept_request/{id}','RequestController@accept_request');
+    Route::get('/accept_request','RequestController@accept_request');
     // // //// //// //// //// ////     // // //// //// //// //// ////
-    Route::get('/create_product/{id}','ProfileController@show_create_page');
+    Route::get('/create_product','ProfileController@show_create_page');
     //Route::get('creatingProduct' , 'ProfileController@create_product');
     Route::post('/create_product/{id}','ProfileController@create_product');
     Route::get('/cnprofile/{id}','ProfileController@cnprofile');

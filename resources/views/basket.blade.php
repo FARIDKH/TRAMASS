@@ -11,7 +11,7 @@
 					{{ csrf_field() }}
 					<table class="basket">	
 						@foreach($baskets as $basket)								
-							<tr id="{{ $basket->id }}">
+							<tr id="{{ $basket->id }}" class="basket-product">
 								<input type="hidden" name="id" value="{{ $basket->id }}">
 								<input type="hidden" name="id_{{ $basket->id }}" value="{{ $basket->id }}">
 								<td class="product-ignore">
@@ -105,40 +105,64 @@
 <script>
 	var _token = $('input[name=_token]');
 	
-	var product_price = [];
+	var basket_products = {
+		
+	}
+
+	var basket_product_list = []
+
+
+	for(i=0;i<$('.basket-product').length;i++)
+	{
+		basket_product_list.push($('.basket-product')[i].id)
+	}
+
+	$('.basket-product').mouseenter(function(){
+		var basketIndex = basket_product_list.indexOf(this)
+	})
 	var total = 0;
 	function totalPriceOfProduct()
 	{
 		for(i=0;i<$('.product-total-price span').length;i++)
 		{
-			product_price[i] = $('.product-total-price span')[i].outerText	
-			total += parseInt(product_price[i])
+			basket_products[i] =  $('.product-total-price span')[i].outerText	
+			total += parseInt(basket_products[i])
 		}	
-		console.log(product_price)
+
 	}
-
 	totalPriceOfProduct()
-
 	var newTotal;
-
 	function newTotalChange()
 	{
-		$('.count-of-product').on('keyup mouseup',function(event){		
-			product_info = $(this).parent().parent(),
+		$('.count-of-product').on('keyup mouseup',function(event){	
+			product_info = $(this).parent().parent()
+			var indexOfProductInBasket = basket_product_list.indexOf(product_info[0].id)
+
 			value = $(this).val(),
 			price_of_this_product = product_info.find($('.product-price'))
 			total_price_of_this_product = product_info.find($('.product-total-price span'))
 			total_price_of_this_product.text(value * parseInt(price_of_this_product.text()))
+			basket_products[indexOfProductInBasket] = value * parseInt(price_of_this_product.text())
 			newTotal = 0;
-			totalPriceOfProduct()
-			for(i=0;i<$('.product-total-price span').length;i++)
+			
+			// for(i=0;i<$('.product-total-price span').length;i++)
+			// {
+			// 	newTotal += parseInt(basket_products[i]);
+			// }	
+			for(var productPrice in basket_products)
 			{
-				newTotal += parseInt(product_price[i]);
-			}	
+				if(basket_products.hasOwnProperty(productPrice))
+				{
+
+					newTotal += parseFloat(basket_products[productPrice])
+				}
+			}
+			console.log(newTotal)
 			$('.total-price').text(newTotal + " AZN")
 		})
 	}
 	newTotalChange()
+	console.log(basket_products)
 	$(document).ready(function(){
 		$('.total-price').text(total + " AZN")
 		$('.product-ignore i').click(function(){
@@ -156,11 +180,13 @@
 				success:function()
 				{
 					var x = a.find($('.product-total-price span'))
+					var indexInArray = basket_product_list.indexOf(x.parent().parent()[0].id)
+					delete basket_products[indexInArray]
+					console.log(basket_products)
 					if(newTotal)
 					{
 						newTotal = newTotal -  x.text()
-						$('.total-price').text(newTotal + " AZN")
-						
+						$('.total-price').text(newTotal + " AZN")						
 					} else 
 					{
 						total = total  - x.text()
