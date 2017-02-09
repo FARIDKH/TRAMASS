@@ -8,7 +8,7 @@ class Order extends Model
 {
    protected $fillable = [
 
-   	'seller_id' ,'buyer_id'
+   	'seller_id','buyer_id'
 
    ];
 
@@ -22,7 +22,7 @@ class Order extends Model
    {
       return $this->belongsTo(User::class);
    }
-   public function buyer()
+   public function basket()
    {
       return $this->hasOne(Basket::class);
    }

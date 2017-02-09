@@ -6,98 +6,65 @@
 	<div class="container-fluid">
 		<div class="col-md-12">
 			<h1>Shopping Cart</h1>
-			<div class="col-md-8">
-				<form action="/update_basket" method="post">	
-					{{ csrf_field() }}
-					<table class="basket">	
-						@foreach($baskets as $basket)								
-							<tr id="{{ $basket->id }}" class="basket-product">
-								<input type="hidden" name="id" value="{{ $basket->id }}">
-								<input type="hidden" name="id_{{ $basket->id }}" value="{{ $basket->id }}">
-								<td class="product-ignore">
-									<i type="submit" class="fa fa-times"></i>
-								</td>
-								<td class="product-image">
-									<div>
-										<img src="uploads/{{ $basket->product->image }}" alt="{{ $basket->product->title }}">
-									</div>
-								</td>
-								<td class="product-title">
-									<span>{{ $basket->product->title }}</span>
-								</td>
-								<td class="product-price">
-									<span>{{ $basket->product->price }} AZN</span>
-								</td>
-								<td class="product-count">
-									<input type="number" name="cart[{{ $basket->id }}]" class="count-of-product" min="1" value="{{ $basket->count }}">
-								</td>
-								<td class="product-total-price">
-									<span>{{ $basket->product->price *  $basket->count }}</span> AZN
-								</td>
-							</tr>
-						@endforeach						
-					</table>
-					<button type="submit" name="update_basket" class="update-basket">UPDATE CART</button>	
-				</form>						
-			</div>
-			<div class="col-md-4 cart-total">
-				<div>
-					<div class="row">
-						<h3>
-							CART TOTALS
-						</h3>
-						<hr>						
-					</div>
-					<div class="row">
-						<h3>
-							SUBTOTAL
-						</h3>
-						<span>
-							$300.00
-						</span>
-					</div>
-					<div class="row">
-						<div class="col-md-3">
-							<div class="row">
-								<h3>
-									SHIPPING
-								</h3>
-							</div>
+			<form action="/update_basket" method="post">
+				<div class="col-md-8">					
+						{{ csrf_field() }}
+						<table class="basket">	
+							@foreach($baskets as $basket)								
+								<tr id="{{ $basket->id }}" class="basket-product">
+									<input type="hidden" name="id" value="{{ $basket->id }}">
+									<input type="hidden" name="id_{{ $basket->id }}" value="{{ $basket->id }}">
+									<td class="product-ignore">
+										<i type="submit" class="fa fa-times"></i>
+									</td>
+									<td class="product-image">
+										<div>
+											<img src="uploads/{{ $basket->product->image }}" alt="{{ $basket->product->title }}">
+										</div>
+									</td>
+									<td class="product-title">
+										<span>{{ $basket->product->title }}</span>
+									</td>
+									<td class="product-price">
+										<span>{{ $basket->product->price }} AZN</span>
+									</td>
+									<td class="product-count">
+										<input type="number" name="cart[{{ $basket->id }}]" class="count-of-product" min="1" value="{{ $basket->count }}">
+									</td>
+									<td class="product-total-price">
+										<span>{{ $basket->product->price *  $basket->count }}</span> AZN
+									</td>
+								</tr>
+							@endforeach						
+						</table>
+						<button type="submit" name="update_basket" class="update-basket">UPDATE CART</button>	
+										
+				</div>
+				<div class="col-md-4 cart-total">
+					<div>
+						<div class="row">
+							<h3>
+								CART TOTALS
+							</h3>
+							<hr>						
 						</div>
-						<div class="col-md-9">
-							<div class="row">								
-								<input type="radio" name="method[1]">
-								<label for="method[1]">FLAT RATE: $12.00</label>
-							</div>
-							<div class="row">								
-								<input type="radio" name="method[1]">
-								<label for="method[1]">FLAT RATE: $12.00</label>
-							</div>
-							<div class="row">								
-								<input type="radio" name="method[1]">
-								<label for="method[1]">FLAT RATE: $12.00</label>
-							</div>
-							<div class="row">								
-								<input type="radio" name="method[1]">
-								<label for="method[1]">FLAT RATE: $12.00</label>
-							</div>
+						<div class="row cart-total-price">
+							<h3>
+								TOTAL	
+							</h3>
+							<span class="total-price">
+								
+							</span>
 						</div>
-						
-					</div>
-					<div class="row cart-total-price">
-						<hr>
-						<h3>
-							TOTAL	
-						</h3>
-						<span class="total-price">
-							
-						</span>
-					</div>
-					<div class="row proceed">
-						<a href="#">PROCEED TO CHECKOUT</a>
+						<div class="row proceed">
+							<a href="" id="proceedToCheckout">PROCEED TO CHECKOUT</a>
+						</div>
+						<div style="display:none" class="row text-center success-message">
+							<p>TEKLIFLER GONDERILDI</p>
+						</div>
 					</div>
 				</div>
-			</div>
+			</form>	
 		</div>
 	</div>
 </section>
@@ -121,6 +88,7 @@
 		var basketIndex = basket_product_list.indexOf(this)
 	})
 	var total = 0;
+	var newTotal;
 	function totalPriceOfProduct()
 	{
 		for(i=0;i<$('.product-total-price span').length;i++)
@@ -131,7 +99,27 @@
 
 	}
 	totalPriceOfProduct()
-	var newTotal;
+	
+	$('#proceedToCheckout').click(function(event){
+		event.preventDefault();
+		$this = $(this);
+		$.ajax({
+			url:'/add_request',
+			method:'POST',
+			data:
+			{
+				_token:_token.val(),
+				products:basket_product_list,
+			},
+			success:function(data)
+			{
+				console.log('no error :)')
+				$this.fadeOut()
+				$('.success-message').fadeIn()
+			}
+		})
+	})
+
 	function newTotalChange()
 	{
 		$('.count-of-product').on('keyup mouseup',function(event){	
@@ -157,12 +145,10 @@
 					newTotal += parseFloat(basket_products[productPrice])
 				}
 			}
-			console.log(newTotal)
 			$('.total-price').text(newTotal + " AZN")
 		})
 	}
 	newTotalChange()
-	console.log(basket_products)
 	$(document).ready(function(){
 		$('.total-price').text(total + " AZN")
 		$('.product-ignore i').click(function(){
@@ -182,7 +168,6 @@
 					var x = a.find($('.product-total-price span'))
 					var indexInArray = basket_product_list.indexOf(x.parent().parent()[0].id)
 					delete basket_products[indexInArray]
-					console.log(basket_products)
 					if(newTotal)
 					{
 						newTotal = newTotal -  x.text()

@@ -12,18 +12,30 @@ use App\Order;
 
 class RequestController extends Controller
 {
-	function add_request($id)
+	public function add_request(Request $request)
 	{
-		$basket = Basket::find($id);
-		$basket->status = 1;
-		$basket->save();
-		return back();
+		$data = $request->products;
+		foreach ($data as $key => $value) 
+		{
+			$basket = Basket::find($value);
+			$basket->status = 0;
+			$seller_id =  $basket->product->user->id;
+			$order = new Order;
+			$order->seller_id = $seller_id;
+			$order->buyer_id = Auth::user()->id;
+			$order->save();
+			$basket->order_id = $order->id;
+			$basket->save();
+		}		
+		
 	}
     public function show_requests()
     {
-			$baskets = $this->user_product =  Auth::user()->baskets;
-			$basket = Basket::all();
-    	return view('request',compact('baskets','baskets'));
+		$baskets = Auth::user()->baskets;
+		$orders = Order::where('seller_id',Auth::user()->id)->get();
+		$basket = Basket::all();
+
+    	return view('request',compact('basket','baskets','orders'));
     }
 	public function accept_request($id)
 	{

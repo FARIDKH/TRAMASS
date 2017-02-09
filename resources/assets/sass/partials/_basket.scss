@@ -147,12 +147,20 @@
 		{
 			margin-top:15px;
 			text-align: center;
+			transition:all 0.3s ease;
 			a
 			{
 				color:white;
 				background-color: #4CAF50;
-				padding:15px 89px;
+				width:100%;
+				padding:15px 20px;
 			}
+		}
+		.success-message
+		{
+			color: #4CAF50;
+			font-size:25px;
+			transition:all 0.3s ease;
 		}
 	}
 }

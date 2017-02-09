@@ -486,11 +486,17 @@ nav {
         margin-left: 15px; }
     #basket .cart-total .proceed {
       margin-top: 15px;
-      text-align: center; }
+      text-align: center;
+      transition: all 0.3s ease; }
       #basket .cart-total .proceed a {
         color: white;
         background-color: #4CAF50;
-        padding: 15px 89px; }
+        width: 100%;
+        padding: 15px 20px; }
+    #basket .cart-total .success-message {
+      color: #4CAF50;
+      font-size: 25px;
+      transition: all 0.3s ease; }
 
 html {
   overflow-x: hidden;
@@ -6615,5 +6621,10 @@ input[type=range]::-webkit-slider-runnable-track {
     height: 3px;
     border-radius: 3px;
     background-color: #FF8463; }
+
+.request-image {
+  width: 250px; }
+  .request-image img {
+    width: 100%; }
 
 /*# sourceMappingURL=app.css.map */

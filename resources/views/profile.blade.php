@@ -19,7 +19,7 @@
 
               <!--change-profile link-->
 
-                                  <a href="/cnprofile/{{ $user->id }}">
+                                  <a href="/cnprofile">
                                          <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                   </a>
                                   @if(Auth::user()->type || Auth::user()->type  == 2 && Auth::user()->id == $user->id)

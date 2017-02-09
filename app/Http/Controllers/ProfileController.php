@@ -47,24 +47,20 @@ class ProfileController extends Controller
         return json_encode($product->id);
     }
 
-    public function cnprofile($id){
+    public function cnprofile(){
       $user = $this->user;
       $baskets = $this->user->baskets;
-      if($id == $this->user->id){
-        return view('cnprofile',compact('user','baskets'));
-      } else {
-        return view('errors.503');
-      }
+      return view('cnprofile',compact('user','baskets'));       
     }
 
-    public function change_profile(Request $request,$id){
+    public function change_profile(Request $request){
       if(isset($_POST['change_profile'])){
-                $user= User::find($id);
-                $user->update($request->all());
-                $this->user->type = $request->type;
-                $this->user->save();
-                return redirect()->action('ProfileController@profile', ['id' => Auth::user()->id]);
-                return response()->json( $user );
+        $user= User::find(Auth::user()->id);
+        $user->update($request->all());
+        $this->user->type = $request->type;
+        $this->user->save();
+        return redirect()->action('ProfileController@profile', ['id' => Auth::user()->id]);
+        return response()->json( $user );
       }
     }
 

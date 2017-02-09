@@ -9,8 +9,7 @@
 			@if($basket->product->user->id == Auth::user()->id)	
 				@if($basket->status)					
 					<div class="row">
-						<div class="pull-left col-md-6">
-							
+						<div class="pull-left col-md-6">							
 							<h3>{{ $basket->user->name  }} {{ $basket->user->surname  }} adlı istifadəçi {{ $basket->count }} {{ $basket->product->constant->title }} {{ $basket->product->title }} almaq istəyir</h3>
 							<img src="uploads/{{ $basket->product->image }}" alt="{{ $basket->product->title }}" style="width:50%">
 						</div>
@@ -27,6 +26,20 @@
 					<h1>Size her hansi bir teklif gelmiyib</h1>
 				</div>
 			@endif
+		@endforeach
+
+		@foreach($orders as $order)
+			<section id="request">
+				<p>{{ $order->basket}}</p>
+				<h3>{{$order->basket->user->name}} {{$order->basket->user->surname}} adlı istifadəçi  
+				{{ $order->basket->count }}
+				{{ $order->basket->product->product_category }} 
+				{{ $order->basket->product->title }}</h3>
+				<div class="request-image">				
+					<img src="uploads/{{ $order->basket->product->image }}" alt="{{ $order->basket->product->title }}">
+				</div>
+			</section>
+
 		@endforeach
 	</div>
 
