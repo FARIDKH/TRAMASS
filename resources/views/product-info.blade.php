@@ -53,8 +53,7 @@
                             <p>{{$product->description}}</p>
                             <span class="product_id hidden" >{{ $product->id }}</span>
                             @if(Auth::user()->type != 1)
-                              @if($product->user->id == Auth::user()->id)
-
+                              @if($product->user->id != Auth::user()->id)
                                   <input type="number" class="count" name="count" value="1" min="1">
                                   <button type="submit" class="addCart" name="button" >add to cart</button>
                                   <button class="viewCart hidden" name="button" ><a href="/basket">view cart</a></button>
@@ -62,6 +61,7 @@
                               @else
                                   <span>Siz sadece satici statusuna maliksiniz</span>
                             @endif
+
                         </form>
                     </div>
               </div>

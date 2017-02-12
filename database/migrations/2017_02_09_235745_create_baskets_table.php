@@ -22,6 +22,7 @@ class CreateBasketsTable extends Migration
             $table->integer('price');
             $table->integer('count')->nullable();     
             $table->timestamps();
+            
         });
     }
 

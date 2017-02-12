@@ -6622,9 +6622,12 @@ input[type=range]::-webkit-slider-runnable-track {
     border-radius: 3px;
     background-color: #FF8463; }
 
-.request-image {
+#requests .col-md-6 {
+  float: left; }
+
+#requests .request-image {
   width: 250px; }
-  .request-image img {
+  #requests .request-image img {
     width: 100%; }
 
 /*# sourceMappingURL=app.css.map */

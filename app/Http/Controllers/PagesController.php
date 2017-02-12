@@ -12,7 +12,7 @@ use App\Basket;
 use App\Country;
 use App\Orders;
 use App\Product;
-use App\Product_Category;
+use App\ProductCategory;
 use App\User;
 
 
@@ -24,13 +24,13 @@ class PagesController extends Controller
     public function __construct(){
       $this->user = User::class;
       $this->user_product =  Auth::user();
-      $this->product_categories = Product_Category::class;
+      $this->product_categories = ProductCategory::class;
       $this->products = Product::orderBy('id','desc')->get();
     }
     public function products()
     {
       $products = $this->products;
-      $product_categories = Product_Category::all();
+      $product_categories = ProductCategory::all();
       if(Auth::guest()){
         return view('new' , compact('product_categories' , 'products'));
       } else {

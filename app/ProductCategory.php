@@ -4,9 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Product_Category extends Model
+class ProductCategory extends Model
 {
-	protected $table = 'product__categories';
 	protected $fillable = [
        'title'
     ];

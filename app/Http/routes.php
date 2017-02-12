@@ -88,8 +88,8 @@ Route::group(['middleware' => 'auth'],function(){
 
     Route::get('/request','RequestController@show_requests');
     // Route::get('/add_request/{id}','RequestController@add_request');
-    Route::get('/reject_request/{id}','RequestController@reject_request');
-    Route::get('/accept_request','RequestController@accept_request');
+    Route::get('/reject_request','RequestController@reject_request');
+    Route::post('/accept_request','RequestController@accept_request');
 
 
 

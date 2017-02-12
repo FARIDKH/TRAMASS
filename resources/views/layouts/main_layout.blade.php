@@ -51,7 +51,7 @@
                   </ul>
                 </div>
               <div class="icon">
-                      <a href="{{ url('/basket') }}" class="fa fa-cart-plus"><span>
+                      <a href="{{ url('/basket') }}" class="fa fa-shopping-basket"><span>
                         @if(!Auth::guest())
                           {{count($baskets)}}
                         @endif

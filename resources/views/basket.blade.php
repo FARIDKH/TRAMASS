@@ -9,8 +9,13 @@
 			<form action="/update_basket" method="post">
 				<div class="col-md-8">					
 						{{ csrf_field() }}
+						@if(!sizeof($baskets))
+							<h2>SIZIN BASKETINIZ BOSHDUR</h2>
+							<a class="" href="/products">MƏHSULLARA BAX</a>
+						@endif
 						<table class="basket">	
-							@foreach($baskets as $basket)								
+							@foreach($baskets as $basket)
+								@if($basket->status == 5)								
 								<tr id="{{ $basket->id }}" class="basket-product">
 									<input type="hidden" name="id" value="{{ $basket->id }}">
 									<input type="hidden" name="id_{{ $basket->id }}" value="{{ $basket->id }}">
@@ -29,15 +34,19 @@
 										<span>{{ $basket->product->price }} AZN</span>
 									</td>
 									<td class="product-count">
-										<input type="number" name="cart[{{ $basket->id }}]" class="count-of-product" min="1" value="{{ $basket->count }}">
+										<input type="number" name="cart[{{$basket->id}}]" class="count-of-product" min="1" value="{{ $basket->count }}">
 									</td>
 									<td class="product-total-price">
 										<span>{{ $basket->product->price *  $basket->count }}</span> AZN
 									</td>
 								</tr>
-							@endforeach						
+								@endif
+							@endforeach		
+							@if(sizeof($baskets) > 1)
+								<button type="submit" name="update_basket" class="update-basket">UPDATE CART</button>	
+							@endif				
 						</table>
-						<button type="submit" name="update_basket" class="update-basket">UPDATE CART</button>	
+						
 										
 				</div>
 				<div class="col-md-4 cart-total">
@@ -72,23 +81,27 @@
 <script>
 	var _token = $('input[name=_token]');
 	
-	var basket_products = {
-		
-	}
-
+	var basket_products = new Object;
 	var basket_product_list = []
-
 
 	for(i=0;i<$('.basket-product').length;i++)
 	{
 		basket_product_list.push($('.basket-product')[i].id)
-	}
+	}	
+
 
 	$('.basket-product').mouseenter(function(){
 		var basketIndex = basket_product_list.indexOf(this)
 	})
 	var total = 0;
 	var newTotal;
+	var counts = []
+	for(i=0;i<$('.basket-product').length;i++)
+	{
+		
+		count = parseInt($('.basket-product .product-total-price span')[i].innerText) / parseInt($('.basket-product .product-price span')[i].innerText)
+		counts.push(count)
+	}
 	function totalPriceOfProduct()
 	{
 		for(i=0;i<$('.product-total-price span').length;i++)
@@ -110,12 +123,13 @@
 			{
 				_token:_token.val(),
 				products:basket_product_list,
+				counts:counts
 			},
 			success:function(data)
 			{
-				console.log('no error :)')
 				$this.fadeOut()
 				$('.success-message').fadeIn()
+				
 			}
 		})
 	})
@@ -132,11 +146,7 @@
 			total_price_of_this_product.text(value * parseInt(price_of_this_product.text()))
 			basket_products[indexOfProductInBasket] = value * parseInt(price_of_this_product.text())
 			newTotal = 0;
-			
-			// for(i=0;i<$('.product-total-price span').length;i++)
-			// {
-			// 	newTotal += parseInt(basket_products[i]);
-			// }	
+			counts[indexOfProductInBasket] = value;
 			for(var productPrice in basket_products)
 			{
 				if(basket_products.hasOwnProperty(productPrice))
@@ -167,6 +177,10 @@
 				{
 					var x = a.find($('.product-total-price span'))
 					var indexInArray = basket_product_list.indexOf(x.parent().parent()[0].id)
+					if(indexInArray > -1 )
+					{
+						basket_product_list.splice(indexInArray, 1)
+					}
 					delete basket_products[indexInArray]
 					if(newTotal)
 					{
@@ -187,6 +201,8 @@
 			})
 		})
 	});
+
+	
 </script>
 
 @endsection

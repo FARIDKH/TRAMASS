@@ -20,7 +20,7 @@ class CreateProductsTable extends Migration
             $table->string('image');
             $table->integer('user_id')->unsigned()->index();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->integer('product__category_id')->unsigned()->index();
+            $table->integer('product_category_id')->unsigned()->index();
             $table->integer('constant_id')->unsigned()->index();
             $table->integer('count')->unsigned()->nullable();
             $table->date('date_limit');

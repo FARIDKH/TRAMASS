@@ -55,6 +55,7 @@
                                               <a class="media-left" href="/product_single/{{ $user_product->id }}">
                                                  <img src="/uploads/{{ $user_product->image }}" alt="{{ $user_product->title }}">
                                              </a>
+                                             <p>{{ $user_product->productCategory->title }}</p>
                                              <div class="media-body">
                                                  <h3 class="media-heading"><a href="/product_single/{{ $user_product->id }}">
                                                  {{ $user_product->title }}</a></h3>

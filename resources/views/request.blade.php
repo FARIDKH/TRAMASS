@@ -2,45 +2,77 @@
 
 @section('content')
 
+	
 
-	<div class="container">
-		@foreach($baskets as $basket)
-		
-			@if($basket->product->user->id == Auth::user()->id)	
-				@if($basket->status)					
+	@if(sizeof($orders) == 0)
+		<div class="container">
+			<h1>SIZƏ HƏR HANSİSA BİR TƏKLİF GƏLMƏYİB</h1>			
+		</div>
+	@endif
+
+	@foreach($orders as $order)
+			<section id="requests">
+				<div class="container">
+					{{ csrf_field() }}
 					<div class="row">
-						<div class="pull-left col-md-6">							
-							<h3>{{ $basket->user->name  }} {{ $basket->user->surname  }} adlı istifadəçi {{ $basket->count }} {{ $basket->product->constant->title }} {{ $basket->product->title }} almaq istəyir</h3>
-							<img src="uploads/{{ $basket->product->image }}" alt="{{ $basket->product->title }}" style="width:50%">
-						</div>
-						<div class=" pull-right col-md-6">
-							<h3>Toplam qazanc : {{ $basket->count * $basket->price }} AZN</h3>
-							<a href="/accept_request/{{ $basket->id }}" class="btn btn-success">QƏBUL ET</a>
-							<a href="/reject_request/{{ $basket->id }}" class="btn btn-warning">QƏBUL ETMƏ</a>
+						<div class="col-md-6">
+							<div class="row">
+								<h3>{{$order->buyer->user->name}} {{$order->buyer->user->surname}} adlı istifadəçi  
+								{{ $order->buyer->count }}
+								{{ $order->buyer->product->constant->title }}
+								{{ $order->buyer->product->title }} almaq istəyir</h3>
+							</div>
+							
+							<div class="row request-image">				
+								<img src="uploads/{{ $order->buyer->product->image }}" alt="{{ $order->buyer->product->title }}">
+							</div>
+							<div class="row">
+								<h4>Toplam qazanc : {{ $order->buyer->price * $order->buyer->count }} MANAT</h4>		
+							</div>				
+							<div class="row text-left">
+								<a class="accept-request btn btn-success">QƏBUL ET</a>
+								<a class="reject-request btn btn-warning">QƏBUL ETMƏ</a>
+							</div>
+							<hr>
 						</div>
 					</div>
-					<hr>
-				@endif
-				@else 
-				<div class="row	">
-					<h1>Size her hansi bir teklif gelmiyib</h1>
-				</div>
-			@endif
-		@endforeach
-
-		@foreach($orders as $order)
-			<section id="request">
-				<p>{{ $order->basket}}</p>
-				<h3>{{$order->basket->user->name}} {{$order->basket->user->surname}} adlı istifadəçi  
-				{{ $order->basket->count }}
-				{{ $order->basket->product->product_category }} 
-				{{ $order->basket->product->title }}</h3>
-				<div class="request-image">				
-					<img src="uploads/{{ $order->basket->product->image }}" alt="{{ $order->basket->product->title }}">
+					
 				</div>
 			</section>
 
 		@endforeach
-	</div>
 
 @stop
+
+@section('script')
+<script>
+
+var _token = $('input[name=_token]');
+
+var request = [
+	@foreach($orders as $order)
+		{{ $order->id }} ,
+	@endforeach
+];
+
+console.log(request)
+$('.accept-request').click(function(event){
+	event.preventDefault();
+	$.ajax({
+		url:'/accept_request',
+		method:'POST',
+		data:
+		{
+			_token:_token.val(),
+			request:request,
+		},
+		success:function(data)
+		{
+			console.log(data)
+			
+		}
+	})
+})
+
+</script>
+@endsection

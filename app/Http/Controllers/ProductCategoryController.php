@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Product_Category;
+use App\ProductCategory;
 
 
 
@@ -84,7 +84,7 @@ class ProductCategoryController extends Controller
      */
     public function destroy($id)
     {
-        $product_category = Product_Category::find($id);
+        $product_category = ProductCategory::find($id);
         $product_category->delete();
         return back(); 
     }

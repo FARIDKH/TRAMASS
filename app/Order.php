@@ -22,7 +22,7 @@ class Order extends Model
    {
       return $this->belongsTo(User::class);
    }
-   public function basket()
+   public function buyer()
    {
       return $this->hasOne(Basket::class);
    }

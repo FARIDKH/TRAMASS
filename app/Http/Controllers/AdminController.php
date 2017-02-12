@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Product_Category;
+use App\ProductCategory;
 use App\Http\Requests;
 use App\Constant;
 use App\Country;
@@ -67,12 +67,12 @@ class AdminController extends Controller
 
 
     public function product_category(){
-        $categories = Product_Category::all();
+        $categories = ProductCategory::all();
         return view('admin.product_category',compact('categories'));
     }
-    public function store(Request $request,Product_Category $product_category)
+    public function store(Request $request,ProductCategory $product_category)
     {
-        $category = new Product_Category;
+        $category = new ProductCategory;
         $category->title=$request->title;
         $category->save();
         return back();
@@ -126,7 +126,7 @@ class AdminController extends Controller
     }  
 
     public function orders(){
-        $orders = Order::all();
+        $orders = Order::orderBy('id','desc')->get();
         return view('admin.orders',compact('orders'));
     }
 }

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Product;
-use App\Product_Category;
+use App\ProductCategory;
 use Auth;
 
 class ProductController extends Controller
@@ -20,7 +20,7 @@ class ProductController extends Controller
 	}
     public function filter(Request $request)
     {
-        $product_categories = Product_Category::all();
+        $product_categories = ProductCategory::all();
         $price_range_from = $request->price_range_from;
         $price_range_to = $request->price_range_to;
         if(!Auth::guest())
@@ -35,7 +35,7 @@ class ProductController extends Controller
 
         if($request->product_category_id)
         {
-            $products = Product::where('product__category_id' ,'=',$request->product_category_id)->get();
+            $products = Product::where('product_category_id' ,'=',$request->product_category_id)->orderBy('id','desc')->get();
             return view('new', compact('products','product_categories','baskets'));
         }
 

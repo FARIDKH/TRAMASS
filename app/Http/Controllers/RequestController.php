@@ -15,10 +15,12 @@ class RequestController extends Controller
 	public function add_request(Request $request)
 	{
 		$data = $request->products;
+		$counts = $request->counts;			
 		foreach ($data as $key => $value) 
 		{
 			$basket = Basket::find($value);
 			$basket->status = 0;
+			$basket->count = $counts[$key];
 			$seller_id =  $basket->product->user->id;
 			$order = new Order;
 			$order->seller_id = $seller_id;
@@ -27,29 +29,18 @@ class RequestController extends Controller
 			$basket->order_id = $order->id;
 			$basket->save();
 		}		
-		
 	}
     public function show_requests()
     {
 		$baskets = Auth::user()->baskets;
-		$orders = Order::where('seller_id',Auth::user()->id)->get();
+		$orders = Order::where('seller_id',Auth::user()->id)->orderBy('id','desc')->get();
 		$basket = Basket::all();
-
     	return view('request',compact('basket','baskets','orders'));
     }
-	public function accept_request($id)
-	{
-		$basket = Basket::find($id);
-		$order = new Order;
-		$order->seller_id =  $basket->product->user->id;
-		$order->buyer_id = $basket->user_id;
-		$order->save();
-		$basket->status = 2;
-		$basket->order_id = $order->id;
-		$basket->save();
-		return redirect('/home');
-	}
-
+    public function accept_request()
+    {
+    	
+    }
 	public function reject_request($id)
 	{
 		$basket = Basket::find($id);
