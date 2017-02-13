@@ -52,9 +52,7 @@
                 </div>
               <div class="icon">
                       <a href="{{ url('/basket') }}" class="fa fa-shopping-basket"><span>
-                        @if(!Auth::guest())
-                          {{count($baskets)}}
-                        @endif
+
 
                       </span></a>
                       <a href="" class="fa fa-search "></a>
@@ -67,7 +65,13 @@
 
 
       </section>
-
+   {{--  @if(!Auth::guest())
+      @foreach($baskets as $basket)
+          @if($basket->status == 5)
+            {{ $basket }}
+          @endif
+      @endforeach
+    @endif --}}
 
        @yield('content')
 

@@ -10,12 +10,14 @@
 		</div>
 	@endif
 
+
+<section id="requests">
 	@foreach($orders as $order)
-			<section id="requests">
-				<div class="container">
+			
+				<div  class="container">
 					{{ csrf_field() }}
 					<div class="row">
-						<div class="col-md-6">
+						<div id="{{ $order->id }}" class="col-md-6">
 							<div class="row">
 								<h3>{{$order->buyer->user->name}} {{$order->buyer->user->surname}} adlı istifadəçi  
 								{{ $order->buyer->count }}
@@ -26,7 +28,7 @@
 							<div class="row request-image">				
 								<img src="uploads/{{ $order->buyer->product->image }}" alt="{{ $order->buyer->product->title }}">
 							</div>
-							<div class="row">
+							<div class="row request-profit">
 								<h4>Toplam qazanc : {{ $order->buyer->price * $order->buyer->count }} MANAT</h4>		
 							</div>				
 							<div class="row text-left">
@@ -38,38 +40,53 @@
 					</div>
 					
 				</div>
-			</section>
+
 
 		@endforeach
-
+			</section>
 @stop
 
 @section('script')
 <script>
-
 var _token = $('input[name=_token]');
 
-var request = [
-	@foreach($orders as $order)
-		{{ $order->id }} ,
-	@endforeach
-];
-
-console.log(request)
 $('.accept-request').click(function(event){
 	event.preventDefault();
+	var request = $(this).parent().parent();
+	var id = request[0].id;
 	$.ajax({
 		url:'/accept_request',
 		method:'POST',
 		data:
 		{
 			_token:_token.val(),
-			request:request,
+			id:id
 		},
 		success:function(data)
 		{
-			console.log(data)
-			
+			request.slideUp('400',function(){
+				$(this).fadeOut()
+			})
+		}
+	})
+})
+$('.reject-request').click(function(event){
+	event.preventDefault();
+	var request = $(this).parent().parent();
+	var id = request[0].id;
+	$.ajax({
+		url:'/reject_request',
+		method:'POST',
+		data:
+		{
+			_token:_token.val(),
+			id:id
+		},
+		success:function(data)
+		{
+			request.slideUp('400',function(){
+				$(this).fadeOut()
+			})
 		}
 	})
 })

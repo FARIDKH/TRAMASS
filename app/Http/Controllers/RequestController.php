@@ -33,20 +33,23 @@ class RequestController extends Controller
     public function show_requests()
     {
 		$baskets = Auth::user()->baskets;
-		$orders = Order::where('seller_id',Auth::user()->id)->orderBy('id','desc')->get();
+		$orders = Order::where('seller_id',Auth::user()->id)->orderBy('id','desc')->get();		
 		$basket = Basket::all();
     	return view('request',compact('basket','baskets','orders'));
     }
-    public function accept_request()
+    public function accept_request(Request $request)
     {
-    	
+    	$id = $request->id;
+    	$basket = Order::find($id)->buyer;
+    	$basket->status = 1;
+    	$basket->save();
     }
-	public function reject_request($id)
+	public function reject_request(Request $request)
 	{
-		$basket = Basket::find($id);
-		$basket->status = 3;
-		$basket->save();
-		return back();
+    	$id = $request->id;
+    	$basket = Order::find($id)->buyer;
+    	$basket->status = 2;
+    	$basket->save();
 	}
 
 
